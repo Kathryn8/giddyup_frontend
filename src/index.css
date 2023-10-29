@@ -209,7 +209,7 @@ Hero
 @media screen and (min-width: 768px) {
   .hero {
     background: linear-gradient(rgb(44, 174, 186, 0.7), rgba(0, 0, 0, 0.7)),
-      url('./assets/images/main.jpeg') center/cover no-repeat;
+      url('./assets/images/icon.png') center/cover no-repeat;
   }
   .hero-banner {
     padding: 0;

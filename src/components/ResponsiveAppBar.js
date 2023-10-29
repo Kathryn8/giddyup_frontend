@@ -12,9 +12,12 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SvgIconChildren from './SvgIconChildren';
+import { Link } from 'react-router-dom';
+import brandBanner from '../assets/images/brandBanner.png'
 
-const pages = ['Dashboard', 'Stats', 'Steps'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+const pages = [<Link to='./Dashboard'>Dashboard</Link>, 'Stats', 'Steps'];
+const settings = ['Profile', 'Account', <Link to='./Dashboard'>Dashboard</Link>, 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,18 +41,18 @@ function ResponsiveAppBar() {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters={false} >
 
-          <SvgIconChildren cssProps={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <SvgIconChildren cssProps={{ display: { xs: 'none', sm: 'flex', md: 'flex' }, mr: 1 }} />
 
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
+              display: { xs: 'none', sm: 'flex', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
@@ -57,7 +60,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            giddyUP!
+            <img src={brandBanner} alt="Giddy up in custom font" height="50"></img>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -96,7 +99,9 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <SvgIconChildren cssProps={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <SvgIconChildren cssProps={{
+            display: { xs: 'flex', sm: 'none', md: 'none' }, mr: 1 // change xs: 'none' to 'flex' to make banner visable on small screen
+          }} />
           <Typography
             variant="h5"
             noWrap
@@ -104,7 +109,7 @@ function ResponsiveAppBar() {
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: 'flex', sm: 'none', md: 'none' }, // change xs: 'none' to 'flex' to make banner visable on small screen
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
@@ -113,7 +118,8 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            giddyUp!
+            <img src={brandBanner} alt="Giddy up in custom font" height="50"></img>
+
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -158,7 +164,7 @@ function ResponsiveAppBar() {
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </AppBar >
   );
 }
 export default ResponsiveAppBar;
