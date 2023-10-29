@@ -19,7 +19,7 @@ const About = () => {
           <p>
             For employees and companies.
           </p>
-          <a href='#' className='btn'>
+          <a href='https://www.carployee.com/mobility-trends-of-the-young-and-the-old-a-challenge-for-companies/?lang=en' arget="_blank" rel="noopener noreferrer" className='btn'>
             read more
           </a>
         </article>

@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -14,37 +14,51 @@ import MenuItem from '@mui/material/MenuItem';
 import SvgIconChildren from './SvgIconChildren';
 import { Link } from 'react-router-dom';
 import brandBanner from '../assets/images/brandBanner.png'
+import { useAuth0 } from '@auth0/auth0-react';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-
-const pages = [<Link to='./Dashboard'>Dashboard</Link>, 'Stats', 'Steps'];
-const settings = ['Profile', 'Account', <Link to='./Dashboard'>Dashboard</Link>, 'Logout'];
+// const pages = ['Dashboard', 'Stats', 'Steps'];
+const settings = [<Link key='userProfileLink890' to='./UserProfile'>Your Profile</Link>,
+  'Account',
+<Link key='dashboardLink890' to='./Dashboard'>Dashboard</Link>,
+  'Logout'];
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  // const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+    user,
+    isLoading,
+  } = useAuth0();
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+
+
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  // const handleCloseNavMenu = () => {
+  //   setAnchorElNav(null);
+  // };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
+  console.log({ isAuthenticated, user, isLoading })
+  const isUser = isAuthenticated && user;
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters={false} >
-
+        <Toolbar disableGutters={false} sx={{ justifyContent: 'space-between' }}>
           <SvgIconChildren cssProps={{ display: { xs: 'none', sm: 'flex', md: 'flex' }, mr: 1 }} />
-
           <Typography
             variant="h6"
             noWrap
@@ -60,10 +74,20 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            <img src={brandBanner} alt="Giddy up in custom font" height="50"></img>
+            <Box
+              component="img"
+              sx={{
+                height: 50,
+                width: 200,
+                maxHeight: { xs: 50, md: 50 },
+                maxWidth: { xs: 200, md: 200 },
+              }}
+              alt="Giddy up in custom font"
+              src={brandBanner}
+            />
+            {/* <img src={brandBanner} alt="Giddy up in custom font" height="50"></img> */}
           </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -98,7 +122,7 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
           <SvgIconChildren cssProps={{
             display: { xs: 'flex', sm: 'none', md: 'none' }, mr: 1 // change xs: 'none' to 'flex' to make banner visable on small screen
           }} />
@@ -109,7 +133,7 @@ function ResponsiveAppBar() {
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
-              display: { xs: 'flex', sm: 'none', md: 'none' }, // change xs: 'none' to 'flex' to make banner visable on small screen
+              display: { xs: 'none', sm: 'none', md: 'none' }, // change xs: 'none' to 'flex' to make banner visable on small screen
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
@@ -118,10 +142,21 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            <img src={brandBanner} alt="Giddy up in custom font" height="50"></img>
+            <Box
+              component="img"
+              sx={{
+                height: 50,
+                width: 200,
+                maxHeight: { xs: 50, md: 50 },
+                maxWidth: { xs: 200, md: 200 },
+              }}
+              alt="Giddy up in custom font"
+              src={brandBanner}
+            />
+            {/* <img src={brandBanner} alt="Giddy up in custom font" height="50"></img> */}
 
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -131,12 +166,30 @@ function ResponsiveAppBar() {
                 {page}
               </Button>
             ))}
-          </Box>
+          </Box> */}
+          {/* {isUser && user.picture && <img src={user.picture} alt={user.name} />} */}
+          {isUser && user.name && (
+            <Typography>
+              Welcome, <strong>{user.name.toUpperCase()}</strong>
+            </Typography>
+          )}
+          {isUser ? (
+            <Button onClick={() => {
+              logout({
+                returnTo: window.location.origin
+              })
+            }} variant="contained" >logout</Button>
+          ) : (
+            <Button onClick={loginWithRedirect} variant="contained" >login</Button>
+          )}
+
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
+                {isUser && user.picture && user.name ?
+                  <Avatar src={user.picture} alt={user.name} /> :
+                  <Avatar alt="XNot logged in avatar" src={AccountCircleIcon} />}
               </IconButton>
             </Tooltip>
             <Menu
@@ -155,8 +208,8 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+              {settings.map((setting, index) => (
+                <MenuItem key={`setting_${index}`} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

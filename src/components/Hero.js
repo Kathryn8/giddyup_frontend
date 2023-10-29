@@ -7,6 +7,7 @@ import { Container, Box } from "@mui/material";
 const Hero = () => {
   return (
     <Container sx={{ p: 4 }}>
+
       <Box
         sx={{
           backgroundImage: `url(${MyImage})`,
@@ -21,6 +22,8 @@ const Hero = () => {
       >
       </Box >
       <h1>giddyUP!</h1>
+      <h5>{process.env.REACT_APP_TITLE}
+        {process.env.REACT_APP_DESCRIPTION}</h5>
       <SearchBar />
     </Container>
   )

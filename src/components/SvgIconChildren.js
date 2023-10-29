@@ -6,7 +6,7 @@ export default function SvgIconChildren({ cssProps }) {
     <SvgIcon sx={cssProps}>
 
       <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-        width="898.000000pt" height="665.000000pt" transform="scale(1.8)" viewBox="0 0 898.000000 665.000000"
+        width="898.000000pt" height="665.000000pt" transform="scale(2.5)" viewBox="0 0 898.000000 665.000000"
         preserveAspectRatio="xMidYMid meet">
 
         <g transform="translate(0.000000,665.000000) scale(0.100000,-0.100000)"
