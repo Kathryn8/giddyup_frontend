@@ -41,7 +41,7 @@ const SearchBar = () => {
     const dateObject = new Date(date);
     dateObject.setHours(dateObject.getHours() - 13);
     const iso8601Date = dateObject.toISOString();
-    console.log(typeof iso8601Date)
+    // console.log(typeof iso8601Date)
     const updatedRequestBody = { ...requestBody, deptDate: iso8601Date };
     // const requestBody = {
     //   origin: "Yarraville",
@@ -54,10 +54,10 @@ const SearchBar = () => {
 
 
 
-  console.log(requestBody);
+  // console.log(requestBody);
 
   const url = 'http://127.0.0.1:5000/api/v1/trips/search';
-  const [trips, setTrips] = React.useState('search results here');
+  const [trips, setTrips] = React.useState('');
 
   const searchRequest = async () => {
     try {
@@ -67,13 +67,21 @@ const SearchBar = () => {
         },
         params: requestBody,
       });
-      console.log(data)
-      setTrips(data.trips);
+      // console.log(data)
+      setTrips(data);
     } catch (error) {
       console.log(error.response);
     }
   };
-  // can change then instead of try catch
+
+  try {
+    console.log(`Kathryn log: ${trips.data.trips}`);
+    const dataList = trips.data.trips;
+    console.log(dataList)
+  } catch (error) {
+    console.log(error.response);
+    console.log("hi");
+  }
 
 
 
@@ -127,6 +135,15 @@ const SearchBar = () => {
         <Button onClick={searchRequest} variant="contained" sx={{ margin: '3px', padding: 2, minWidth: { xs: '230px', md: '120px', lg: '230px' }, height: '55px' }} > GiddyUP!</Button>
       </Box>
       <SearchAllTrips />
+
+      {/* {trips.data.trips.map((x) => {
+        <ul>
+          <li>{trips.name}</li>
+          <li>{trips.origin}</li>
+          <li>{trips.destination}</li>
+          <li>{trips.deptDate}</li>
+        </ul >
+      })} */}
     </>
   )
 }
