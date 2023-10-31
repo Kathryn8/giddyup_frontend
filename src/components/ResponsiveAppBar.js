@@ -53,6 +53,9 @@ function ResponsiveAppBar() {
 
   console.log({ isAuthenticated, user, isLoading })
   const isUser = isAuthenticated && user;
+  console.log({ user })
+
+
 
   return (
     <AppBar position="static">
@@ -168,11 +171,11 @@ function ResponsiveAppBar() {
             ))}
           </Box> */}
           {/* {isUser && user.picture && <img src={user.picture} alt={user.name} />} */}
-          {isUser && user.name && (
+          {/* {isUser && user.name && (
             <Typography>
               Welcome, <strong>{user.name.toUpperCase()}</strong>
             </Typography>
-          )}
+          )} */}
           {isUser ? (
             <Button onClick={() => {
               logout({

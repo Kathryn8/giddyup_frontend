@@ -27,5 +27,5 @@ const tripInfo5 = {
     destination: "Melbourne",
     deptDate: "2023-11-26T00:00:00.000"
 };
-
-export default { tripInfo1, tripInfo2, tripInfo3, tripInfo4, tripInfo5 };
+const data = { tripInfo1, tripInfo2, tripInfo3, tripInfo4, tripInfo5 };
+export default data;

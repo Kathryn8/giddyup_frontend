@@ -26,6 +26,7 @@ function BasicSelect({ text }) {
         >
           <MenuItem value={'Ballarat'}>Ballarat</MenuItem>
           <MenuItem value={'Belgrave'}>Belgrave</MenuItem>
+          <MenuItem value={'Melbourne'}>Melbourne</MenuItem>
           <MenuItem value={'Seddon'}>Seddon</MenuItem>
           <MenuItem value={'Yarraville'}>Yarraville</MenuItem>
         </Select>
