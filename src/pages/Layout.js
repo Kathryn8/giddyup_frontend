@@ -1,9 +1,9 @@
 import React from 'react';
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider, Box } from '@mui/material';
 import muiTheme from '../muiTheme';
 import { Outlet } from 'react-router-dom';
 import ResponsiveAppBar from '../components/ResponsiveAppBar';
-import NewFooter from '../components/NewFooter';
+import Footer from '../components/Footer';
 
 const Layout = () => {
 
@@ -14,7 +14,7 @@ const Layout = () => {
 
         <Outlet />
 
-        <NewFooter />
+        <Footer />
       </ThemeProvider>
     </>
   );

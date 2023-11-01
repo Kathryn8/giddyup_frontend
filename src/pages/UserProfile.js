@@ -9,7 +9,7 @@ const UserProfile = () => {
       <Link to='/' className='btn'>
         back home
       </Link>
-      <h1 style={{ height: '80vh' }}>User profile page will go here</h1 >
+      <h1 style={{ height: '100%' }}>User profile page will go here</h1 >
     </>
   );
 };
