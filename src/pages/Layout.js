@@ -1,8 +1,8 @@
 import React from 'react';
-import { ThemeProvider, Box } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import muiTheme from '../muiTheme';
 import { Outlet } from 'react-router-dom';
-import ResponsiveAppBar from '../components/ResponsiveAppBar';
+import NavBar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Layout = () => {
@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <>
       <ThemeProvider theme={muiTheme}>
-        <ResponsiveAppBar />
+        <NavBar />
 
         <Outlet />
 

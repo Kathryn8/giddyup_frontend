@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Service = ({ icon, title, text }) => {
+const HowTo = ({ icon, title, text }) => {
   return (
     <article className='service'>
       <span className='service-icon'>
@@ -13,4 +13,4 @@ const Service = ({ icon, title, text }) => {
     </article>
   )
 }
-export default Service
+export default HowTo
