@@ -3,7 +3,7 @@ import React from 'react'
 import { Box } from '@mui/material';
 // import BasicDatePicker from './BasicDatePicker';
 import Button from '@mui/material/Button';
-import SearchAllTrips from './SearchAllTrips';
+// import SearchAllTrips from './SearchAllTrips';
 // import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -75,14 +75,14 @@ const SearchBar = () => {
     }
   };
 
-  try {
-    console.log(`Kathryn log: ${trips.data.trips}`);
-    const dataList = trips.data.trips;
-    console.log(`Datalist: ${dataList[0].name}`) //works now
-  } catch (error) {
-    console.log(error.response);
-    console.log("hi");
-  }
+  // try {
+  //   console.log(`Kathryn log: ${trips.data.trips}`);
+  //   const dataList = trips.data.trips;
+  //   console.log(`Datalist: ${dataList[0].name}`) //works now
+  // } catch (error) {
+  //   console.log(error.response);
+  //   console.log("hi");
+  // }
 
 
 
@@ -141,7 +141,6 @@ const SearchBar = () => {
 
       {/* // testing::: */}
       {/* <SearchAllTrips /> / Random joke button */}
-
       {/* {trips.data.trips.map((x) => {
         <ul>
           <li>{trips.name}</li>
