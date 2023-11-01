@@ -13,6 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from 'axios';
+import BookingButton from './BookingButton';
 
 
 
@@ -77,7 +78,7 @@ const SearchBar = () => {
   try {
     console.log(`Kathryn log: ${trips.data.trips}`);
     const dataList = trips.data.trips;
-    console.log(dataList)
+    console.log(`Datalist: ${dataList[0].name}`) //works now
   } catch (error) {
     console.log(error.response);
     console.log("hi");
@@ -134,7 +135,12 @@ const SearchBar = () => {
         </LocalizationProvider>
         <Button onClick={searchRequest} variant="contained" sx={{ margin: '3px', padding: 2, minWidth: { xs: '230px', md: '120px', lg: '230px' }, height: '55px' }} > GiddyUP!</Button>
       </Box>
-      <SearchAllTrips />
+
+      {/* hard code values for "A fun commute": */}
+      <BookingButton tripId='65390389168ea9d1620f988b' passengerId='65388a9f6b835a3128e2d24c' />
+
+      {/* // testing::: */}
+      {/* <SearchAllTrips /> / Random joke button */}
 
       {/* {trips.data.trips.map((x) => {
         <ul>
