@@ -21,10 +21,8 @@ const Hero = () => {
         }}
       >
       </Box >
-      <h1>giddyUP!</h1>
-      <h5>{process.env.REACT_APP_TITLE}
-        {process.env.REACT_APP_DESCRIPTION}</h5>
-      <SearchBar />
+      <h1>Landing Page</h1>
+
     </Container>
   )
 }

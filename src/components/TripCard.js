@@ -14,7 +14,8 @@ const TripCard = ({ trip }) => {
         <Typography>Departure Date: {deptDate}</Typography>
       </CardContent>
       <CardActions sx={{ padding: 2 }}>
-      <BookingButton/>
+        <BookingButton />
+        <BookingButton tripId='65390389168ea9d1620f988b' passengerId='65388a9f6b835a3128e2d24c' />
       </CardActions>
     </Card>
   );
