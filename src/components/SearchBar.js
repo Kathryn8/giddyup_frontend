@@ -5,10 +5,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from 'axios';
-import BookingButton from './BookingButton';
+// import BookingButton from './BookingButton';
 import TripCard from './TripCard'
 
-const SearchBar = () => {
+const SearchBar = ({ userId }) => {
   const [trips, setTrips] = useState({
     origin: '',
     destination: '',
@@ -46,7 +46,7 @@ const SearchBar = () => {
   const suburbOptions = ['Ballarat', 'Belgrave', 'Melbourne', 'Seddon', 'Yarraville'];
 
   return (
-      <>
+    <>
       <div>
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'center', bgcolor: 'white', p: 1.5 }}>
           {['origin', 'destination'].map((field) => (
@@ -74,12 +74,12 @@ const SearchBar = () => {
           </LocalizationProvider>
           <Button onClick={searchRequest} variant="contained" sx={{ margin: '3px', padding: 2, minWidth: { xs: '230px', md: '120px', lg: '230px' }, height: '55px' }} > GiddyUP!</Button>
         </Box>
-        <BookingButton tripId='65390389168ea9d1620f988b' passengerId='65388a9f6b835a3128e2d24c' />
+        {/* <BookingButton tripId='65390389168ea9d1620f988b' passengerId='65388a9f6b835a3128e2d24c' /> */}
       </div>
-      {searchedTrips && searchedTrips.data.trips.map((trip) => (
-        <TripCard key={trip.id} trip={trip} />
+      {searchedTrips && searchedTrips.data.trips.map((trip, index) => (
+        <TripCard key={index} trip={trip} userId={userId} />
       ))}
-      </>
+    </>
   );
 };
 

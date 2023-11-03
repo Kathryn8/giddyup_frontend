@@ -1,33 +1,48 @@
 import React from 'react'
 import axios from 'axios';
 import { Button } from '@mui/material';
+import authFetch from '../axios/interceptors';
+import AlertCollapsable from './AlertCollapsable';
 
-const url = 'http://127.0.0.1:5000/api/v1/trips/booking-button' // is there "":ID" here??'
+const url = '/trips/booking-button' // is there "":ID" here??'
 
-const BookingButton = ({ tripId, passengerId }) => {
+const BookingButton = ({ tripId, passengerId, handleClose }) => {
+  const [bookingResponse, setBookingResponse] = React.useState('');
 
-  // const patchData = {
-  //   "_id": tripId,
-  //   "passenger": passengerId
-  // }
+  console.log(passengerId);
 
   const handlePost = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
-      const resp = await axios.patch(url, {
+      const resp = await authFetch.patch(url, {
         "_id": tripId,
         "passenger": passengerId
-      })
-      console.log(`response::: ${resp.data}`)
+      }, { param: true })
+      console.log(`Checkpoint 1`)
+      console.log(`response::: ${resp.data.status}`)
+      setBookingResponse(resp.data.status);
+      console.log(`Checkpoint 1`);
     } catch (error) {
-      console.log(`my error::: ${error.response}`);
+      console.log(`my error::: ${error.response.data.status}`);
+      setBookingResponse(error.response.data.status);
     }
+  }
+
+  console.log(`here is the bookingResponse: ${bookingResponse}`)
+
+  // if (bookingResponse === 'success') {
+  //   return <AlertCollapsable message='You have booked a trip' severity='success'></AlertCollapsable>;
+  // }
+
+  const handleButtonClick = () => {
+    handlePost();
+    handleClose();
   }
 
   return (
     <>
-      <Button onClick={handlePost} variant='contained'>
-        Book
+      <Button onClick={handleButtonClick} variant='contained'>
+        Book this trip
       </Button>
     </>
   )

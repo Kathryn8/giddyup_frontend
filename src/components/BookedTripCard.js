@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TripCardSimplified from './TripCardSimplified';
 
-const TripCard = ({ trip, userId }) => {
+const BookedTripCard = ({ trip, userId }) => {
   const { name, origin, destination, deptDate, _id: tripId } = trip;
 
   const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
@@ -58,4 +58,4 @@ const TripCard = ({ trip, userId }) => {
   );
 };
 
-export default TripCard;
+export default BookedTripCard;

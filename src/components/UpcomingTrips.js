@@ -1,18 +1,15 @@
 import React from 'react'
 import axios from 'axios';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
+import BookedTripCard from './BookedTripCard';
 
 
-const UpcomingTrips = () => {
-  const [trips, setTrips] = React.useState('');
+const UpcomingTrips = ({ userId }) => {
+  const [bookedTrips, setBookedTrips] = React.useState('');
   const url = 'http://127.0.0.1:5000/api/v1/trips/booked-trips'
 
-  // const patchData = {
-  //   "_id": tripId,
-  //   "passenger": passengerId
-  // }
 
-  const handlePost = async (e) => {
+  const getUpcomingTripsByUser = async (e) => {
     e.preventDefault();
     try {
       const resp = await axios.get(url, {
@@ -20,25 +17,37 @@ const UpcomingTrips = () => {
           Accept: 'application/json',
         },
         params: {
-          "passenger": '65388a9f6b835a3128e2d24c',
+          "passenger": userId,
         },
       });
-      console.log(`response::: ${resp.data.trips[0]}`)
-      setTrips(resp)
+      setBookedTrips(resp)
+      console.log(`response::: ${bookedTrips.data.data.trips}`)
     } catch (error) {
       console.log(`my error::: ${error.response}`);
     }
   }
+  console.log(`bookedTrips.results: ${bookedTrips.data.results}`) // number of trips returned
+  console.log(`bookedTrips.data.data.trips: ${bookedTrips.data.data.trips}`) // list of trips booked
+  // if (trips.data.results === 0) {
+  //   return (
+  //     <Typography>You currently have {trips.data.results} upcoming trips</Typography>
+  //   )
+  // }
+
   return (
-    <Button onClick={handlePost} variant='contained'>
-      Display data here
-    </Button>
+    <>
+      {/* {bookedTrips.data.results && <Typography>You currently have {bookedTrips.data.results} upcoming trips</Typography>} */}
+
+      {/* {bookedTrips.data.results > 0 ? <h5>trips exist </h5> : <h5>NO trips</h5>} */}
+      {/* <BookedTripCard /> */}
+      {/* {bookedTrips && bookedTrips.data.trips.map((trip, index) => (
+        <BookedTripCard key={index} trip={trip} userId={userId} />
+      ))} */}
+      <Button onClick={getUpcomingTripsByUser} variant='contained'>
+        Display data here
+      </Button>
+    </>
   )
 }
 
 export default UpcomingTrips
-
-// < h2 style = {{ padding: '32px', textAlign: 'center' }}> Upcoming Trips</ >
-{/* <h3 style={{ padding: '32px', textAlign:'center' }}> You have no upcoming Trips...</h3>
-<TripCard/> */}
-{/* <BookedTrips /> */ }
