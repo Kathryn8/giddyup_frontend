@@ -1,6 +1,6 @@
 import SearchBar from "./SearchBar"
 import React from 'react';
-import MyImage from '../assets/images/background4.png';
+import MyImage from '../assets/images/background5.png';
 import { Container, Box, Typography, Button, useTheme } from "@mui/material";
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -26,7 +26,7 @@ const Hero = () => {
           height: { xs: '200px', sm: '300px', md: '600px' }, // Adjusted height for mobile
         }}
       >
-        <Typography 
+        <Typography
           sx={{
             position: 'absolute',
             top: '18%', // Adjust the top position to create space for the button below
@@ -42,16 +42,16 @@ const Hero = () => {
         >
           GiddyUP! with your work buddies
         </Typography>
-        
+
         {/* Conditionally render the login/logout button */}
         {isUser ? (
-          <Button 
+          <Button
             onClick={() => {
               logout({
                 returnTo: window.location.origin
               })
-            }} 
-            variant="contained" 
+            }}
+            variant="contained"
             sx={{
               position: 'absolute',
               top: '30%',  // Position it below the typography
@@ -63,9 +63,9 @@ const Hero = () => {
             Logout
           </Button>
         ) : (
-          <Button 
-            onClick={loginWithRedirect} 
-            variant="contained" 
+          <Button
+            onClick={loginWithRedirect}
+            variant="contained"
             sx={{
               position: 'absolute',
               top: { xs: '80%', sm: '35%', md: '35%' },  // Position it below the typography
