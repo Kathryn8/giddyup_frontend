@@ -1,14 +1,14 @@
 import React from 'react';
 import { Card, CardContent, Typography, CardActions, Button } from '@mui/material';
-import BookingButton from './BookingButton';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TripCardSimplified from './TripCardSimplified';
+import CancelButton from '../components/CancelButton';
 
-const BookedTripCard = ({ trip, userId }) => {
+const BookedTripCard = ({ trip }) => {
   const { name, origin, destination, deptDate, _id: tripId } = trip;
 
   const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
@@ -21,6 +21,10 @@ const BookedTripCard = ({ trip, userId }) => {
     setOpenAlertDialog(false);
   };
 
+  const handleCloseRefresh = () => {
+    setOpenAlertDialog(false);
+    window.location = "/dashboard";
+  };
 
   return (
     <Card sx={{ marginBottom: 2 }}>
@@ -31,8 +35,8 @@ const BookedTripCard = ({ trip, userId }) => {
         <Typography>Departure Date: {deptDate}</Typography>
       </CardContent>
       <CardActions sx={{ padding: 2 }}>
-        <Button variant="contained" onClick={handleClickOpen}>
-          Book this trip now
+        <Button color="warning" variant="contained" onClick={handleClickOpen}>
+          Cancel this trip
         </Button>
         <Dialog
           open={openAlertDialog}
@@ -41,7 +45,7 @@ const BookedTripCard = ({ trip, userId }) => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            {"Are you sure you want to book this trip?"}
+            {"Are you sure you want to cancel this trip?"}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
@@ -49,8 +53,8 @@ const BookedTripCard = ({ trip, userId }) => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="warning" variant="contained">Cancel</Button>
-            <BookingButton tripId={tripId} passengerId={userId} handleClose={handleClose} />
+            <Button onClick={handleClose} color="info" variant="contained">No, keep this trip</Button>
+            <CancelButton tripId={tripId} handleClose={handleCloseRefresh} />
           </DialogActions>
         </Dialog>
       </CardActions>

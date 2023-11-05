@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, FormControl, InputLabel, MenuItem, Select, Button } from '@mui/material';
+import { Box, FormControl, InputLabel, MenuItem, Select, Button, Typography } from '@mui/material';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -38,16 +38,21 @@ const SearchBar = ({ userId }) => {
         params: trips,
       });
       setSearchedTrips(data);
+      console.log(`response: ${data.status}`) //this works
+      console.log(`response: ${data.results}`)
     } catch (error) {
       console.log(error.response);
     }
   };
-
+  console.log(`response2: ${searchedTrips.status}`) //this works
+  console.log(`response2: ${searchedTrips.results}`)
   const suburbOptions = ['Ballarat', 'Belgrave', 'Melbourne', 'Seddon', 'Yarraville'];
 
   return (
     <>
-      <div>
+      <Box sx={{ bgcolor: 'secondary.main' }}>
+        <Typography variant='h4'>Search for a trip</Typography>
+
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'center', bgcolor: 'white', p: 1.5 }}>
           {['origin', 'destination'].map((field) => (
             <Box key={field} sx={{ minWidth: 230, bgcolor: 'white', padding: '3px' }}>
@@ -75,12 +80,15 @@ const SearchBar = ({ userId }) => {
           <Button onClick={searchRequest} variant="contained" sx={{ margin: '3px', padding: 2, minWidth: { xs: '230px', md: '120px', lg: '230px' }, height: '55px' }} > GiddyUP!</Button>
         </Box>
         {/* <BookingButton tripId='65390389168ea9d1620f988b' passengerId='65388a9f6b835a3128e2d24c' /> */}
-      </div>
+      </Box>
+      {searchedTrips && <Typography variant='h3'>Search results:</Typography>}
+      {(searchedTrips.status === 'success') && (searchedTrips.results === 0) && <Typography variant="h5">Splash! There are no rides {(trips.origin && trips.destination) ? `between ${trips.origin} and ${trips.destination}` : ''} on that date</Typography>}
       {searchedTrips && searchedTrips.data.trips.map((trip, index) => (
         <TripCard key={index} trip={trip} userId={userId} />
       ))}
     </>
   );
 };
+
 
 export default SearchBar;

@@ -1,3 +1,4 @@
+import SearchBar from "./SearchBar"
 import React from 'react';
 import MyImage from '../assets/images/icon.png';
 import { Container, Box } from "@mui/material";

@@ -1,14 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import About from '../components/About';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Alert, Typography } from '@mui/material';
+import { Typography, Container } from '@mui/material';
 import UpcomingTrips from '../components/UpcomingTrips';
-import CancelButton from '../components/CancelButton';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import AlertCollapsable from '../components/AlertCollapsable';
 
 const UserDashboard = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -34,11 +31,6 @@ const UserDashboard = () => {
         });
         console.log(`UserId as fetched from db by email: ${resp.data.data.user._id}`)
         setUserId(resp.data.data.user._id)
-        // if (!resp.ok) {
-        //   setIsError(true);
-        //   setIsLoading(false);
-        //   return;
-        // }
       } catch (error) {
         console.log(`TEST my error: ${error}`);
         setIsError(true);
@@ -48,25 +40,22 @@ const UserDashboard = () => {
     };
     getUserIdFromEmailRequest();
   }, [user.email]);
-  // order matters
-  // don't place user JSX before loading or error
 
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
   if (isError) {
-    return <h2>There was an error...</h2>;
+    return (
+      <Container sx={{ p: 4 }}>
+        <Typography variant='h2'>There was an error...</Typography>,
+        <Typography variant='h3'>Try refreshing the page?</Typography>
+      </Container>
+    )
   }
-  // const { avatar_url, name, company, bio } = user;
   console.log(`Line 61: ${userId}`);
 
   return (
-    <>
-      <Link to='/' className='btn'>
-        back home
-      </Link>
-      {/* {isUser && userId && <Alert onClose={() => { }} severity="success">You have successfully logged in!</Alert>} */}
-      {isUser && userId && <AlertCollapsable message='You have successfully logged in' severity='success'></AlertCollapsable>}
+    <Container sx={{ p: 4 }}>
       {isUser && user.name && (
         <Typography>
           Welcome to your dashboard <strong>{user.name.toUpperCase()}</strong>
@@ -74,11 +63,8 @@ const UserDashboard = () => {
       )}
       <UpcomingTrips userId={userId} />
       <SearchBar userId={userId} />
-
-      <CancelButton />
       <About />
-    </>
-
+    </Container>
   )
 }
 

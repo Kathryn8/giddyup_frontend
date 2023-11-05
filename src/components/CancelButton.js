@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button } from '@mui/material';
 
 
-const CancelButton = () => {
+const CancelButton = ({ tripId, handleClose }) => {
   const [trips, setTrips] = React.useState('');
   const url = 'http://127.0.0.1:5000/api/v1/trips/cancel-trip'
 
@@ -13,20 +13,26 @@ const CancelButton = () => {
   // }
 
   const handlePost = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       const resp = await axios.patch(url, {
-        "_id": "653909285436af98aba3fdd9"
+        "_id": tripId
       });
-      console.log(`response::: ${resp.data.trips[0]}`)
+      // console.log(`response::: ${resp.data.trips[0]}`)
       setTrips(resp)
     } catch (error) {
       console.log(`my error::: ${error.response}`);
     }
   }
+
+  const handleButtonClick = () => {
+    handlePost();
+    handleClose();
+  }
+
   return (
-    <Button onClick={handlePost} variant='contained'>
-      CancelButton
+    <Button color="error" onClick={handleButtonClick} variant='contained'>
+      Yes, cancel this trip
     </Button>
   )
 }

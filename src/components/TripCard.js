@@ -29,9 +29,14 @@ const TripCard = ({ trip, userId }) => {
     setOpenAlertDialog(false);
   };
 
+  const handleCloseRefresh = () => {
+    setOpenAlertDialog(false);
+    window.location = "/dashboard";
+  };
+
 
   return (
-    <Card style ={cardStyle} sx={{ marginBottom: 2 }}>
+    <Card style={cardStyle} sx={{ marginBottom: 2 }}>
       <CardContent>
         <Typography variant="h5">{name}</Typography>
         <Typography style={textStyles}>Origin: {origin}</Typography>
@@ -60,7 +65,7 @@ const TripCard = ({ trip, userId }) => {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="warning" variant="contained">Cancel</Button>
-            <BookingButton tripId={tripId} passengerId={userId} handleClose={handleClose} />
+            <BookingButton tripId={tripId} passengerId={userId} handleClose={handleCloseRefresh} />
           </DialogActions>
         </Dialog>
       </CardActions>
