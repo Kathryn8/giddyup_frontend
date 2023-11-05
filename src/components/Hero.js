@@ -45,23 +45,7 @@ const Hero = () => {
 
         {/* Conditionally render the login/logout button */}
         {isUser ? (
-          <Button
-            onClick={() => {
-              logout({
-                returnTo: window.location.origin
-              })
-            }}
-            variant="contained"
-            sx={{
-              position: 'absolute',
-              top: '30%',  // Position it below the typography
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 2,
-            }}
-          >
-            Logout
-          </Button>
+          <></>
         ) : (
           <Button
             onClick={loginWithRedirect}
