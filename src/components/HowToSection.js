@@ -7,19 +7,19 @@ const HowToList = [
   {
     id: 1,
     icon: '1',
-    title: 'Sign up',
+    title: 'Sign up with your email and a password',
     text: "No matter where you're going, by bus or carpool, find the perfect ride from our wide range of destinations and routes at low prices.",
   },
   {
     id: 2,
     icon: '2',
-    title: 'Log into your dashboard',
+    title: 'Choose your route and preferences',
     text: "We take the time to get to know each of our members and bus partners. We check reviews, profiles and IDs, so you know who you're travelling with and can book your ride at ease on our secure platform.",
   },
   {
     id: 3,
     icon: '3',
-    title: 'Scroll, click and go!',
+    title: 'Book your ride with a trusted driver',
     text: "Booking a ride has never been easier! Thanks to our simple app powered by great technology, you can book a ride close to you in just minutes.",
   },
 ];

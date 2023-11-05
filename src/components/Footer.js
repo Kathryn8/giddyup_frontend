@@ -76,7 +76,7 @@ function Footer() {
 
   return (
     <>
-      <AppBar position="static" sx={{ display: { sm: 'none' } }}>
+      <AppBar position="static" sx={{ bgcolor: 'black', display: { sm: 'none' } }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography sx={{ display: { sm: 'none' } }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
@@ -84,7 +84,7 @@ function Footer() {
           </Toolbar>
         </Container>
       </AppBar>
-      <AppBar position="static" sx={{ boxShadow: 0 }}>
+      <AppBar position="static" sx={{ bgcolor: 'black', boxShadow: 0 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography sx={{ display: { xs: 'none', sm: 'block' } }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
