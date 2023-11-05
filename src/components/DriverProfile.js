@@ -1,42 +1,37 @@
 import { Container, Box, Typography, Avatar } from '@mui/material';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const UserProfile = () => {
-  const { isAuthenticated, user } = useAuth0();
-  const isUser = isAuthenticated && user;
-  console.log(`The user object: ${user.email}`) //works
-
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [userId, setUserId] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
 
-  const url = 'http://127.0.0.1:5000/api/v1/users/search-email'
+  const url = 'http://127.0.0.1:5000/api/v1/users'
 
   useEffect(() => {
-    const getUserIdFromEmailRequest = async () => {
+    const getUserProfileFromUserId = async () => {
       try {
         const resp = await axios.get(url, {
           headers: {
             Accept: 'application/json',
           },
           params: {
-            email: user.email
+            id: user.email
           },
         });
-        console.log(`user profile as fetched from db by id: ${resp.data.data.user._id}`)
-        setUserId(resp.data.data.user._id)
+        console.log(`user profile as fetched from db by id: ${resp.data.data.user.name}`)
+        setUserProfile(resp.data.data.user.name)
       } catch (error) {
-        console.log(`TEST my error: ${error}`);
+        console.log(`opps!: ${error}`);
         setIsError(true);
         setIsLoading(false);
       }
       setIsLoading(false);
     };
-    getUserIdFromEmailRequest();
+    getUserProfileFromUserId();
   }, [user.email]);
 
   if (isLoading) {

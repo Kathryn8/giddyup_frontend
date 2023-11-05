@@ -49,6 +49,8 @@ const UserDashboard = () => {
       <Container sx={{ p: 4 }}>
         <Typography variant='h2'>There was an error...</Typography>,
         <Typography variant='h3'>Try refreshing the page?</Typography>
+        <Typography variant='h3'>Check your server is running buddy!. </Typography>
+
       </Container>
     )
   }
