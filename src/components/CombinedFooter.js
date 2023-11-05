@@ -17,6 +17,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
+// import LogoAboveBrand from '../assets/images/logoAboveBrand.png';
 
 // ... (other constants and components like Copyright and LANGUAGES)
 function Copyright() {
@@ -113,6 +114,10 @@ function AppFooter() {
               spacing={2}
               sx={{ height: 120 }}
             >
+              {/* <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                <LogoAboveBrand width={50} height={50} />
+              </Grid> */}
+
               <Grid item sx={{ display: 'flex' }}>
                 <Box component="a" href="https://mui.com/" sx={iconStyle}>
                   <FacebookIcon />
@@ -166,79 +171,77 @@ function AppFooter() {
 }
 
 function OriginalFooter() {
-  function Footer() {
-    const [anchorElAuthors, setAnchorElAuthors] = React.useState({});
+  const [anchorElAuthors, setAnchorElAuthors] = React.useState({});
 
-    const handleOpenAuthorMenu = (authorId, event) => {
-      setAnchorElAuthors((prevAnchorElAuthors) => ({
-        ...prevAnchorElAuthors,
-        [authorId]: event.currentTarget,
-      }));
-    };
+  const handleOpenAuthorMenu = (authorId, event) => {
+    setAnchorElAuthors((prevAnchorElAuthors) => ({
+      ...prevAnchorElAuthors,
+      [authorId]: event.currentTarget,
+    }));
+  };
 
-    const handleCloseAuthorMenu = (authorId) => {
-      setAnchorElAuthors((prevAnchorElAuthors) => {
-        const updatedAnchors = { ...prevAnchorElAuthors };
-        delete updatedAnchors[authorId];
-        return updatedAnchors;
-      });
-    };
+  const handleCloseAuthorMenu = (authorId) => {
+    setAnchorElAuthors((prevAnchorElAuthors) => {
+      const updatedAnchors = { ...prevAnchorElAuthors };
+      delete updatedAnchors[authorId];
+      return updatedAnchors;
+    });
+  };
 
-    return (
-      <>
-        <AppBar position="static" sx={{ display: { sm: 'none' } }}>
-          <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              <Typography sx={{ display: { sm: 'none' } }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
+  return (
+    <>
+      <AppBar position="static" sx={{ display: { sm: 'none' } }}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Typography sx={{ display: { sm: 'none' } }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
 
-            </Toolbar>
-          </Container>
-        </AppBar>
-        <AppBar position="static" sx={{ boxShadow: 0 }}>
-          <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              <Typography sx={{ display: { xs: 'none', sm: 'block' } }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
-              {authorContact.map((author) => (
-                <Box key={author.id} sx={{ flexGrow: 0, p: 1 }}>
-                  <Tooltip title="Open authorMenu">
-                    <IconButton onClick={(event) => handleOpenAuthorMenu(author.id, event)} sx={{ p: 1 }}>
-                      <Avatar alt={author.name} src={author.avatar} />
-                    </IconButton>
-                  </Tooltip>
-                  <Menu
-                    sx={{ mt: '-45px' }}
-                    id={`menu-appbar-${author.id}`}
-                    anchorEl={anchorElAuthors[author.id]}
-                    anchorOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
-                    }}
-                    open={Boolean(anchorElAuthors[author.id])}
-                    onClose={() => handleCloseAuthorMenu(author.id)}
-                  >
-                    <MenuItem onClick={() => handleCloseAuthorMenu(author.id)} sx={{ flexDirection: 'column' }}>
-                      <Typography textAlign="center"><a target="_blank" rel="noopener noreferrer" href={author.linkedin} aria-label={`Visit ${author.name}'s LinkedIn profile`}><LinkedInIcon /></a></Typography>
-                      <Typography textAlign="center"><a target="_blank" rel="noopener noreferrer" href={author.github} aria-label={`Visit ${author.name}'s GitHub profile`}><GitHubIcon /></a></Typography>
-                      <Typography textAlign="center"><a target="_blank" rel="noopener noreferrer" href={author.instagram} aria-label={`Visit ${author.name}'s Instagram profile`}><InstagramIcon /></a></Typography>
-                      <Typography textAlign="center"><a target="_blank" rel="noopener noreferrer" href={author.facebook} aria-label={`Visit ${author.name}'s FaceBook profile`}><FacebookIcon /></a></Typography>
-                    </MenuItem>
-                  </Menu>
-                </Box>
-              ))}
-            </Toolbar>
-          </Container>
-        </AppBar>
-      </>
-    );
-  }
-
-
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <AppBar position="static" sx={{ boxShadow: 0 }}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Typography sx={{ display: { xs: 'none', sm: 'block' } }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
+            {authorContact.map((author) => (
+              <Box key={author.id} sx={{ flexGrow: 0, p: 1 }}>
+                <Tooltip title="Open authorMenu">
+                  <IconButton onClick={(event) => handleOpenAuthorMenu(author.id, event)} sx={{ p: 1 }}>
+                    <Avatar alt={author.name} src={author.avatar} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '-45px' }}
+                  id={`menu-appbar-${author.id}`}
+                  anchorEl={anchorElAuthors[author.id]}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElAuthors[author.id])}
+                  onClose={() => handleCloseAuthorMenu(author.id)}
+                >
+                  <MenuItem onClick={() => handleCloseAuthorMenu(author.id)} sx={{ flexDirection: 'column' }}>
+                    <Typography textAlign="center"><a target="_blank" rel="noopener noreferrer" href={author.linkedin} aria-label={`Visit ${author.name}'s LinkedIn profile`}><LinkedInIcon /></a></Typography>
+                    <Typography textAlign="center"><a target="_blank" rel="noopener noreferrer" href={author.github} aria-label={`Visit ${author.name}'s GitHub profile`}><GitHubIcon /></a></Typography>
+                    <Typography textAlign="center"><a target="_blank" rel="noopener noreferrer" href={author.instagram} aria-label={`Visit ${author.name}'s Instagram profile`}><InstagramIcon /></a></Typography>
+                    <Typography textAlign="center"><a target="_blank" rel="noopener noreferrer" href={author.facebook} aria-label={`Visit ${author.name}'s FaceBook profile`}><FacebookIcon /></a></Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
+            ))}
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </>
+  );
 }
+
+
 
 function CombinedFooter() {
   return (
