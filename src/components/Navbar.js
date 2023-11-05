@@ -44,7 +44,7 @@ function NavBar() {
   console.log({ user })
 
   return (
-    <AppBar position="static">
+    <AppBar position="static"  style={{ backgroundColor: 'white' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters={false} sx={{ justifyContent: 'space-between' }}>
           <SvgIconChildren cssProps={{ display: { xs: 'none', sm: 'flex', md: 'flex' }, mr: 1 }} />
