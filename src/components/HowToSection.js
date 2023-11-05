@@ -1,6 +1,5 @@
 // import { services } from '../data'
 import Title from './Title'
-import HowTo from './HowTo'
 import React from 'react';
 import { Container, Typography, Box } from '@mui/material';
 import Card from '@mui/material/Card';
