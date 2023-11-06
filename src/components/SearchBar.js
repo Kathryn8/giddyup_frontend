@@ -21,7 +21,7 @@ const SearchBar = ({ userId }) => {
 
   const handleDateChange = (date) => {
     const dateObject = new Date(date);
-    dateObject.setHours(dateObject.getHours() - 13);
+    dateObject.setHours(dateObject.getHours() + 11);
     const iso8601Date = dateObject.toISOString();
     setTrips({ ...trips, deptDate: iso8601Date });
   };
