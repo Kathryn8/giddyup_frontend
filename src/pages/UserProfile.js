@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Box, Typography, Avatar } from '@mui/material';
+import { Container, Box, Typography, Avatar, Divider } from '@mui/material';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import platinum from '../assets/images/giddyUpStatusBadge.png';
 import gold from '../assets/images/giddyUpStatusBadge (1).png';
 import silver from '../assets/images/giddyUpStatusBadge (2).png';
 import bronze from '../assets/images/giddyUpStatusBadge (3).png';
+import GppMaybeIcon from '@mui/icons-material/GppMaybe';
 
 const UserProfile = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -74,6 +75,7 @@ const UserProfile = () => {
     return new Set(a).size !== 1;
   }
 
+  // Verification variables:
   const verify = [userObj?.user?.email_verified, userObj?.user?.verified?.driverLicense, userObj?.user?.verified?.phoneVerified];
 
   const allChecked = !checkDiff(verify) && verify[0] === true;
@@ -82,6 +84,7 @@ const UserProfile = () => {
   console.log(allChecked);
   console.log(noneChecked);
   console.log(someChecked);
+
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -99,68 +102,92 @@ const UserProfile = () => {
 
   return (
     <Container maxWidth="md" sx={{ p: 1 }}>
-      <Typography variant="h6" sx={{ m: 1 }}>
+      <Typography variant="h6" sx={{ my: 1 }}>
         Your profile:
       </Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 1 }}>
+      <Divider />
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box>
-          <Typography sx={{ m: 1 }} variant="h3">
+          <Typography sx={{ my: 1 }} variant="h3">
             {userObj.user.name || userObj.user.email.split('@')[0]}
           </Typography>
         </Box>
-        <Avatar alt="Remy Sharp" src={user.picture} sx={{ width: 100, height: 100 }} />
+        <Avatar alt="Remy Sharp" src={user.picture} sx={{ my: 1, width: 100, height: 100 }} />
       </Box>
-      <Box sx={{ p: 1 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-start', m: 1 }}>
-          <Box component="img" sx={{ maxHeight: '40px', maxWidth: '40px' }} src={bronze} />
-          <Typography sx={{ m: 1 }}>Giddy-upper status: {userObj.user.statusLevel}</Typography>
+      <Box sx={{ py: 1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <Box component="img" sx={{ maxHeight: '40px', maxWidth: '40px', mr: 1 }} src={bronze} />
+          <Typography sx={{ lineHeight: 2.5 }}>Giddy-upper status: {userObj.user.statusLevel}</Typography>
         </Box>
-        <Typography sx={{ m: 1 }}>
+        <Typography>
           Rating average: {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
         </Typography>
       </Box>
-      <Box sx={{ p: 1 }}>
+      <Box sx={{ py: 1 }}>
+
         {allChecked &&
-          <Typography sx={{ m: 1 }} variant="h5">
+          <Typography variant="h5">
             Your profile is fully verified
+          </Typography>}
+
+        {someChecked &&
+          <Typography variant="h5">
+            Your profile is partially verified
           </Typography>}
 
         {noneChecked &&
           <>
-            <Typography sx={{ m: 1 }} variant="h5">
+            <Typography variant="h5">
               Your profile is not verified
-            </Typography>
-            <Typography sx={{ m: 1 }}>Please update this section to maintain our community of trust</Typography>
+            </Typography >
+            <Typography sx={{ mb: 1 }}> Please update this section to maintain our community of trust</Typography>
           </>}
-        {someChecked &&
-          <Typography sx={{ m: 1 }} variant="h5">
-            Your profile is partially verified
+
+        {userObj?.user?.email_verified
+          ?
+          <Typography >
+            <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Email verified
+          </Typography>
+          :
+          <Typography >
+            <GppMaybeIcon color="error" sx={{ verticalAlign: 'middle' }} /> Email not yet verified
           </Typography>}
 
-        <Typography sx={{ m: 1 }}>
-          <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Email verified
-        </Typography>
-        <Typography sx={{ m: 1 }}>
-          <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> License confirmed
-        </Typography>
-        <Typography sx={{ m: 1 }}>
-          <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Phone number confirmed
-        </Typography>
+        {userObj?.user?.verified?.driverLicense
+          ?
+          <Typography >
+            <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> License confirmed
+          </Typography>
+          :
+          <Typography >
+            <GppMaybeIcon color="error" sx={{ verticalAlign: 'middle' }} /> License not yet confirmed
+          </Typography>}
+
+        {userObj?.user?.verified?.phoneVerified
+          ?
+          <Typography >
+            <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Phone number confirmed
+          </Typography>
+          :
+          <Typography >
+            <GppMaybeIcon color="error" sx={{ verticalAlign: 'middle' }} /> Phone not yet number confirmed
+          </Typography>}
+
       </Box>
-      <Box sx={{ p: 1 }}>
-        <Typography sx={{ margin: 1 }} variant="h5">
-          About FirstName
+      <Box sx={{ py: 1 }}>
+        <Typography sx={{ my: 1 }} variant="h5">
+          Your about section:
         </Typography>
-        <Typography sx={{ m: 1 }}>{"I love chocolate"}</Typography>
-        <Typography sx={{ m: 1 }}>Preferences: music</Typography>
+        <Typography sx={{ my: 1 }}>{userObj?.user?.aboutMe}</Typography>
+        <Typography sx={{ my: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
       </Box>
-      <Box sx={{ p: 1 }}>
-        <Typography sx={{ m: 1 }} variant="h5">
-          FirstName's GiddyUp Activity
+      <Box sx={{ py: 1 }}>
+        <Typography sx={{ my: 1 }} variant="h5">
+          Your GiddyUp Activity
         </Typography>
-        <Typography sx={{ m: 1 }}>Rides offered: X</Typography>
-        <Typography sx={{ m: 1 }}>Rides taken: X</Typography>
-        <Typography sx={{ m: 1 }}>Last ride: DATE</Typography>
+        <Typography sx={{ m: 1 }}>Rides offered: {userObj?.user?.latestActivity?.ridesOffered} </Typography>
+        <Typography sx={{ m: 1 }}>Rides taken: {userObj?.user?.latestActivity?.ridesTaken}</Typography>
+        <Typography sx={{ m: 1 }}>Last ride: {new Date(userObj?.user?.latestActivity?.lastRide).toLocaleDateString()}</Typography>
       </Box>
     </Container>
   );
