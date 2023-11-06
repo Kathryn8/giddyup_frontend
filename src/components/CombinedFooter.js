@@ -17,7 +17,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
-// import LogoAboveBrand from '../assets/images/logoAboveBrand.png';
+import LogoAboveBrand from '../assets/images/logoAboveBrand.png';
 
 // ... (other constants and components like Copyright and LANGUAGES)
 function Copyright() {
@@ -109,7 +109,13 @@ function AppFooter() {
     >
       <Container sx={{ my: 8, display: 'flex' }}>
         <Grid container spacing={5}>
-          <Grid item xs={6} sm={4} md={3}>
+          <Grid item xs={6} sm={6} md={2}>
+            <Grid item sx={{ display: 'flex' }}>
+              <img src={LogoAboveBrand} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
+            </Grid>
+          </Grid>
+
+          <Grid item xs={6} sm={6} md={2}>
             <Grid
               container
               direction="column"
@@ -134,7 +140,20 @@ function AppFooter() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6} sm={4} md={2}>
+          <Grid item xs={6} sm={6} md={3}>
+            <Typography variant="h6" marked="left" gutterBottom>
+              Contact
+            </Typography>
+            <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
+              <Box component="li" sx={{ py: 0.5 }}>
+                <Link href="/premium-themes/onepirate/terms/">Phone: +61 44GIDDYUP</Link>
+              </Box>
+              <Box component="li" sx={{ py: 0.5 }}>
+                <Link href="/premium-themes/onepirate/privacy/">Email: yee.ha@giddyup.com</Link>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={6} sm={6} md={2}>
             <Typography variant="h6" marked="left" gutterBottom>
               Legal
             </Typography>
@@ -147,7 +166,7 @@ function AppFooter() {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={6} sm={8} md={4}>
+          <Grid item xs={6} sm={6} md={3}>
             <Typography variant="h6" marked="left" gutterBottom>
               Language
             </Typography>
