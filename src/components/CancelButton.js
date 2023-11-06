@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 
 const CancelButton = ({ tripId, handleClose }) => {
   const [trips, setTrips] = React.useState('');
-  const url = 'http://127.0.0.1:5000/api/v1/trips/cancel-trip'
+  const url = process.env.REACT_APP_BASE_URL + '/trips/cancel-trip'
 
   // const patchData = {
   //   "_id": tripId,

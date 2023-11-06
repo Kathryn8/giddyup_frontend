@@ -17,7 +17,7 @@ const UserDashboard = () => {
   const [isError, setIsError] = useState(false);
   const [userId, setUserId] = useState(null);
 
-  const url = 'http://127.0.0.1:5000/api/v1/users/search-email'
+  const url = process.env.REACT_APP_BASE_URL + '/users/search-email'
 
   useEffect(() => {
     const getUserIdFromEmailRequest = async () => {

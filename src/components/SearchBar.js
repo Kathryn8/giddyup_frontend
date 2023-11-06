@@ -21,12 +21,12 @@ const SearchBar = ({ userId }) => {
 
   const handleDateChange = (date) => {
     const dateObject = new Date(date);
-    dateObject.setHours(dateObject.getHours() - 13);
+    dateObject.setHours(dateObject.getHours() + 11);
     const iso8601Date = dateObject.toISOString();
     setTrips({ ...trips, deptDate: iso8601Date });
   };
 
-  const apiUrl = 'http://127.0.0.1:5000/api/v1/trips/search';
+  const apiUrl = process.env.REACT_APP_BASE_URL + '/trips/search';
   const [searchedTrips, setSearchedTrips] = useState('');
 
   const searchRequest = async () => {
