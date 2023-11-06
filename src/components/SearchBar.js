@@ -26,7 +26,7 @@ const SearchBar = ({ userId }) => {
     setTrips({ ...trips, deptDate: iso8601Date });
   };
 
-  const apiUrl = 'http://127.0.0.1:5000/api/v1/trips/search';
+  const apiUrl = process.env.REACT_APP_BASE_URL + '/trips/search';
   const [searchedTrips, setSearchedTrips] = useState('');
 
   const searchRequest = async () => {
