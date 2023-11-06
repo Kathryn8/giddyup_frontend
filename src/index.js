@@ -10,7 +10,7 @@ root.render(
     <Auth0Provider
       domain={process.env.REACT_APP_YOUR_DOMAIN}
       clientId={process.env.REACT_APP_YOUR_CLIENT_ID}
-      authorizationParams={{ redirect_uri: window.location.origin }}
+      authorizationParams={{ redirect_uri: 'http://localhost:3000/dashboard' }}
       cacheLocation='localstorage'>
       <App />
     </Auth0Provider>

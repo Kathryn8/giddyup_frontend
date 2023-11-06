@@ -12,17 +12,20 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SvgIconChildren from './SvgIconChildren';
 import { Link } from 'react-router-dom';
-import brandBanner from '../assets/images/brandBanner.png'
+import brandBanner from '../assets/images/brandBannerLogo.png'
 import { useAuth0 } from '@auth0/auth0-react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { AccountCircle } from '@mui/icons-material';
+import { Divider } from '@mui/material';
 
 const settings = [<Link key='userProfileLink890' to='./UserProfile'>Your Profile</Link>,
   'Account',
 <Link key='dashboardLink890' to='./Dashboard'>Dashboard</Link>,
   'Logout'];
 
-function NavBar() {
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+export default function NavBar() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
   const {
     isAuthenticated,
     loginWithRedirect,
@@ -30,126 +33,82 @@ function NavBar() {
     user,
     isLoading,
   } = useAuth0();
-
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  console.log({ isAuthenticated, user, isLoading })
   const isUser = isAuthenticated && user;
-  console.log({ user })
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAnchorEl(null);
+  }
+
+  // console.log({ isAuthenticated, user, isLoading })
+  // console.log({ user })
 
   return (
-    <AppBar position="static"  style={{ backgroundColor: 'white' }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters={false} sx={{ justifyContent: 'space-between' }}>
-          <SvgIconChildren cssProps={{ display: { xs: 'none', sm: 'flex', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', sm: 'flex', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <Box
-              component="img"
-              sx={{
-                height: 50,
-                width: 200,
-                maxHeight: { xs: 50, md: 50 },
-                maxWidth: { xs: 200, md: 200 },
-              }}
-              alt="Giddy up in custom font"
-              src={brandBanner}
-            />
-          </Typography>
-          <SvgIconChildren cssProps={{
-            display: { xs: 'flex', sm: 'none', md: 'none' }, mr: 1 // change xs: 'none' to 'flex' to make banner visable on small screen
-          }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', sm: 'none', md: 'none' }, // change xs: 'none' to 'flex' to make banner visable on small screen
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <Box
-              component="img"
-              sx={{
-                height: 50,
-                width: 200,
-                maxHeight: { xs: 50, md: 50 },
-                maxWidth: { xs: 200, md: 200 },
-              }}
-              alt="Giddy up in custom font"
-              src={brandBanner}
-            />
-          </Typography>
+    <Box sx={{ flexGrow: 1 }}>
 
+      <AppBar position="static" sx={{ bgcolor: 'white' }}>
+        <Toolbar>
+
+          <Typography component="div" sx={{ flexGrow: 1 }}>
+            <Link to='./'>
+              <Box
+                component="img"
+                sx={{
+                  // height: 33,
+                  // width: 200,
+                  maxHeight: { xs: 60, md: 60 },
+                  maxWidth: { xs: 200, md: 350 },
+                }}
+                alt="Giddy up in custom font"
+                src={brandBanner}
+              />
+            </Link>
+          </Typography>
           {isUser ? (
-            <Button onClick={() => {
-              logout({
-                returnTo: window.location.origin
-              })
-            }} variant="contained" >logout</Button>
-          ) : (
-            <Button onClick={loginWithRedirect} variant="contained" >login</Button>
-          )}
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
+            <div>
+              <IconButton onClick={handleMenu} sx={{ p: 1 }}>
                 {isUser && user.picture && user.name ?
                   <Avatar src={user.picture} alt={user.name} /> :
                   <Avatar alt="XNot logged in avatar" src={AccountCircleIcon} />}
               </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting, index) => (
-                <MenuItem key={`setting_${index}`} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose} > <Avatar src={user.picture} alt={user.name} sx={{ m: 1 }} /> Welcome, FirstName</MenuItem>
+                <Divider />
+                <MenuItem onClick={handleClose}><Link key='dashboardLink890' to='./Dashboard'>Dashboard</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to='./UserProfile'>Profile</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to='./'>Home</Link></MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+
+              </Menu>
+            </div>
+          ) : (
+            <Button onClick={loginWithRedirect} variant="contained" >login / sign up</Button>
+          )}
+
         </Toolbar>
-      </Container>
-    </AppBar >
+      </AppBar>
+    </Box>
   );
 }
-export default NavBar;
