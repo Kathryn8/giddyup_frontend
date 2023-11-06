@@ -12,10 +12,10 @@ const LandingSection1 = () => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <Typography variant="h4" gutterBottom>
-              Celebrate diversity
+              Monthly CO2 savings - 7.89 tonnes
             </Typography>
             <Typography variant="subtitle1">
-              50% of carpoolers find their travel peers more diverse than their usual social circles, opening them up to new networks, cultures and opinions.
+              The average commute in Melbourne is 26 km. CO2 saved for each carpool trip = 4.78 kg CO2. For 75 daily trips, CO2 saved = 75 x 4.78 kg = 358.5 kg CO2/day. Monthly CO2 saved (assuming 22 working days a month) = 22 x 358.5 kg = 7,887 kg CO2 or 7.89 tonnes CO2.
             </Typography>
           </Grid>
         </Grid>

@@ -1,7 +1,7 @@
 // import { services } from '../data'
 // import Title from './Title'
 import React from 'react';
-import { Container, Typography, Box } from '@mui/material';
+import { Container, Typography, Box, Button, CardActions } from '@mui/material';
 // import Card from '@mui/material/Card';
 // import CardContent from '@mui/material/CardContent';
 // import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +10,8 @@ import ActionAreaCard from './ActionAreaCard';
 import step1 from '../assets/images/step1.png';
 import step2 from '../assets/images/step2.png';
 import step3 from '../assets/images/step3.png';
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 
 
@@ -38,8 +40,15 @@ const howToList = [
 ];
 
 const HowToSection = () => {
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+  } = useAuth0();
+  const isUser = isAuthenticated;
+
   return (
-    <Container sx={{ mb: 4 }}>
+    <Container sx={{ my: 10 }}>
       <Typography variant='h4' align='center'> How to get galloping</Typography>
       <Box sx={{
         pt: 4,
@@ -54,6 +63,25 @@ const HowToSection = () => {
           )
         })}
       </Box>
+
+      {/* Conditionally render the login/logout button */}
+      {isUser ? (
+        <></>
+      ) : (
+        <CardActions sx={{ justifyContent: "center" }}>
+          <Button
+            onClick={loginWithRedirect}
+            variant="contained"
+            sx={{
+              m: 4,
+              p: 2
+            }}
+          >
+            Get started now
+          </Button>
+        </CardActions>
+      )}
+
     </Container>
   )
 }

@@ -11,10 +11,11 @@ const LandingSection = () => {
         <Grid container spacing={4} alignItems="center" sx={{ py: 4 }}>
           <Grid item xs={12} sm={6}>
             <Typography variant="h4" gutterBottom>
-              Meaningful conversations
+              10-30% reduction in traffic delays
             </Typography>
             <Typography variant="subtitle1">
-              Share enriching experiences on the go. 87% of carpoolers have had enlightening exchanges during their rides either by gaining knowledge, lending a sympathetic ear and sharing life experiences.
+              5% reduction in traffic can lead to a 10-30% reduction in traffic delays. By taking 75 cars off the road travelling at an average speed of 60 km/h, approximately 4.91 kilometres of road space is be freed up!
+
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>

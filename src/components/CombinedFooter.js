@@ -104,7 +104,7 @@ function AppFooter() {
       component="footer"
       sx={{
         display: 'flex',
-        bgcolor: 'rgba(245, 141, 69, 0.5)'
+        bgcolor: 'rgba(242, 193, 51, 0.5)'
       }}
     >
       <Container sx={{ my: 8, display: 'flex' }}>
@@ -196,7 +196,7 @@ function OriginalFooter() {
       <AppBar position="static" sx={{ display: { sm: 'none' } }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography sx={{ display: { sm: 'none' }, bgcolor: 'rgba(245, 141, 69, 0.5)' }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
+            <Typography sx={{ display: { sm: 'none' }, bgcolor: 'rgba(242, 193, 51, 0.5)' }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
 
           </Toolbar>
         </Container>
