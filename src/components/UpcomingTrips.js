@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import { Button, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import BookedTripCard from './BookedTripCard';
 import { useEffect, useState } from 'react';
 
@@ -42,21 +42,23 @@ const UpcomingTrips = ({ userId }) => {
   // }
 
   return (
-    <>
-      {!(isLoading) && <Typography variant='h3'>Upcoming booked trips:</Typography>}
-      {isLoading ? (
-        <Typography>Loading...</Typography>
-      ) : (
-        <div>
-          {bookedTrips.length === 0 ? (
-            <Typography variant='h5'>You currently have no upcoming trips.</Typography>
-          ) : (
-            bookedTrips.map((trip, index) => (
-              <BookedTripCard key={index} trip={trip} userId={userId} />
-            ))
-          )}
-        </div>
-      )}
+    <Box sx={{ my: 3 }}>
+      {!(isLoading) && <Typography variant='h3' sx={{ mb: 3 }}>Your upcoming booked trips:</Typography>}
+      {
+        isLoading ? (
+          <Typography>Loading...</Typography>
+        ) : (
+          <Box>
+            {bookedTrips.length === 0 ? (
+              <Typography variant='h5'>You currently have no upcoming trips</Typography>
+            ) : (
+              bookedTrips.map((trip, index) => (
+                <BookedTripCard key={index} trip={trip} userId={userId} />
+              ))
+            )}
+          </Box>
+        )
+      }
       {/* {bookedTrips.data.results && <Typography>You currently have {bookedTrips.data.results} upcoming trips</Typography>} */}
 
       {/* {bookedTrips.data.results > 0 ? <h5>trips exist </h5> : <h5>NO trips</h5>} */}
@@ -67,7 +69,7 @@ const UpcomingTrips = ({ userId }) => {
       {/* <Button onClick={getUpcomingTripsByUser} variant='contained'>
         Display data here */}
       {/* </Button> */}
-    </>
+    </Box >
   )
 }
 

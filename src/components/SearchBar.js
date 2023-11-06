@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, FormControl, InputLabel, MenuItem, Select, Button, Typography } from '@mui/material';
+import { Box, FormControl, InputLabel, MenuItem, Select, Button, Typography, Divider } from '@mui/material';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -50,8 +50,8 @@ const SearchBar = ({ userId }) => {
 
   return (
     <>
-      <Box sx={{ bgcolor: 'secondary.main' }}>
-        <Typography variant='h4'>Search for a trip</Typography>
+      <Box sx={{ py: 3 }}>
+        <Typography variant='h4' sx={{ textAlign: 'center', m: 3 }}>Search for a trip</Typography>
 
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'center', bgcolor: 'white', p: 1.5 }}>
           {['origin', 'destination'].map((field) => (
@@ -81,7 +81,8 @@ const SearchBar = ({ userId }) => {
         </Box>
         {/* <BookingButton tripId='65390389168ea9d1620f988b' passengerId='65388a9f6b835a3128e2d24c' /> */}
       </Box>
-      {searchedTrips && <Typography variant='h3'>Search results:</Typography>}
+      <Divider />
+      {searchedTrips && <Typography variant='h3' sx={{ my: 3 }}>Search results:</Typography>}
       {(searchedTrips.status === 'success') && (searchedTrips.results === 0) && <Typography variant="h5">Splash! There are no rides {(trips.origin && trips.destination) ? `between ${trips.origin} and ${trips.destination}` : ''} on that date</Typography>}
       {searchedTrips && searchedTrips.data.trips.map((trip, index) => (
         <TripCard key={index} trip={trip} userId={userId} />

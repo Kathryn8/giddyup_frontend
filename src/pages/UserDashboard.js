@@ -2,10 +2,11 @@ import React from 'react'
 import SearchBar from '../components/SearchBar';
 import About from '../components/About';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Typography, Container } from '@mui/material';
+import { Typography, Container, Box, Divider } from '@mui/material';
 import UpcomingTrips from '../components/UpcomingTrips';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import seahorseBeach from '../assets/images/icon.png';
 
 const UserDashboard = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -46,10 +47,10 @@ const UserDashboard = () => {
   }
   if (isError) {
     return (
-      <Container sx={{ p: 4 }}>
+      <Container sx={{ p: 4, minHeight: '50vh' }}>
         <Typography variant='h2'>There was an error...</Typography>,
         <Typography variant='h3'>Try refreshing the page?</Typography>
-        <Typography variant='h3'>Check your server is running buddy!. </Typography>
+        <Typography variant='h3'>Check your server is running buddy! </Typography>
 
       </Container>
     )
@@ -57,16 +58,22 @@ const UserDashboard = () => {
   console.log(`Line 61: ${userId}`);
 
   return (
-    <Container sx={{ p: 4 }}>
-      {isUser && user.name && (
-        <Typography>
-          Welcome to your dashboard <strong>{user.name.toUpperCase()}</strong>
-        </Typography>
-      )}
+    <Container >
+      <Box sx={{ py: 3 }}>
+        {
+          isUser && user.name && (
+            <Typography sx={{ textAlign: 'center' }}>
+              Welcome to your dashboard <strong>{user.name.toUpperCase()}</strong>
+            </Typography>
+          )
+        }
+      </Box>
+      <Divider />
       <UpcomingTrips userId={userId} />
+      <Divider />
       <SearchBar userId={userId} />
       <About />
-    </Container>
+    </Container >
   )
 }
 
