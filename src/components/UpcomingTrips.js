@@ -9,7 +9,7 @@ const UpcomingTrips = ({ userId }) => {
   const [isLoading, setIsLoading] = useState(true);
 
 
-  const url = 'http://127.0.0.1:5000/api/v1/trips/booked-trips'
+  const url = process.env.REACT_APP_BASE_URL + '/trips/booked-trips'
 
   useEffect(() => {
     const getUpcomingTripsByUser = async (e) => {

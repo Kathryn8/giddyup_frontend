@@ -15,8 +15,8 @@ const UserProfile = () => {
   const [isError, setIsError] = useState(false);
   const [userObj, setUserObj] = useState({});
 
-  const url1 = 'http://127.0.0.1:5000/api/v1/users/search-email';
-  const url2 = 'http://127.0.0.1:5000/api/v1/users/654313801462530013767733';
+  const url1 = process.env.REACT_APP_BASE_URL + '/users/search-email';
+  const url2 = process.env.REACT_APP_BASE_URL + '/users/654313801462530013767733';
 
   useEffect(() => {
     const getUserIdFromEmailRequest = async () => {
