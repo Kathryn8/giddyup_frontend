@@ -12,10 +12,10 @@ const LandingSection1 = () => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <Typography variant="h4" sx={{ p: 1 }}>
-              Save up to $60/month in fuel costs
+              Save up to $160/month in running costs
             </Typography>
             <Typography variant="subtitle1" sx={{ p: 1 }}>
-              Share costs like petrol, insurance, and tolls. With Giddyup, experience the affordability of carpooling, especially crucial in times of rising expenses.
+              Share costs like petrol, insurance, parking and tolls. With Giddyup, experience the affordability of carpooling, especially crucial in times of rising expenses.
             </Typography>
           </Grid>
         </Grid>
