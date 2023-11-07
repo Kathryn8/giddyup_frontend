@@ -31,7 +31,7 @@ const benefitList = [
     image: benefit1,
     imgDimension: 200,
     title: 'It make sense',
-    text: "Share costs like petrol, insurance, and tolls. With Giddyup, experience the affordability of carpooling, especially crucial in times of rising expenses.",
+    text: "Share costs like petrol, insurance, parking and tolls. With Giddyup, experience the affordability of carpooling, especially crucial in times of rising expenses.",
   },
   {
     id: 3,
