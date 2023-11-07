@@ -20,27 +20,31 @@ const benefitList = [
     image: benefit0,
     imgDimension: 200,
     title: 'Doing your bit',
-    text: "Increase car occupancy rates while reducing CO2 emissions. Carpooling enables the transport of two times the number of passengers in cars, whilst reducing CO2 emissions by 29%.",
+    text: <>
+        Increase car occupancy rates while reducing CO
+        <sub>2</sub> emissions. Carpooling enables the transport of twice the number of passengers in cars, whilst reducing CO
+        <sub>2</sub> emissions by 29%.
+      </>
   },
   {
     id: 2,
     image: benefit1,
     imgDimension: 200,
-    title: 'Better For Your Back Pocket',
+    title: 'It make sense',
     text: "Share costs like petrol, insurance, and tolls. With Giddyup, experience the affordability of carpooling, especially crucial in times of rising expenses.",
   },
   {
     id: 3,
     image: benefit2,
     imgDimension: 200,
-    title: 'Meaningful Conversations',
-    text: "Share enriching experiences on the go. 87% of carpoolers have had enlightening exchanges during their rides either by gaining knowledge, lending a sympathetic ear and sharing life experiences.",
+    title: 'Connect',
+    text: "Share enriching experiences on the go. 87% of carpoolers have had enlightening exchanges during their rides either by gaining knowledge, lending an empathetic ear or sharing life experiences.",
   },
   {
     id: 4,
     image: benefit3,
     imgDimension: 200,
-    title: 'Celebrate Diversity',
+    title: 'Celebrate diversity',
     text: "50% of carpoolers find their travel peers more diverse than their usual social circles, opening them up to new networks, cultures and opinions.",
   },
 
