@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, Button, Grid } from '@mui/material';
-import benefit0 from '../assets/images/benefit0.png';
+import benefit0 from '../assets/images/safety.png';
 
 const LandingSection = () => {
   return (
@@ -11,10 +11,10 @@ const LandingSection = () => {
         <Grid container spacing={4} alignItems="center" sx={{ py: 4 }}>
           <Grid item xs={12} sm={6}>
             <Typography variant="h4" gutterBottom sx={{ textTransform: 'none' }}>
-              Doing your bit
+              Safety
             </Typography>
             <Typography variant="subtitle1">
-              Increase car occupancy rates while reducing CO2 emissions. Carpooling enables the transport of two times the number of passengers in cars, whilst reducing CO2 emissions by 29%.
+              22% of Giddyup drivers reduce their speed when carpooling. 35% of drivers check their tire pressure more often. Both these actions also reduce emissions. Fewer cars on the road means a lower likelihood of accidents.
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>

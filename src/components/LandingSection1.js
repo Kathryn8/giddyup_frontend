@@ -11,7 +11,7 @@ const LandingSection1 = () => {
             <img src={benefit1} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography variant="h4" sx={{ p: 1, textTransform: 'none' }}>
+            <Typography variant="h4" sx={{ p: 1, textTransform: 'none', whiteSpace: 'nowrap' }}>
               Save up to $160/month in running costs
             </Typography>
             <Typography variant="subtitle1" sx={{ p: 1 }}>

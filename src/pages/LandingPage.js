@@ -3,6 +3,7 @@ import React from 'react'
 import Hero from '../components/Hero';
 import HowToSection from '../components/HowToSection';
 import BenefitSection from '../components/BenefitSection';
+import LandingSection from '../components/LandingSection';
 import LandingSection1 from '../components/LandingSection1';
 import LandingSection2 from '../components/LandingSection2';
 import LandingSection3 from '../components/LandingSection3';
@@ -13,6 +14,7 @@ const LandingPage = () => {
       <Hero />
       {/* <About /> */}
       <BenefitSection />
+      <LandingSection />
       <LandingSection1 />
       <LandingSection2 />
       <LandingSection3 />

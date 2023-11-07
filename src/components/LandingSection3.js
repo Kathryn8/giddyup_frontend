@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Container, Typography, Button, Grid } from '@mui/material';
-import benefit3 from '../assets/images/benefit3.png';
+import { Box, Container, Typography, Grid } from '@mui/material';
+import benefit3 from '../assets/images/emissions1.png';
 
 const LandingSection1 = () => {
   return (
@@ -15,7 +15,7 @@ const LandingSection1 = () => {
               Massive emissions savings
             </Typography>
             <Typography variant="subtitle1">
-              The average daily commute in Melbourne is 26 km. The emissions saved for each carpool trip is apprximately 4.78 kg of CO2. If your company can get 75 employees to carpool daily that's 7.89 tonnes CO2 saved in a month!
+              The average daily commute in Melbourne is 26 km. The emissions saved for each carpool trip is approximately 4.78 kg of CO<Box component="span" sx={{ typography: 'body1', verticalAlign: 'sub' }}>2</Box>. If your company can get 75 employees to carpool daily, that's 7.89 tonnes of CO<Box component="span" sx={{ typography: 'body1', verticalAlign: 'sub' }}>2</Box> saved in a month!
             </Typography>
           </Grid>
         </Grid>

@@ -7,8 +7,8 @@ import { Container, Typography, Box } from '@mui/material';
 // import CardMedia from '@mui/material/CardMedia';
 // import { CardActionArea } from '@mui/material';
 import ActionAreaCard from './ActionAreaCard';
-import benefit0 from '../assets/images/benefit0.png';
-import benefit1 from '../assets/images/benefit1.png';
+import benefit0 from '../assets/images/love-environment.png';
+import benefit1 from '../assets/images/save-money.png';
 import benefit2 from '../assets/images/benefit2.png';
 import benefit3 from '../assets/images/benefit3.png';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, Button, Grid } from '@mui/material';
-import benefit2 from '../assets/images/benefit2.png';
+import time_saving from '../assets/images/time_saving.png';
 
 const LandingSection = () => {
   return (
@@ -18,7 +18,7 @@ const LandingSection = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <img src={benefit2} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
+            <img src={time_saving} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
           </Grid>
         </Grid>
       </Container>
