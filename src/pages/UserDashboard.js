@@ -7,6 +7,7 @@ import UpcomingTrips from '../components/UpcomingTrips';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import seahorseBeach from '../assets/images/icon.png';
+import YourStats from '../components/YourStats';
 
 const UserDashboard = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -72,7 +73,7 @@ const UserDashboard = () => {
       <UpcomingTrips userId={userId} />
       <Divider />
       <SearchBar userId={userId} />
-      <About />
+      <YourStats userId={userId} />
     </Container >
   )
 }
