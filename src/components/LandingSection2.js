@@ -10,7 +10,7 @@ const LandingSection = () => {
       <Container maxWidth="lg">
         <Grid container spacing={4} alignItems="center" sx={{ py: 4 }}>
           <Grid item xs={12} sm={6}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom sx={{ textTransform: 'none' }}>
               Congestion busting solution
             </Typography>
             <Typography variant="subtitle1">

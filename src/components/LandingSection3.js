@@ -11,7 +11,7 @@ const LandingSection1 = () => {
             <img src={benefit3} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom sx={{ textTransform: 'none' }}>
               Massive emissions savings
             </Typography>
             <Typography variant="subtitle1">
