@@ -34,12 +34,12 @@ const TripCard = ({ trip, userId }) => {
   };
 
   
-  const apiDate = deptDate;
-  const date = new Date(apiDate);
-  const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+const apiDate = deptDate;
+const date = new Date(apiDate);
+const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 
 
-const apiTime = deptDateTime; // Assuming deptDateTime is in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+const apiTime = deptDateTime;
 const time = new Date(apiTime);
 
 const hours = time.getUTCHours();
@@ -60,25 +60,24 @@ if (hours === 0) {
       <CardContent>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography variant="h3">{name}</Typography>
+            <Typography variant="h4">{name}</Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="body1" style={{ color: 'black' }}>
+            <Typography>
               Origin: {origin}
             </Typography>
-            {/* <img src={require('../assets/images/startandend.png')} alt="Origin to Destination" /> */}
-            <Typography variant="body1" style={{ color: 'black' }}>
+            <Typography>
               Destination: {destination}
             </Typography>
-            <Typography variant="body1" style={{ color: 'black' }}>
+            <Typography>
               Driver Name: George 4.6
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="body1" style={{ color: 'black' }}>
+            <Typography>
               Departure Date: {formattedDate}
             </Typography>
-            <Typography variant="body1" style={{ color: 'black' }}>
+            <Typography>
               Departure Time: {formattedTime}
             </Typography>
           </Grid>
