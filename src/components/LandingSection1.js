@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, Button, Grid } from '@mui/material';
-import benefit1 from '../assets/images/benefit1.png';
+import benefit1 from '../assets/images/wallet.png';
 
 const LandingSection1 = () => {
   return (
@@ -11,11 +11,11 @@ const LandingSection1 = () => {
             <img src={benefit1} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography variant="h4" sx={{ p: 1, textTransform: 'none', whiteSpace: 'nowrap' }}>
-              Save up to $160/month in running costs
+            <Typography variant="h4" sx={{ p: 1, textTransform: 'none' }}>
+              Save on running costs
             </Typography>
             <Typography variant="subtitle1" sx={{ p: 1 }}>
-              Share costs like petrol, insurance, parking and tolls. With Giddyup, experience the affordability of carpooling, especially crucial in times of rising expenses.
+              Share costs like petrol, insurance, parking and tolls and save up to $160 a month!
             </Typography>
           </Grid>
         </Grid>
