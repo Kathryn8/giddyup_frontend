@@ -53,7 +53,7 @@ const benefitList = [
 const BenefitSection = () => {
   return (
     <Container sx={{ my: 10 }}>
-      <Typography variant='h4' align='center'> The Benefits</Typography>
+      <Typography variant='h4' align='center'> Your benefits</Typography>
       <Box sx={{
         pt: 4,
         display: 'flex',
