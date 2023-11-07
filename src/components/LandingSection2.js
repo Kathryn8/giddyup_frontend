@@ -14,7 +14,7 @@ const LandingSection = () => {
               Congestion busting solution
             </Typography>
             <Typography variant="subtitle1">
-              A 5% reduction in traffic can lead to a 10 - 30% reduction in traffic delays. By taking 75 cars off the road daily, travelling at an average speed of 60 km/h, approximately 4.91 kilometres of road space is be freed up!
+              A 5% reduction in traffic can lead to a 10 - 30% reduction in traffic delays. By taking 75 cars off the road daily, travelling at an average speed of 60 km/h, approximately 4.91 kilometres of road space is freed up!
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
