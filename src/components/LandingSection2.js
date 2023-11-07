@@ -11,7 +11,7 @@ const LandingSection = () => {
         <Grid container spacing={4} alignItems="center" sx={{ py: 4 }}>
           <Grid item xs={12} sm={6}>
             <Typography variant="h4" gutterBottom>
-              10 - 30% reduction in traffic delays
+              Congestion busting solution
             </Typography>
             <Typography variant="subtitle1">
               A 5% reduction in traffic can lead to a 10 - 30% reduction in traffic delays. By taking 75 cars off the road daily, travelling at an average speed of 60 km/h, approximately 4.91 kilometres of road space is be freed up!
