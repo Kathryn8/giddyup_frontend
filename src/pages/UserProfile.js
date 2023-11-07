@@ -85,6 +85,8 @@ const UserProfile = () => {
   console.log(noneChecked);
   console.log(someChecked);
 
+  console.log(userObj?.user?.profileImage);
+
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -102,28 +104,40 @@ const UserProfile = () => {
 
   return (
     <Container maxWidth="md" sx={{ p: 1 }}>
-      <Typography variant="h6" sx={{ my: 1 }}>
-        Your profile:
+      <Typography variant="h4" sx={{ m: 1 }}>
+        Hello, {userObj?.user?.firstName || userObj?.user?.email.split('@')[0]}
       </Typography>
       <Divider />
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 1 }}>
         <Box>
-          <Typography sx={{ my: 1 }} variant="h3">
-            {userObj.user.name || userObj.user.email.split('@')[0]}
-          </Typography>
+          {/* <Typography sx={{ my: 1 }} variant="h3">
+            {userObj?.user?.firstName || userObj?.user?.email.split('@')[0]}
+          </Typography> */}
+          <Box sx={{ py: 3 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+              <Box component="img" sx={{ maxHeight: '40px', maxWidth: '40px', mr: 1, ml: -1 }} src={bronze} />
+              <Typography sx={{ lineHeight: 2.5 }}>{userObj.user.statusLevel.toUpperCase()} </Typography>
+            </Box>
+            <Typography>
+              Rating average: {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
+            </Typography>
+          </Box>
         </Box>
-        <Avatar alt="Remy Sharp" src={user.picture} sx={{ my: 1, width: 100, height: 100 }} />
+        {/* <img src={userObj.user.profileImage} alt={`${userObj.user.name}'s profile`} /> */}
+        <Avatar alt={userObj?.user?.firstName} src={'http://127.0.0.1:5000' + userObj?.user?.profileImage} sx={{ my: 1, width: 100, height: 100 }} />
       </Box>
-      <Box sx={{ py: 1 }}>
+
+      {/* <Box sx={{ py: 1 }}>
         <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
           <Box component="img" sx={{ maxHeight: '40px', maxWidth: '40px', mr: 1 }} src={bronze} />
-          <Typography sx={{ lineHeight: 2.5 }}>Giddy-upper status: {userObj.user.statusLevel}</Typography>
+          <Typography sx={{ lineHeight: 2.5 }}>{userObj.user.statusLevel.toUpperCase()} </Typography>
         </Box>
         <Typography>
           Rating average: {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
         </Typography>
-      </Box>
-      <Box sx={{ py: 1 }}>
+      </Box> */}
+      <Divider />
+      <Box sx={{ py: 1, m: 1 }}>
 
         {allChecked &&
           <Typography variant="h5">
@@ -174,6 +188,7 @@ const UserProfile = () => {
           </Typography>}
 
       </Box>
+      <Divider />
       <Box sx={{ py: 1 }}>
         <Typography sx={{ my: 1 }} variant="h5">
           Your about section:
