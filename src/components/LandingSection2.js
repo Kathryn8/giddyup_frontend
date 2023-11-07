@@ -11,10 +11,10 @@ const LandingSection = () => {
         <Grid container spacing={4} alignItems="center" sx={{ py: 4 }}>
           <Grid item xs={12} sm={6}>
             <Typography variant="h4" gutterBottom sx={{ textTransform: 'none' }}>
-              Congestion busting solution
+              A congestion busting solution
             </Typography>
             <Typography variant="subtitle1">
-              A 5% reduction in traffic can lead to a 10 - 30% reduction in traffic delays. By taking 75 cars off the road daily, travelling at an average speed of 60 km/h, approximately 4.91 kilometres of road space is freed up!
+              A 5% reduction in the number of cars on the road can lead to a 10 - 30% reduction in delays due to congestion. Removing 75 cars from daily traffic, each averaging 60 km/h, opens up almost 5 km of road!
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
