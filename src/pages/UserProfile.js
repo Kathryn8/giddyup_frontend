@@ -124,7 +124,7 @@ const UserProfile = () => {
           </Box>
         </Box>
         {/* <img src={userObj.user.profileImage} alt={`${userObj.user.name}'s profile`} /> */}
-        <Avatar alt={userObj?.user?.firstName} src={'http://127.0.0.1:5000' + userObj?.user?.profileImage} sx={{ my: 1, width: 100, height: 100 }} />
+        <Avatar alt={userObj?.user?.firstName} src={process.env.REACT_APP_BASE_URL_IMAGES + userObj?.user?.profileImage} sx={{ my: 1, width: 100, height: 100 }} />
       </Box>
 
       {/* <Box sx={{ py: 1 }}>

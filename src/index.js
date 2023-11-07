@@ -6,14 +6,14 @@ import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <React.StrictMode>
-    <Auth0Provider
-      domain={process.env.REACT_APP_YOUR_DOMAIN}
-      clientId={process.env.REACT_APP_YOUR_CLIENT_ID}
-      authorizationParams={{ redirect_uri: 'https://giddyup.onrender.com/dashboard' }}
-      cacheLocation='localstorage'>
-      <App />
-    </Auth0Provider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Auth0Provider
+    domain={process.env.REACT_APP_YOUR_DOMAIN}
+    clientId={process.env.REACT_APP_YOUR_CLIENT_ID}
+    authorizationParams={{ redirect_uri: process.env.REACT_APP_REDIRECT_URI }}
+    cacheLocation='localstorage'>
+    <App />
+  </Auth0Provider>
+  // </React.StrictMode>
 )
 
