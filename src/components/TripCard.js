@@ -72,8 +72,6 @@ const TripCard = ({ trip, userId }) => {
     formattedTime = `${hours % 12}:${minutes}:${seconds} ${ampm}`;
   }
 
-  console.log(trip.driver)
-
   return (
     <Card style={cardStyle} sx={{ marginBottom: 2 }}>
       <CardContent sx={{ p: 1 }}>
@@ -82,15 +80,15 @@ const TripCard = ({ trip, userId }) => {
             <Typography variant="h3">{name}</Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography variant = 'subtitle1'>
+            <Typography variant='subtitle1'>
               Origin: {origin}
             </Typography>
-            <Typography variant = 'subtitle1'>
+            <Typography variant='subtitle1'>
               Destination: {destination}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography variant= 'subtitle1'>
+            <Typography variant='subtitle1'>
               Departure Date: {formattedDate}
             </Typography>
             <Typography variant='subtitle1'>
@@ -101,11 +99,10 @@ const TripCard = ({ trip, userId }) => {
       </CardContent>
 
       <CardActions sx={{ padding: 2 }}>
-
         <Grid container spacing={1}>
-          <Grid item xs={12} sm={7}>
-            {/* Driver button and directly under is the dialog pop-up box code: */}
-            <Button sx={{ alignItems: 'Right' }} variant="contained" color="secondary" onClick={handleClickOpenBasicDialog}>
+          <Grid item xs={6} sm={9}>
+            {/* Driver info button and directly under is the dialog pop-up box code: */}
+            <Button sx={{ ml: -1 }} variant="contained" color="secondary" onClick={handleClickOpenBasicDialog}>
               Driver Info
             </Button>
             <Dialog
@@ -132,10 +129,10 @@ const TripCard = ({ trip, userId }) => {
             </Dialog>
           </Grid>
 
-          <Grid item xs={12} sm={5}>
+          <Grid item xs={6} sm={3}>
             {/* Booking button and directly under is the dialog pop-up box code: */}
-            <Button variant="contained" onClick={handleClickOpenAlertDialog} sx={{ mx: { xs: 6, sm: 0 } }} >
-              Book this trip now
+            <Button variant="contained" onClick={handleClickOpenAlertDialog} >
+              Book now
             </Button>
             <Dialog
               open={openAlertDialog}

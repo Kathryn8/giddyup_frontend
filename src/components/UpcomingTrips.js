@@ -50,7 +50,7 @@ const UpcomingTrips = ({ userId }) => {
         ) : (
           <Box>
             {bookedTrips.length === 0 ? (
-              <Typography sx = {{color: 'grey'}} variant='h6'>You currently have no upcoming trips</Typography>
+              <Typography sx={{ color: 'grey' }} variant='h6'>You currently have no upcoming trips</Typography>
             ) : (
               bookedTrips.map((trip, index) => (
                 <BookedTripCard key={index} trip={trip} userId={userId} />

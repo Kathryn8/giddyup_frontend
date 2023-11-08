@@ -16,7 +16,7 @@ const UserProfile = () => {
   const [userObj, setUserObj] = useState({});
 
   const url1 = process.env.REACT_APP_BASE_URL + '/users/search-email';
-  const url2 = process.env.REACT_APP_BASE_URL + '/users/654313801462530013767733';
+  const url2 = process.env.REACT_APP_BASE_URL + '/users/';
 
   useEffect(() => {
     const getUserIdFromEmailRequest = async () => {
@@ -52,7 +52,7 @@ const UserProfile = () => {
 
   const getSingleUserProfile = async (userId) => {
     try {
-      const resp = await axios.get(url2, {
+      const resp = await axios.get(url2 + userId, {
         headers: {
           Accept: 'application/json',
         },
