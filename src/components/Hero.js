@@ -40,7 +40,7 @@ const Hero = () => {
             textAlign: 'center',
           }}
         >
-          GiddyUP! with your work buddies
+          Giddyup! With your work buddies
         </Typography>
 
         {/* Conditionally render the login/logout button */}
