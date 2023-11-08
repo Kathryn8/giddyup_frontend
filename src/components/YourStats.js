@@ -66,7 +66,7 @@ const YourStats = ({ userId }) => {
   return (
     <Container sx={{ my: 10 }}>
       <Typography variant='h4' align='center'> Your statistics</Typography>
-      <Typography variant='h6' align='center'> Since joining GiddyUP:</Typography>
+      <Typography sx = {{color: 'grey' }}variant='h6' align='center'> Since joining GiddyUP:</Typography>
 
       <Box sx={{
         pt: 4,

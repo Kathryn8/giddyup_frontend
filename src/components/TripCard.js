@@ -19,6 +19,7 @@ const TripCard = ({ trip, userId }) => {
     padding: '16px',
     maxWidth: '600px',
     margin: '16px auto',
+    color: 'blacks'
 
   };
 
@@ -78,21 +79,21 @@ const TripCard = ({ trip, userId }) => {
       <CardContent sx={{ p: 1 }}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Typography variant="h4">{name}</Typography>
+            <Typography variant="h3">{name}</Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography>
+            <Typography variant = 'subtitle1'>
               Origin: {origin}
             </Typography>
-            <Typography>
+            <Typography variant = 'subtitle1'>
               Destination: {destination}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography>
+            <Typography variant= 'subtitle1'>
               Departure Date: {formattedDate}
             </Typography>
-            <Typography>
+            <Typography variant='subtitle1'>
               Departure Time: {formattedTime}
             </Typography>
           </Grid>
@@ -105,7 +106,7 @@ const TripCard = ({ trip, userId }) => {
           <Grid item xs={12} sm={7}>
             {/* Driver button and directly under is the dialog pop-up box code: */}
             <Button sx={{ alignItems: 'Right' }} variant="contained" color="secondary" onClick={handleClickOpenBasicDialog}>
-              Learn more about your Driver
+              Driver Info
             </Button>
             <Dialog
               onClose={handleCloseBasicDialog}

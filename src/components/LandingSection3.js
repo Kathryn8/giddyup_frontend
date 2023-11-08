@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Container, Typography, Grid } from '@mui/material';
 import benefit3 from '../assets/images/emissions1.png';
 
-const LandingSection1 = () => {
+const LandingSection3 = () => {
   return (
     <Box sx={{ bgcolor: 'rgba(242, 193, 51, 0.5)', color: 'black' }}>
       <Container maxWidth="lg">
@@ -24,4 +24,4 @@ const LandingSection1 = () => {
   );
 };
 
-export default LandingSection1;
+export default LandingSection3;

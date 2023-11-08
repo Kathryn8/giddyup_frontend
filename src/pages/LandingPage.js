@@ -15,7 +15,7 @@ const LandingPage = () => {
       <Hero />
       {/* <About /> */}
       <BenefitSection />
-      <Typography align='center' variant='h4'>In numbers</Typography>
+      <Typography align='center' variant='h3'>In numbers</Typography>
       <LandingSection />
       <LandingSection1 />
       <LandingSection2 />

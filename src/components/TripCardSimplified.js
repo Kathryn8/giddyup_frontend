@@ -10,10 +10,10 @@ const TripCardSimplified = ({ trip }) => {
   return (
     <Card sx={{ marginBottom: 2 }}>
       <CardContent>
-        <Typography variant="h5">{name}</Typography>
-        <Typography>Origin: {origin}</Typography>
-        <Typography>Destination: {destination}</Typography>
-        <Typography>Departure Date: {formattedDate}</Typography>
+        <Typography variant="h4">{name}</Typography>
+        <Typography variant = 'subtitle1'>Origin: {origin}</Typography>
+        <Typography variant = 'subtitle1'>Destination: {destination}</Typography>
+        <Typography variant = 'subtitle1'>Departure Date: {formattedDate}</Typography>
       </CardContent>
     </Card>
   )

@@ -18,7 +18,7 @@ const LandingSection = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <img src={benefit0} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
+            <img src={benefit0} alt="Step 1" style={{ width: '100%', height: 'auto', marginBottom: '40px' }} />
           </Grid>
         </Grid>
       </Container>

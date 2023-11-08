@@ -51,7 +51,7 @@ const SearchBar = ({ userId }) => {
   return (
     <>
       <Box sx={{ py: 3 }}>
-        <Typography variant='h4' sx={{ textAlign: 'center', m: 3 }}>Search for a trip</Typography>
+        <Typography variant='h3' sx={{ textAlign: 'center', m: 3, color:'grey' }}>Search for a trip</Typography>
 
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'center', bgcolor: 'white', p: 1.5 }}>
           {['origin', 'destination'].map((field) => (

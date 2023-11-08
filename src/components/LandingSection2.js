@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Container, Typography, Button, Grid } from '@mui/material';
 import time_saving from '../assets/images/time_saving.png';
 
-const LandingSection = () => {
+const LandingSection2 = () => {
   return (
     // This Box will give the background color that extends to the full width
     <Box sx={{ bgcolor: 'white', color: 'black' }}>
@@ -18,7 +18,7 @@ const LandingSection = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <img src={time_saving} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
+            <img src={time_saving} alt="Step 1" style={{ width: '100%', height: 'auto', marginBottom: '40px' }} />
           </Grid>
         </Grid>
       </Container>
@@ -28,4 +28,4 @@ const LandingSection = () => {
   );
 };
 
-export default LandingSection;
+export default LandingSection2;

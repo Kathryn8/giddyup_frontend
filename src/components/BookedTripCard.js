@@ -58,24 +58,24 @@ if (hours === 0) {
       <CardContent>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography variant="h4">{name}</Typography>
+            <Typography variant="h3">{name}</Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography>
+            <Typography variant = 'subtitle1'>
               Origin: {origin}
             </Typography>
-            <Typography>
+            <Typography variant = 'subtitle1'>
               Destination: {destination}
             </Typography>
-            <Typography>
+            <Typography variant = 'subtitle1'>
               Driver Name: George 4.6
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography>
+            <Typography variant = 'subtitle1'>
               Departure Date: {formattedDate}
             </Typography>
-            <Typography>
+            <Typography variant = 'subtitle1'>
               Departure Time: {formattedTime}
             </Typography>
           </Grid>
