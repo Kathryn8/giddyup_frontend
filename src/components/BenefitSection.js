@@ -53,7 +53,7 @@ const BenefitSection = () => {
   return (
     <Container sx={{ my: 10 }}>
       <Typography variant='h3' align='center'> Your benefits</Typography>
-      <Typography variant= 'subtitle1' align='center' sx={{ py: 1 }}> 22% of Giddyup drivers reduce their speed when carpooling. 35% of drivers check their tire pressure more often. Both these actions also reduce emissions. Fewer cars on the road means a lower likelihood of accidents.</Typography>
+      <Typography variant= 'subtitle1' align='center' sx={{ py: 1 }}> Riding together creates numerous benefits for employees, the communitiy and your company.</Typography>
       <Box sx={{
         pt: 4,
         display: 'flex',
