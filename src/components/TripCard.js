@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography, CardActions, Button, Grid } from '@mui/material';
+import { Card, CardContent, Typography, CardActions, Button, Grid, IconButton } from '@mui/material';
 import BookingButton from './BookingButton';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,8 +7,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TripCardSimplified from './TripCardSimplified';
+import DriverProfile from '../pages/DriverProfile';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 const TripCard = ({ trip, userId }) => {
+
   const { name, origin, destination, deptDate, deptDateTime, _id: tripId } = trip;
   const cardStyle = {
     border: '1px solid #ccc',
@@ -18,19 +22,31 @@ const TripCard = ({ trip, userId }) => {
 
   };
 
+  // Set up the states for the "are you sure you want to book? button"
   const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const handleClickOpenAlertDialog = () => {
     setOpenAlertDialog(true);
   };
 
-  const handleClose = () => {
+  const handleCloseAlertDialog = () => {
     setOpenAlertDialog(false);
   };
 
-  const handleCloseRefresh = () => {
+  const handleCloseRefreshAlertDialog = () => {
     setOpenAlertDialog(false);
     window.location = "/dashboard";
+  };
+
+  // Set up the states for the "Know about your driver" pop-up
+  const [openBasicDialog, setOpenBasicDialog] = React.useState(false);
+
+  const handleClickOpenBasicDialog = () => {
+    setOpenBasicDialog(true);
+  };
+
+  const handleCloseBasicDialog = () => {
+    setOpenBasicDialog(false);
   };
 
 
@@ -55,25 +71,24 @@ const TripCard = ({ trip, userId }) => {
     formattedTime = `${hours % 12}:${minutes}:${seconds} ${ampm}`;
   }
 
+  console.log(trip.driver)
+
   return (
     <Card style={cardStyle} sx={{ marginBottom: 2 }}>
-      <CardContent>
-        <Grid container spacing={2}>
+      <CardContent sx={{ p: 1 }}>
+        <Grid container spacing={1}>
           <Grid item xs={12}>
             <Typography variant="h4">{name}</Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <Typography>
               Origin: {origin}
             </Typography>
             <Typography>
               Destination: {destination}
             </Typography>
-            <Typography>
-              Driver Name: George 4.6
-            </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <Typography>
               Departure Date: {formattedDate}
             </Typography>
@@ -83,34 +98,67 @@ const TripCard = ({ trip, userId }) => {
           </Grid>
         </Grid>
       </CardContent>
+
       <CardActions sx={{ padding: 2 }}>
-        <Button sx={{ alignItems: 'Right' }} variant="contained" >
-          Learn more about your Driver
-        </Button>
-        <Button variant="contained" onClick={handleClickOpen}>
-          Book this trip now
-        </Button>
-        <Dialog
-          open={openAlertDialog}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-            {"Are you sure you want to book this trip?"}
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              <TripCardSimplified trip={trip} />
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="warning" variant="contained">Cancel</Button>
-            <BookingButton tripId={tripId} passengerId={userId} handleClose={handleCloseRefresh} />
-          </DialogActions>
-        </Dialog>
+
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={7}>
+            {/* Driver button and directly under is the dialog pop-up box code: */}
+            <Button sx={{ alignItems: 'Right' }} variant="contained" color="secondary" onClick={handleClickOpenBasicDialog}>
+              Learn more about your Driver
+            </Button>
+            <Dialog
+              onClose={handleCloseBasicDialog}
+              open={openBasicDialog}
+              aria-labelledby="learn-more-about-your-driver"
+              aria-describedby="a-pop-up-with-driver-profile-information">
+              <DialogTitle id="alert-dialog-title">
+                {"Meet your driver"}
+              </DialogTitle>
+              <IconButton
+                aria-label="close"
+                onClick={handleCloseBasicDialog}
+                sx={{
+                  position: 'absolute',
+                  right: 8,
+                  top: 8,
+                  color: (theme) => theme.palette.grey[500],
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+              <DriverProfile driverId={trip.driver} />
+            </Dialog>
+          </Grid>
+
+          <Grid item xs={12} sm={5}>
+            {/* Booking button and directly under is the dialog pop-up box code: */}
+            <Button variant="contained" onClick={handleClickOpenAlertDialog} sx={{ mx: { xs: 6, sm: 0 } }} >
+              Book this trip now
+            </Button>
+            <Dialog
+              open={openAlertDialog}
+              onClose={handleCloseAlertDialog}
+              aria-labelledby="Confirmation of booking choice"
+              aria-describedby="Pop up to confirm your booking choice"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Are you sure you want to book this trip?"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  <TripCardSimplified trip={trip} />
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCloseAlertDialog} color="warning" variant="contained">Cancel</Button>
+                <BookingButton tripId={tripId} passengerId={userId} handleClose={handleCloseRefreshAlertDialog} />
+              </DialogActions>
+            </Dialog>
+          </Grid>
+        </Grid>
       </CardActions>
-    </Card>
+    </Card >
   );
 };
 

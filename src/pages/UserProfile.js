@@ -94,7 +94,6 @@ const UserProfile = () => {
     'bronze': bronze
   }
 
-
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
