@@ -5,4 +5,5 @@ export { default as Error } from './Error';
 export { default as UserDashboard } from './UserDashboard';
 export { default as PrivateRoute } from './PrivateRoute';
 export { default as AuthWrapper } from './AuthWrapper';
+export { default as DriverProfile } from './DriverProfile';
 

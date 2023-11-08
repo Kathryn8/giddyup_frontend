@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Box, Typography, Avatar, Divider } from '@mui/material';
+import { Container, Box, Typography, Avatar, Divider, Badge } from '@mui/material';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
@@ -9,67 +9,67 @@ import silver from '../assets/images/giddyUpStatusBadgeSilver.png';
 import bronze from '../assets/images/giddyUpStatusBadgeBronze.png';
 import GppMaybeIcon from '@mui/icons-material/GppMaybe';
 
-const UserProfile = () => {
+const DriverProfile = ({ driverId }) => {
   const { isAuthenticated, user } = useAuth0();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [userObj, setUserObj] = useState({});
 
-  const url1 = process.env.REACT_APP_BASE_URL + '/users/search-email';
-  const url2 = process.env.REACT_APP_BASE_URL + '/users/654313801462530013767733';
+  // const url1 = process.env.REACT_APP_BASE_URL + '/users/search-email';
+  const url2 = process.env.REACT_APP_BASE_URL + '/users/65384f11dfd2275c16556df6';
+
+  // useEffect(() => {
+  //   const getUserIdFromEmailRequest = async () => {
+  //     try {
+  //       const resp = await axios.get(url1, {
+  //         headers: {
+  //           Accept: 'application/json',
+  //         },
+  //         params: {
+  //           email: user.email,
+  //         },
+  //       });
+
+  //       const userId = await resp.data.data.user._id;
+  //       console.log("1");
+  //       await getSingleUserProfile(userId);
+  //       console.log("2");
+
+  //       console.log(userId)
+  //     } catch (error) {
+  //       setIsError(true);
+  //       console.log(`error-1: ${error}`);
+
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   getUserIdFromEmailRequest();
+  //   console.log("3");
+
+  // }, [user.email]);
 
   useEffect(() => {
-    const getUserIdFromEmailRequest = async () => {
+    const getSingleUserProfile = async (userId) => {
       try {
-        const resp = await axios.get(url1, {
+        const resp = await axios.get(url2, {
           headers: {
             Accept: 'application/json',
           },
-          params: {
-            email: user.email,
-          },
         });
-
-        const userId = await resp.data.data.user._id;
-        console.log("1");
-        await getSingleUserProfile(userId);
-        console.log("2");
-
-        console.log(userId)
+        const x = await setUserObj(resp.data.data);
+        console.log(userObj);
       } catch (error) {
         setIsError(true);
-        console.log(`error-1: ${error}`);
+        console.log(`error-2: ${error}`);
 
       } finally {
         setIsLoading(false);
       }
     };
-
-    getUserIdFromEmailRequest();
-    console.log("3");
-
+    getSingleUserProfile()
   }, [user.email]);
-
-  const getSingleUserProfile = async (userId) => {
-    try {
-      const resp = await axios.get(url2, {
-        headers: {
-          Accept: 'application/json',
-        },
-      });
-      console.log("4");
-      const x = await setUserObj(resp.data.data);
-      console.log("5");
-      console.log(userObj);
-    } catch (error) {
-      setIsError(true);
-      console.log(`error-2: ${error}`);
-
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  console.log("6");
 
   function checkDiff(a) {
     return new Set(a).size !== 1;
@@ -85,15 +85,16 @@ const UserProfile = () => {
   console.log(noneChecked);
   console.log(someChecked);
 
-  console.log(userObj?.user?.profileImage);
-
+  // Status badge mapper:
   const badges = {
     'platinum': platinum,
     'gold': gold,
     'silver': silver,
     'bronze': bronze
   }
-
+  console.log("HERE")
+  console.log(userObj?.user?.statusLevel)
+  console.log(badges[userObj?.user?.statusLevel])
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -111,27 +112,35 @@ const UserProfile = () => {
 
   return (
     <Container maxWidth="md" sx={{ p: 1 }}>
-      <Typography variant="h4" sx={{ m: 1, p: 1 }}>
-        Hello, {userObj?.user?.firstName || userObj?.user?.email.split('@')[0]}
+      <Typography variant="h5" sx={{ m: 1, p: 1 }}>
+        Meet your driver
       </Typography>
       <Divider />
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', p: 1 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', p: 1, mb: 1 }}>
         <Box sx={{ m: 1 }}>
           {/* <Typography sx={{ my: 1 }} variant="h3">
             {userObj?.user?.firstName || userObj?.user?.email.split('@')[0]}
           </Typography> */}
-          <Box sx={{ py: 2 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-              <Box component="img" sx={{ maxHeight: '40px', maxWidth: '40px', mr: 1, ml: -1 }} src={badges[userObj?.user?.statusLevel]} />
-              <Typography sx={{ lineHeight: 2.5 }}>{userObj.user.statusLevel.toUpperCase()} </Typography>
-            </Box>
+          <Typography variant="h3" sx={{ my: 1 }}>
+            Hi, I'm {userObj?.user?.firstName || userObj?.user?.email.split('@')[0]}
+          </Typography>
+          <Box sx={{ py: 0 }}>
+
+            <Typography sx={{ lineHeight: 2.5 }}>{userObj.user.statusLevel.toUpperCase()}</Typography>
+
             <Typography>
-              Rating average: {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
+              Ratings: {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
             </Typography>
           </Box>
         </Box>
+        <Badge overlap="circular" sx={{ m: 'auto 0' }} anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }} badgeContent={<Box component="img" sx={{ maxHeight: '70px', maxWidth: '70px' }} src={badges[userObj?.user?.statusLevel]} />}>
+          <Avatar alt={userObj?.user?.firstName} src={process.env.REACT_APP_BASE_URL_IMAGES + userObj?.user?.profileImage} sx={{ my: 3, width: 120, height: 120 }} />
+
+        </Badge>
         {/* <img src={userObj.user.profileImage} alt={`${userObj.user.name}'s profile`} /> */}
-        <Avatar alt={userObj?.user?.firstName} src={process.env.REACT_APP_BASE_URL_IMAGES + userObj?.user?.profileImage} sx={{ my: 1, width: 100, height: 100 }} />
       </Box>
 
       {/* <Box sx={{ py: 1 }}>
@@ -143,26 +152,23 @@ const UserProfile = () => {
           Rating average: {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
         </Typography>
       </Box> */}
-      <Divider />
+      {!noneChecked &&
+        <Divider />}
+
       <Box sx={{ p: 1 }}>
 
         {allChecked &&
           <Typography sx={{ m: 1 }} variant="h5">
-            Your profile is fully verified
+            {userObj?.user?.firstName}'s profile is fully verified
           </Typography>}
 
         {someChecked &&
           <Typography sx={{ m: 1 }} variant="h5">
-            Your profile is partially verified
+            {userObj?.user?.firstName}'s profile is partially verified
           </Typography>}
 
         {noneChecked &&
-          <>
-            <Typography sx={{ m: 1 }} variant="h5">
-              Your profile is not verified
-            </Typography >
-            <Typography sx={{ mb: 1 }}> Please update this section to maintain our community of trust</Typography>
-          </>}
+          <></>}
 
         {userObj?.user?.email_verified
           ?
@@ -170,9 +176,7 @@ const UserProfile = () => {
             <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Email verified
           </Typography>
           :
-          <Typography sx={{ m: 1 }}>
-            <GppMaybeIcon color="error" sx={{ verticalAlign: 'middle' }} /> Email not yet verified
-          </Typography>}
+          <></>}
 
         {userObj?.user?.verified?.driverLicense
           ?
@@ -180,9 +184,7 @@ const UserProfile = () => {
             <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> License confirmed
           </Typography>
           :
-          <Typography sx={{ m: 1 }}>
-            <GppMaybeIcon color="error" sx={{ verticalAlign: 'middle' }} /> License not yet confirmed
-          </Typography>}
+          <></>}
 
         {userObj?.user?.verified?.phoneVerified
           ?
@@ -190,15 +192,13 @@ const UserProfile = () => {
             <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Phone number confirmed
           </Typography>
           :
-          <Typography sx={{ m: 1 }}>
-            <GppMaybeIcon color="error" sx={{ verticalAlign: 'middle' }} /> Phone not yet number confirmed
-          </Typography>}
+          <></>}
 
       </Box>
       <Divider />
       <Box sx={{ p: 1 }}>
         <Typography sx={{ m: 1 }} variant="h5">
-          About me
+          About {userObj?.user?.firstName}
         </Typography>
         <Typography sx={{ m: 1 }}>"{userObj?.user?.aboutMe}"</Typography>
         <Typography sx={{ m: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
@@ -206,7 +206,7 @@ const UserProfile = () => {
       <Divider />
       <Box sx={{ p: 1 }}>
         <Typography sx={{ m: 1 }} variant="h5">
-          Your GiddyUp Activity
+          {userObj?.user?.firstName}'s GiddyUp Activity
         </Typography>
         <Typography sx={{ m: 1 }}>Rides offered: {userObj?.user?.latestActivity?.ridesOffered} </Typography>
         <Typography sx={{ m: 1 }}>Rides taken: {userObj?.user?.latestActivity?.ridesTaken}</Typography>
@@ -216,4 +216,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default DriverProfile;

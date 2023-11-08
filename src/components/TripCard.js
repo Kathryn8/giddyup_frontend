@@ -15,9 +15,9 @@ const TripCard = ({ trip, userId }) => {
     padding: '16px',
     maxWidth: '600px',
     margin: '16px auto',
-    
+
   };
-    
+
   const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -33,27 +33,27 @@ const TripCard = ({ trip, userId }) => {
     window.location = "/dashboard";
   };
 
-  
-const apiDate = deptDate;
-const date = new Date(apiDate);
-const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+
+  const apiDate = deptDate;
+  const date = new Date(apiDate);
+  const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 
 
-const apiTime = deptDateTime;
-const time = new Date(apiTime);
+  const apiTime = deptDateTime;
+  const time = new Date(apiTime);
 
-const hours = time.getUTCHours();
-const minutes = time.getUTCMinutes();
-const seconds = time.getUTCSeconds();
-const ampm = hours >= 12 ? 'PM' : 'AM';
+  const hours = time.getUTCHours();
+  const minutes = time.getUTCMinutes();
+  const seconds = time.getUTCSeconds();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
 
-let formattedTime;
+  let formattedTime;
 
-if (hours === 0) {
-  formattedTime = `${minutes}:${seconds} ${ampm}`;
-} else {
-  formattedTime = `${hours % 12}:${minutes}:${seconds} ${ampm}`;
-}
+  if (hours === 0) {
+    formattedTime = `${minutes}:${seconds} ${ampm}`;
+  } else {
+    formattedTime = `${hours % 12}:${minutes}:${seconds} ${ampm}`;
+  }
 
   return (
     <Card style={cardStyle} sx={{ marginBottom: 2 }}>
@@ -84,7 +84,7 @@ if (hours === 0) {
         </Grid>
       </CardContent>
       <CardActions sx={{ padding: 2 }}>
-        <Button sx ={{alignItems: 'Right'}} variant="contained" >
+        <Button sx={{ alignItems: 'Right' }} variant="contained" >
           Learn more about your Driver
         </Button>
         <Button variant="contained" onClick={handleClickOpen}>

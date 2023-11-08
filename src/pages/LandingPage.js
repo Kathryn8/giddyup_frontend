@@ -7,6 +7,7 @@ import LandingSection from '../components/LandingSection';
 import LandingSection1 from '../components/LandingSection1';
 import LandingSection2 from '../components/LandingSection2';
 import LandingSection3 from '../components/LandingSection3';
+import { Typography } from '@mui/material';
 
 const LandingPage = () => {
   return (
@@ -14,6 +15,7 @@ const LandingPage = () => {
       <Hero />
       {/* <About /> */}
       <BenefitSection />
+      <Typography align='center' variant='h4'>In numbers</Typography>
       <LandingSection />
       <LandingSection1 />
       <LandingSection2 />

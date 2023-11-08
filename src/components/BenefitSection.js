@@ -21,9 +21,9 @@ const benefitList = [
     imgDimension: 200,
     title: 'Doing your bit',
     text: <>
-        Increase car occupancy rates, ease congestion and track your CO
-        <sub>2</sub> footprint. You can make a difference!
-      </>
+      Increase car occupancy rates, ease congestion and track your CO
+      <sub>2</sub> footprint. You can make a difference!
+    </>
   },
   {
     id: 2,
@@ -53,6 +53,7 @@ const BenefitSection = () => {
   return (
     <Container sx={{ my: 10 }}>
       <Typography variant='h4' align='center'> Your benefits</Typography>
+      <Typography align='center' sx={{ py: 1 }}> 22% of Giddyup drivers reduce their speed when carpooling. 35% of drivers check their tire pressure more often. Both these actions also reduce emissions. Fewer cars on the road means a lower likelihood of accidents.</Typography>
       <Box sx={{
         pt: 4,
         display: 'flex',
