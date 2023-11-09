@@ -1,38 +1,36 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import loadingGif from '../assets/images/preloader.gif';
-import styled from 'styled-components';
+import { Box, CircularProgress, Typography } from '@mui/material';
 
 function AuthWrapper({ children }) {
 
   const { isLoading, error } = useAuth0();
 
+  const styles = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '55vh'
+  }
+
   if (isLoading) {
     return (
-      <Wrapper>
-        <img src={loadingGif} alt='spinner' />
-      </Wrapper>
+      <Box sx={styles}>
+        <Typography variant="h2">Loading...</Typography>
+        <CircularProgress color="secondary" />
+      </Box>
     );
   }
 
   if (error) {
     return (
-      <Wrapper>
-        <h1>{error.message}</h1>
-      </Wrapper>
+      <Box sx={styles}>
+        <Typography>{error.message}</Typography>
+      </Box>
     );
   }
 
   return <>{children}</>;
 }
-
-const Wrapper = styled.section`
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  img {
-    width: 150px;
-  }
-`;
 
 export default AuthWrapper;
