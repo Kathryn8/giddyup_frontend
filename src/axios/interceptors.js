@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const authFetch = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL, // change THIS for live deploy
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
     Accept: 'application/json',
   },
