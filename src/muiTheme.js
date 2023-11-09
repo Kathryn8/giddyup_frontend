@@ -20,7 +20,11 @@ const muiTheme = createTheme({
       fontSize: '1.5rem',
       fontWeight: 500,
     },
-
+    h5: {
+      fontSize: '1.3rem',
+      fontWeight: 400,
+      color: 'grey'
+    },
     subtitle1: {
       fontSize: '1.2rem',
       fontWeight: 400,

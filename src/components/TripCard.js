@@ -11,7 +11,10 @@ import DriverProfile from '../pages/DriverProfile';
 import CloseIcon from '@mui/icons-material/Close';
 
 
+
+
 const TripCard = ({ trip, userId }) => {
+
 
   const { name, origin, destination, deptDate, deptDateTime, _id: tripId } = trip;
   const cardStyle = {
@@ -21,34 +24,44 @@ const TripCard = ({ trip, userId }) => {
     margin: '16px auto',
     color: 'blacks'
 
+
   };
+
 
   // Set up the states for the "are you sure you want to book? button"
   const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
+
 
   const handleClickOpenAlertDialog = () => {
     setOpenAlertDialog(true);
   };
 
+
   const handleCloseAlertDialog = () => {
     setOpenAlertDialog(false);
   };
+
 
   const handleCloseRefreshAlertDialog = () => {
     setOpenAlertDialog(false);
     window.location = "/dashboard";
   };
 
+
   // Set up the states for the "Know about your driver" pop-up
   const [openBasicDialog, setOpenBasicDialog] = React.useState(false);
+
 
   const handleClickOpenBasicDialog = () => {
     setOpenBasicDialog(true);
   };
 
+
   const handleCloseBasicDialog = () => {
     setOpenBasicDialog(false);
   };
+
+
 
 
   const apiDate = deptDate;
@@ -56,53 +69,66 @@ const TripCard = ({ trip, userId }) => {
   const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 
 
+
+
   const apiTime = deptDateTime;
   const time = new Date(apiTime);
+
 
   const hours = time.getUTCHours();
   const minutes = time.getUTCMinutes();
   const seconds = time.getUTCSeconds();
   const ampm = hours >= 12 ? 'PM' : 'AM';
 
+
   let formattedTime;
+  const addLeadingZero = (num) => (num < 10 ? `0${num}` : num);
+
 
   if (hours === 0) {
-    formattedTime = `${minutes}:${seconds} ${ampm}`;
+    formattedTime = `${minutes}:${addLeadingZero(seconds)} ${ampm}`;
   } else {
-    formattedTime = `${hours % 12}:${minutes}:${seconds} ${ampm}`;
+    formattedTime = `${hours % 12}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)} ${ampm}`;
   }
+
+
+  console.log(trip.driver)
+
 
   return (
     <Card style={cardStyle} sx={{ marginBottom: 2 }}>
       <CardContent sx={{ p: 1 }}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Typography variant="h3">{name}</Typography>
+            <Typography variant="h4">{name}</Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography variant='subtitle1'>
+            <Typography variant = 'subtitle1'>
               Origin: {origin}
             </Typography>
-            <Typography variant='subtitle1'>
+            <Typography variant = 'subtitle1'>
               Destination: {destination}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography variant='subtitle1'>
+            <Typography variant= 'h5' style={{padding: '3px'}}>
               Departure Date: {formattedDate}
             </Typography>
-            <Typography variant='subtitle1'>
+            <Typography variant='h5' style={{padding: '3px'}}>
               Departure Time: {formattedTime}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
 
+
       <CardActions sx={{ padding: 2 }}>
+
+
         <Grid container spacing={1}>
-          <Grid item xs={6} sm={9}>
-            {/* Driver info button and directly under is the dialog pop-up box code: */}
-            <Button sx={{ ml: -1 }} variant="contained" color="secondary" onClick={handleClickOpenBasicDialog}>
+          <Grid item xs={12} sm={6} sx={{ display: 'flex', justifyContent: 'center'}}>
+            {/* Driver button and directly under is the dialog pop-up box code: */}
+            <Button sx = {{width: '50%'}} variant="contained" color="secondary" onClick={handleClickOpenBasicDialog}>
               Driver Info
             </Button>
             <Dialog
@@ -129,10 +155,11 @@ const TripCard = ({ trip, userId }) => {
             </Dialog>
           </Grid>
 
-          <Grid item xs={6} sm={3}>
+
+          <Grid item xs={12} sm={6} sx={{ display: 'flex', justifyContent: 'center' }}>
             {/* Booking button and directly under is the dialog pop-up box code: */}
-            <Button variant="contained" onClick={handleClickOpenAlertDialog} >
-              Book now
+            <Button variant="contained" onClick={handleClickOpenAlertDialog} sx={{ mx: { xs: 6, sm: 0 }, width: '50%' }} >
+              Book this trip now
             </Button>
             <Dialog
               open={openAlertDialog}
@@ -159,5 +186,6 @@ const TripCard = ({ trip, userId }) => {
     </Card >
   );
 };
+
 
 export default TripCard;
