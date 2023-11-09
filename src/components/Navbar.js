@@ -12,7 +12,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SvgIconChildren from './SvgIconChildren';
 import { Link } from 'react-router-dom';
-import brandBanner from '../assets/images/brandBannerLogo.png'
+import brandBannerMobile from '../assets/images/brandBannerMobile.png'
+import brandBannerDesktop from '../assets/images/brandBannerDesktop.png'
 import { useAuth0 } from '@auth0/auth0-react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AccountCircle } from '@mui/icons-material';
@@ -50,6 +51,7 @@ export default function NavBar() {
 
   // console.log({ isAuthenticated, user, isLoading })
   // console.log({ user })
+  const isMobileView = window.innerWidth <= 600;
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -57,21 +59,33 @@ export default function NavBar() {
       <AppBar position="static" sx={{ bgcolor: 'white' }}>
         <Toolbar>
 
-          <Typography component="div" sx={{ flexGrow: 1 }}>
-            <Link to='./'>
-              <Box
-                component="img"
-                sx={{
-                  // height: 33,
-                  // width: 200,
-                  maxHeight: { xs: 60, md: 60 },
-                  maxWidth: { xs: 200, md: 350 },
-                }}
-                alt="Giddy up in custom font"
-                src={brandBanner}
+          {isMobileView ? (
+            <Typography component="div" sx={{ flexGrow: 1 }}>
+              <Link to='./'>
+                <img
+                  src={brandBannerMobile}
+                  alt="Mobile Logo"
+                  style={{
+                    maxHeight: 60,
+                    maxWidth: 200,
+                  }}
+                />
+              </Link>
+            </Typography>
+          ) : (
+            <Typography component="div" sx={{ flexGrow: 1 }}>
+              <Link to='./'>
+                <img
+                  src={brandBannerDesktop}
+                  alt="Desktop Logo"
+                  style={{
+                    maxHeight: 60,
+                    maxWidth: 350,
+                  }}
               />
             </Link>
           </Typography>
+          )}
           {isUser ? (
             <div>
               <IconButton onClick={handleMenu} sx={{ p: 1 }}>
@@ -104,7 +118,7 @@ export default function NavBar() {
               </Menu>
             </div>
           ) : (
-            <Button onClick={loginWithRedirect} variant="contained" >login / sign up</Button>
+            <Button onClick={loginWithRedirect} variant="contained" sx ={{maxWidth: 175}} >login/sign up</Button>
           )}
 
         </Toolbar>

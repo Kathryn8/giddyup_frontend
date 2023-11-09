@@ -104,7 +104,8 @@ function AppFooter() {
       component="footer"
       sx={{
         display: 'flex',
-        bgcolor: 'rgba(242, 193, 51, 0.5)'
+        bgcolor: 'rgba(242, 193, 51, 0.5)',
+        color: 'black'
       }}
     >
       <Container sx={{ my: 8, display: 'flex' }}>
@@ -146,10 +147,10 @@ function AppFooter() {
             </Typography>
             <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/terms/">Phone: +61 44GIDDYUP</Link>
+                <Link href="/premium-themes/onepirate/terms/"><Typography variant='subtitle2'>Phone: +61 44GIDDYUP</Typography></Link>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/privacy/">Email: yee.ha@giddyup.com</Link>
+                <Link href="/premium-themes/onepirate/privacy/"> <Typography variant='subtitle2'>Email: yee.ha@giddyup.com</Typography></Link>
               </Box>
             </Box>
           </Grid>
@@ -159,10 +160,10 @@ function AppFooter() {
             </Typography>
             <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/terms/">Terms</Link>
+                <Link href="/premium-themes/onepirate/terms/"><Typography variant='subtitle2'>Terms</Typography></Link>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/privacy/">Privacy</Link>
+                <Link href="/premium-themes/onepirate/privacy/"><Typography variant='subtitle2'>Privacy</Typography></Link>
               </Box>
             </Box>
           </Grid>
@@ -223,7 +224,7 @@ function OriginalFooter() {
       <AppBar position="static" sx={{ boxShadow: 0 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography sx={{ display: { xs: 'none', sm: 'block' } }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
+            <Typography variant='subtitle1' sx={{ display: { xs: 'none', sm: 'block' } }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
             {authorContact.map((author) => (
               <Box key={author.id} sx={{ flexGrow: 0, p: 1 }}>
                 <Tooltip title="Open authorMenu">

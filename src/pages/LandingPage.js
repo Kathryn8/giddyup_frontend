@@ -16,6 +16,7 @@ const LandingPage = () => {
       {/* <About /> */}
       <BenefitSection />
       <Typography align='center' variant='h3'>In numbers</Typography>
+      <Typography variant= 'subtitle1' align='center' sx={{ py: 1 }}> Riding together means more people travel, with less impact.</Typography>
       <LandingSection />
       <LandingSection1 />
       <LandingSection2 />

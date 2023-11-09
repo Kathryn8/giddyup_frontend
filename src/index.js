@@ -14,6 +14,6 @@ root.render(
       cacheLocation='localstorage'>
       <App />
     </Auth0Provider>
-  // </React.StrictMode>
+  </React.StrictMode>
 )
 
