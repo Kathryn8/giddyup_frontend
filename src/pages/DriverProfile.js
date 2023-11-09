@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Box, Typography, Avatar, Divider, Badge } from '@mui/material';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
-import axios from 'axios';
+import authFetch from '../axios/interceptors';
 import platinum from '../assets/images/giddyUpStatusBadgePlatinum.png';
 import gold from '../assets/images/giddyUpStatusBadgeGold.png';
 import silver from '../assets/images/giddyUpStatusBadgeSilver.png';
@@ -12,21 +12,17 @@ const DriverProfile = ({ driverId }) => {
   const [isError, setIsError] = useState(false);
   const [userObj, setUserObj] = useState({});
 
-  const url = process.env.REACT_APP_BASE_URL + '/users/' + driverId;
+  const url = '/users/' + driverId;
 
   useEffect(() => {
     const getSingleUserProfile = async () => {
       try {
-        const resp = await axios.get(url, {
-          headers: {
-            Accept: 'application/json',
-          },
+        const resp = await authFetch.get(url, {
         });
         setUserObj(resp.data.data);
       } catch (error) {
         setIsError(true);
-        console.log(`error-2: ${error}`);
-
+        console.log(error);
       } finally {
         setIsLoading(false);
       }
@@ -34,19 +30,18 @@ const DriverProfile = ({ driverId }) => {
     getSingleUserProfile()
   }, []);
 
-  function checkDiff(a) {
-    return new Set(a).size !== 1;
-  }
+
 
   // Verification variables:
   const verify = [userObj?.user?.email_verified, userObj?.user?.verified?.driverLicense, userObj?.user?.verified?.phoneVerified];
 
+  function checkDiff(a) {
+    return new Set(a).size !== 1;
+  }
+
   const allChecked = !checkDiff(verify) && verify[0] === true;
   const noneChecked = !checkDiff(verify) && (verify[0] === false);
   const someChecked = checkDiff(verify);
-  console.log(allChecked);
-  console.log(noneChecked);
-  console.log(someChecked);
 
   // Status badge mapper:
   const badges = {
@@ -55,9 +50,6 @@ const DriverProfile = ({ driverId }) => {
     'silver': silver,
     'bronze': bronze
   }
-  console.log("HERE")
-  console.log(userObj?.user?.statusLevel)
-  console.log(badges[userObj?.user?.statusLevel])
 
   if (isLoading) {
     return <h2>Loading...</h2>;
