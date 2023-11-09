@@ -20,7 +20,6 @@ const TripCard = ({ trip, userId }) => {
     maxWidth: '600px',
     margin: '16px auto',
     color: 'blacks'
-
   };
 
   // Set up the states for the "are you sure you want to book? button"
@@ -49,7 +48,6 @@ const TripCard = ({ trip, userId }) => {
   const handleCloseBasicDialog = () => {
     setOpenBasicDialog(false);
   };
-
 
   const apiDate = deptDate;
   const date = new Date(apiDate);
@@ -130,6 +128,7 @@ const TripCard = ({ trip, userId }) => {
           </Grid>
 
           <Grid item xs={6} sm={3}>
+
             {/* Booking button and directly under is the dialog pop-up box code: */}
             <Button variant="contained" onClick={handleClickOpenAlertDialog} >
               Book now
@@ -143,16 +142,17 @@ const TripCard = ({ trip, userId }) => {
               <DialogTitle id="alert-dialog-title">
                 {"Are you sure you want to book this trip?"}
               </DialogTitle>
+
               <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  <TripCardSimplified trip={trip} />
-                </DialogContentText>
+                <TripCardSimplified trip={trip} />
               </DialogContent>
+
               <DialogActions>
                 <Button onClick={handleCloseAlertDialog} color="warning" variant="contained">Cancel</Button>
                 <BookingButton tripId={tripId} passengerId={userId} handleClose={handleCloseRefreshAlertDialog} />
               </DialogActions>
             </Dialog>
+
           </Grid>
         </Grid>
       </CardActions>

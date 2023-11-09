@@ -12,8 +12,8 @@ authFetch.interceptors.request.use(
     // old version
     // request.headers.common['Accept'] = 'application/json';
     request.headers['Accept'] = 'application/json';
-    console.log(`${request.method}: ${request.param}`); //output: `/api: true`
-    console.log('request sent');
+    console.log(`Request Method and params: ${request.method}: ${request.param}`); //output: `/api: true`
+    console.log('INTERCEPTOR: request sent');
     return request;
   },
   (error) => {
@@ -23,7 +23,7 @@ authFetch.interceptors.request.use(
 
 authFetch.interceptors.response.use(
   (response) => {
-    console.log('got response');
+    console.log('INTERCEPTOR: got response');
     return response;
   },
   (error) => {
@@ -32,15 +32,15 @@ authFetch.interceptors.response.use(
     // console.log("you're here");
     if (error.response && error.response.status === 404) {
       // Handle the 404 error
-      console.log('NOT FOUND');
+      console.log('INTERCEPTOR: NOT FOUND');
     } else if (error.response && error.response.status === 400) {
       // Handle the 404 error
       // console.log('congrats - you found the 400 erro!');
-      console.log(`Error message: ${error.response.data.message}`)
+      console.log(`INTERCEPTOR: Error message: ${error.response.data.message}`)
     }
     else {
       // Handle other errors or provide a default action
-      console.log('Other snazy error');
+      console.log('INTERCEPTOR: Other snazy error');
     }
     return Promise.reject(error);
   }

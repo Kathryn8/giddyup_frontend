@@ -8,11 +8,13 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import seahorseBeach from '../assets/images/icon.png';
 import YourStats from '../components/YourStats';
+import authFetch from '../axios/interceptors';
+import ServerError from './ServerError';
+
 
 const UserDashboard = () => {
   const { isAuthenticated, user } = useAuth0();
   const isUser = isAuthenticated && user;
-  console.log(`The user object: ${user.email}`) //works
 
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -23,7 +25,7 @@ const UserDashboard = () => {
   useEffect(() => {
     const getUserIdFromEmailRequest = async () => {
       try {
-        const resp = await axios.get(url, {
+        const resp = await authFetch.get(url, {
           headers: {
             Accept: 'application/json',
           },
@@ -46,24 +48,19 @@ const UserDashboard = () => {
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
+
   if (isError) {
     return (
-      <Container sx={{ p: 4, minHeight: '50vh' }}>
-        <Typography variant='h2'>There was an error...</Typography>,
-        <Typography variant='h3'>Try refreshing the page?</Typography>
-        <Typography variant='h3'>Check your server is running buddy! </Typography>
-
-      </Container>
+      <ServerError />
     )
   }
-  console.log(`Line 61: ${userId}`);
 
   return (
     <Container >
       <Box sx={{ py: 3 }}>
         {
           isUser && user.name && (
-            <Typography sx={{ textAlign: 'center', color:'grey' }}>
+            <Typography sx={{ textAlign: 'center', color: 'grey' }}>
               Welcome to your dashboard <strong>{user.name.toUpperCase()}</strong>
             </Typography>
           )

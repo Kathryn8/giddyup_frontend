@@ -97,7 +97,7 @@ const BookedTripCard = ({ trip }) => {
       <CardActions sx={{ padding: 2 }}>
         <Grid container spacing={1}>
 
-          <Grid item xs={6} sm={9}>
+          <Grid item xs={6} sm={8}>
             {/* Driver info button and directly under is the dialog pop-up box code: */}
             <Button sx={{ ml: -1 }} variant="contained" color="secondary" onClick={handleClickOpenBasicDialog}>
               Driver Info
@@ -126,7 +126,7 @@ const BookedTripCard = ({ trip }) => {
             </Dialog>
           </Grid>
 
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={4}>
             {/* Booking button and directly under is the dialog pop-up box code: */}
             <Button color="warning" variant="contained" onClick={handleClickOpen}>
               Cancel trip
@@ -141,9 +141,7 @@ const BookedTripCard = ({ trip }) => {
                 {"Are you sure you want to cancel this trip?"}
               </DialogTitle>
               <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  <TripCardSimplified trip={trip} />
-                </DialogContentText>
+                <TripCardSimplified trip={trip} />
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleClose} color="info" variant="contained">No, keep this trip</Button>

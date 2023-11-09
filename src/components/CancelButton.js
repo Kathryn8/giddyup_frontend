@@ -1,27 +1,20 @@
 import React from 'react'
-import axios from 'axios';
 import { Button } from '@mui/material';
-
+import authFetch from '../axios/interceptors';
 
 const CancelButton = ({ tripId, handleClose }) => {
-  const [trips, setTrips] = React.useState('');
-  const url = process.env.REACT_APP_BASE_URL + '/trips/cancel-trip'
+  const setTrips = React.useState('');
+  const url = '/trips/cancel-trip'
 
-  // const patchData = {
-  //   "_id": tripId,
-  //   "passenger": passengerId
-  // }
 
-  const handlePost = async (e) => {
-    // e.preventDefault();
+  const handlePost = async () => {
     try {
-      const resp = await axios.patch(url, {
+      const resp = await authFetch.patch(url, {
         "_id": tripId
       });
-      // console.log(`response::: ${resp.data.trips[0]}`)
       setTrips(resp)
     } catch (error) {
-      console.log(`my error::: ${error.response}`);
+      console.log(error.response);
     }
   }
 
