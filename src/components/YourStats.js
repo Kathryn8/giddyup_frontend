@@ -43,21 +43,31 @@ const YourStats = ({ userId }) => {
     {
       id: 1,
       image: img1,
-      imgDimension: 312,
+      imgDimension: {
+        xs: 80,
+        md: 310,
+      },
       title: `You have travelled ${userObj?.user?.userStats?.totalDistanceTravelled}km`,
       text: "This figure is based on extremely precise measurements that we have definitely calculated between drop-off and pick-up points",
     },
     {
       id: 2,
       image: img2,
-      imgDimension: 310,
+      imgDimension: {
+        xs: 80,
+        md: 310,
+      },
       title: `You have saved ${userObj?.user?.userStats?.emissionsSaved}kg of CO2`,
       text: "This figure is based upon the number of trips you've taken while sharing with  colleague compared to the cost of driving by yourself. We have used the average emission level of the average car on Melbourne roads.",
     },
     {
       id: 3,
       image: img3,
-      imgDimension: 310,
+      imgDimension: 
+      {
+        xs: 80,
+        md: 310,
+      },
       title: `You have saved $${userObj?.user?.userStats?.dollarsSaved}`,
       text: "This figure is based upon the number of trips you've taken while sharing with  colleague compared to the cost of driving by yourself",
     },
