@@ -100,13 +100,13 @@ const TripCard = ({ trip, userId }) => {
       <CardContent sx={{ p: 1 }}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Typography variant="h4">{name}</Typography>
+            <Typography variant="h2">{name}</Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography variant = 'subtitle1'>
+            <Typography variant = 'h5' style={{padding: '3px'}}>
               Origin: {origin}
             </Typography>
-            <Typography variant = 'subtitle1'>
+            <Typography variant = 'h5' style={{padding: '3px'}}>
               Destination: {destination}
             </Typography>
           </Grid>
