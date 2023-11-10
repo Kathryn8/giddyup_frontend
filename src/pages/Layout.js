@@ -10,13 +10,11 @@ const Layout = () => {
 
   return (
     <>
-      <ThemeProvider theme={muiTheme}>
-        <NavBar />
-
-        <Outlet />
-
-        <CombinedFooter />
-      </ThemeProvider>
+      {/* <ThemeProvider theme={muiTheme}> */}
+      <NavBar />
+      <Outlet />
+      <CombinedFooter />
+      {/* </ThemeProvider> */}
     </>
   );
 };

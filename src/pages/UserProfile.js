@@ -1,75 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Box, Typography, Avatar, Divider } from '@mui/material';
+import { Container, Box, Typography, Avatar, Divider, CircularProgress } from '@mui/material';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
 import platinum from '../assets/images/giddyUpStatusBadgePlatinum.png';
 import gold from '../assets/images/giddyUpStatusBadgeGold.png';
 import silver from '../assets/images/giddyUpStatusBadgeSilver.png';
 import bronze from '../assets/images/giddyUpStatusBadgeBronze.png';
 import GppMaybeIcon from '@mui/icons-material/GppMaybe';
+import authFetch from '../axios/interceptors';
 
 const UserProfile = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [userObj, setUserObj] = useState({});
 
-  const url1 = process.env.REACT_APP_BASE_URL + '/users/search-email';
-  const url2 = process.env.REACT_APP_BASE_URL + '/users/';
+  const url1 = '/users/search-email';
+  const url2 = '/users/';
 
   useEffect(() => {
     const getUserIdFromEmailRequest = async () => {
       try {
-        const resp = await axios.get(url1, {
-          headers: {
-            Accept: 'application/json',
-          },
+        const resp = await authFetch.get(url1, {
           params: {
             email: user.email,
           },
         });
-
         const userId = await resp.data.data.user._id;
-        console.log("1");
         await getSingleUserProfile(userId);
-        console.log("2");
-
-        console.log(userId)
       } catch (error) {
         setIsError(true);
-        console.log(`error-1: ${error}`);
-
+        console.log(error);
       } finally {
         setIsLoading(false);
       }
     };
-
     getUserIdFromEmailRequest();
-    console.log("3");
-
   }, [user.email]);
 
   const getSingleUserProfile = async (userId) => {
     try {
-      const resp = await axios.get(url2 + userId, {
-        headers: {
-          Accept: 'application/json',
-        },
-      });
-      console.log("4");
-      const x = await setUserObj(resp.data.data);
-      console.log("5");
-      console.log(userObj);
+      const resp = await authFetch.get(url2 + userId);
+      setUserObj(resp.data.data);
     } catch (error) {
       setIsError(true);
-      console.log(`error-2: ${error}`);
-
+      console.log(error);
     } finally {
-      setIsLoading(false);
+      setIsLoading(true);
     }
   };
-  console.log("6");
 
   function checkDiff(a) {
     return new Set(a).size !== 1;
@@ -81,11 +60,6 @@ const UserProfile = () => {
   const allChecked = !checkDiff(verify) && verify[0] === true;
   const noneChecked = !checkDiff(verify) && (verify[0] === false);
   const someChecked = checkDiff(verify);
-  console.log(allChecked);
-  console.log(noneChecked);
-  console.log(someChecked);
-
-  console.log(userObj?.user?.profileImage);
 
   const badges = {
     'platinum': platinum,
@@ -95,7 +69,15 @@ const UserProfile = () => {
   }
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return (
+      <>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '55vh' }}>
+          <Typography variant="h2">Loading...</Typography>
+          <CircularProgress color="secondary" />
+        </Box>
+
+      </>
+    )
   }
 
   if (isError) {
@@ -116,9 +98,7 @@ const UserProfile = () => {
       <Divider />
       <Box sx={{ display: 'flex', justifyContent: 'space-between', p: 1 }}>
         <Box sx={{ m: 1 }}>
-          {/* <Typography sx={{ my: 1 }} variant="h3">
-            {userObj?.user?.firstName || userObj?.user?.email.split('@')[0]}
-          </Typography> */}
+
           <Box sx={{ py: 2 }}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
               <Box component="img" sx={{ maxHeight: '40px', maxWidth: '40px', mr: 1, ml: -1 }} src={badges[userObj?.user?.statusLevel]} />
@@ -129,19 +109,9 @@ const UserProfile = () => {
             </Typography>
           </Box>
         </Box>
-        {/* <img src={userObj.user.profileImage} alt={`${userObj.user.name}'s profile`} /> */}
         <Avatar alt={userObj?.user?.firstName} src={process.env.REACT_APP_BASE_URL_IMAGES + userObj?.user?.profileImage} sx={{ my: 1, width: 100, height: 100 }} />
       </Box>
 
-      {/* <Box sx={{ py: 1 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-          <Box component="img" sx={{ maxHeight: '40px', maxWidth: '40px', mr: 1 }} src={bronze} />
-          <Typography sx={{ lineHeight: 2.5 }}>{userObj.user.statusLevel.toUpperCase()} </Typography>
-        </Box>
-        <Typography>
-          Rating average: {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
-        </Typography>
-      </Box> */}
       <Divider />
       <Box sx={{ p: 1 }}>
 
