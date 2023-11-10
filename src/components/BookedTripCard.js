@@ -51,21 +51,19 @@ const BookedTripCard = ({ trip }) => {
   const apiDate = deptDate;
   const date = new Date(apiDate);
   const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-
   const apiTime = deptDateTime;
   const time = new Date(apiTime);
-
   const hours = time.getUTCHours();
   const minutes = time.getUTCMinutes();
   const seconds = time.getUTCSeconds();
   const ampm = hours >= 12 ? 'PM' : 'AM';
-
   let formattedTime;
+  const addLeadingZero = (num) => (num < 10 ? `0${num}` : num);
 
   if (hours === 0) {
-    formattedTime = `${minutes}:${seconds} ${ampm}`;
+    formattedTime = `${minutes}:${addLeadingZero(seconds)} ${ampm}`;
   } else {
-    formattedTime = `${hours % 12}:${minutes}:${seconds} ${ampm}`;
+    formattedTime = `${hours % 12}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)} ${ampm}`;
   }
 
   return (
