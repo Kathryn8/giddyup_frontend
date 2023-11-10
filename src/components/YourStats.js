@@ -13,7 +13,7 @@ const YourStats = ({ userId }) => {
   const [isError, setIsError] = useState(false);
 
 
-  const url = process.env.REACT_APP_BASE_URL + '/users/654313801462530013767733';
+  const url = process.env.REACT_APP_BASE_URL + '/users/' + userId;
 
   useEffect(() => {
     const getSingleUserProfile = async (userId) => {
