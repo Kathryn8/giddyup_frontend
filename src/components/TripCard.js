@@ -120,7 +120,7 @@ const TripCard = ({ trip, userId }) => {
                 }}>
                 <CloseIcon />
               </IconButton>
-              <DriverProfile driverId={trip.driver} />
+              <DriverProfile driverId={trip.driver._id} />
             </Dialog>
           </Grid>
 
