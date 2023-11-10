@@ -173,6 +173,10 @@ Hero
 ===============
 */
 
+#hero-container-adrian {
+  padding: 0; 
+}
+
 .hero {
   min-height: 100vh;
   background: var(--clr-primary-5);

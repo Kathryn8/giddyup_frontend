@@ -16,7 +16,7 @@ const Hero = () => {
   const isUser = isAuthenticated;
 
   return (
-    <Container maxWidth="false" sx={{ p: 4 }}>
+    <Container maxWidth="false" id="hero-container-adrian">
       <Box
         sx={{
           position: 'relative',
@@ -62,7 +62,7 @@ const Hero = () => {
           </Button>
         )}
       </Box>
-    </Container>
+    </Container >
   )
 }
 
