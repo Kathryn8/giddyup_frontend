@@ -55,7 +55,7 @@ const UserDashboard = () => {
     <Container >
       <Box sx={{ py: 3 }}>
         {isUser && user.name && (
-          <Typography sx={{ textAlign: 'center', color: 'grey' }}>
+          <Typography sx={{ textAlign: 'center', color: '#616161' }}>
             Welcome to your dashboard <strong>{user.name.toUpperCase()}</strong>
           </Typography>
         )}

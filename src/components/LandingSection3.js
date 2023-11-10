@@ -4,7 +4,7 @@ import benefit3 from '../assets/images/emissions1.png';
 
 const LandingSection3 = () => {
   return (
-    <Box sx={{ bgcolor: 'rgba(0,0,0, 0.5)', color: 'black' }}>
+    <Box sx={{ bgcolor: '#dff3e3', color: 'black' }}>
       <Container maxWidth="lg">
         <Grid container spacing={4} alignItems="center" sx={{ py: 4 }}>
           <Grid item xs={12} sm={6}>

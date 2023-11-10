@@ -30,14 +30,14 @@ const UpcomingTrips = ({ userId }) => {
 
   return (
     <Box sx={{ my: 3 }}>
-      {!(isLoading) && <Typography variant='h2' sx={{ mb: 3 }}>Your upcoming booked trips:</Typography>}
+      {!(isLoading) && <Typography variant='h2' sx={{ mb: 3 }}>Upcoming trips</Typography>}
       {
         isLoading ? (
           <Typography>Loading...</Typography>
         ) : (
           <Box>
             {bookedTrips.length === 0 ? (
-              <Typography sx={{ color: 'grey' }} variant='h6'>You currently have no upcoming trips</Typography>
+              <Typography variant='h6'>You have no booked trips</Typography>
             ) : (
               bookedTrips.map((trip, index) => (
                 <BookedTripCard key={index} trip={trip} userId={userId} />

@@ -4,7 +4,7 @@ import benefit1 from '../assets/images/wallet.png';
 
 const LandingSection1 = () => {
   return (
-    <Box sx={{ bgcolor: 'rgba(0,0,0, 0.5)', color: 'white' }}>
+    <Box sx={{ bgcolor: '#dff3e3', color: 'white' }}>
       <Container maxWidth="lg">
         <Grid container spacing={4} alignItems="center" sx={{ py: 4 }}>
           <Grid item xs={12} sm={6}>

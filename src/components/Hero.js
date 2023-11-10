@@ -23,24 +23,24 @@ const Hero = () => {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${MyImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: { xs: '200px', sm: '300px', md: '600px' }, // Adjusted height for mobile
+          height: { xs: '400px', sm: '600px', md: '800px' }, // Adjusted height for mobile
         }}
       >
-        <Typography
+        <Typography variant="h1"
           sx={{
             position: 'absolute',
-            top: '10%', // Adjust the top position to create space for the button below
+            top: { xs: '42%',  md:'10%'}, // Adjust the top position to create space for the button below
             left: '10%',
             // transform: 'translate(-50%, -50%)',
             zIndex: 2,
-            fontSize: { xs: '1rem', sm: '1rem', md: '3rem' }, // Responsive font size
-            fontWeight: 'bold',
+            // fontSize: { xs: '1rem', sm: '1rem', md: '2rem' }, // Responsive font size
+            fontWeight: 'light',
             color: 'white',
-            opacity: 1,
-            // textAlign: 'center',
+            opacity: .9,
+            textAlign: 'left',
           }}
         >
-          Making your daily drive better together
+          Making your daily drive <br></br>better together
         </Typography>
 
         {/* Conditionally render the login/logout button */}
@@ -52,7 +52,7 @@ const Hero = () => {
             variant="contained"
             sx={{
               position: 'absolute',
-              top: { xs: '80%', sm: '35%', md: '35%' },  // Position it below the typography
+              top: { xs: '80%', sm: '35%', md: '30%' },  // Position it below the typography
               left: '10%',
               // transform: 'translate(-50%, -50%)',
               zIndex: 2,

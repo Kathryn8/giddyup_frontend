@@ -104,8 +104,8 @@ function AppFooter() {
       component="footer"
       sx={{
         display: 'flex',
-        bgcolor: 'rgba(242, 193, 51, 0.5)',
-        color: 'black'
+        color: 'black',
+        borderTop: 'solid #a1dcab .5px'
       }}
     >
       <Container sx={{ my: 8, display: 'flex' }}>
@@ -213,15 +213,15 @@ function OriginalFooter() {
 
   return (
     <>
-      <AppBar position="static" sx={{ display: { sm: 'none' } }}>
+      <AppBar position="static" sx={{ display: { sm: 'none' }, bgcolor: '#dff3e3'}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography sx={{ display: { sm: 'none' }, bgcolor: 'rgba(242, 193, 51, 0.5)' }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
+            <Typography sx={{ display: { sm: 'none' }}}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
 
           </Toolbar>
         </Container>
       </AppBar>
-      <AppBar position="static" sx={{ boxShadow: 0 }}>
+      <AppBar position="static" sx={{ boxShadow: 0, bgcolor: '#dff3e3' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography variant='subtitle1' sx={{ display: { xs: 'none', sm: 'block' } }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>

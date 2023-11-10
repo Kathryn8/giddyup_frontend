@@ -11,29 +11,37 @@ const muiTheme = createTheme({
     h2: {
       fontSize: '2rem',
       fontWeight: 500,
+      color: '#316239'
     },
     h3: {
       fontSize: '1.75rem',
       fontWeight: 500,
+      color: '#316239',
     },
     h4: {
       fontSize: '1.5rem',
       fontWeight: 500,
+      color: '#316239'
     },
     h5: {
       fontSize: '1.3rem',
       fontWeight: 400,
-      color: 'grey'
+      color: '#316239',
+    },
+    h6: {
+      fontSize: '1.3rem',
+      fontWeight: 400,
+      color: '#616161'
     },
     subtitle1: {
       fontSize: '1.2rem',
       fontWeight: 400,
-      color: 'grey',
+      color: '#616161',
     },
     subtitle2: {
       fontSize: '0.8rem',
       fontWeight: 400,
-      color: 'grey'
+      color: '#616161'
     },
   },
   palette: {
