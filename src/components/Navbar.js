@@ -51,7 +51,20 @@ export default function NavBar() {
 
   // console.log({ isAuthenticated, user, isLoading })
   // console.log({ user })
-  const isMobileView = window.innerWidth <= 600;
+    const [isMobileView, setIsMobileView] = React.useState(window.innerWidth <= 600);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 600);
+    };
+
+  window.addEventListener('resize', handleResize);
+
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
