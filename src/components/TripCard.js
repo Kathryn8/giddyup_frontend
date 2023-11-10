@@ -96,7 +96,7 @@ const TripCard = ({ trip, userId }) => {
       <CardActions sx={{ padding: 2 }}>
 
         <Grid container spacing={1}>
-          <Grid item xs={12} sm={9} >
+          <Grid item xs={6} sm={9} >
             {/* Driver button and directly under is the dialog pop-up box code: */}
             <Button variant="contained" sx={{ ml: -1 }} color="secondary" onClick={handleClickOpenBasicDialog}>
               Driver Info
@@ -124,9 +124,9 @@ const TripCard = ({ trip, userId }) => {
             </Dialog>
           </Grid>
 
-          <Grid item xs={12} sm={3} >
+          <Grid item xs={6} sm={3} >
             {/* Booking button and directly under is the dialog pop-up box code: */}
-            <Button variant="contained" onClick={handleClickOpenAlertDialog} sx={{ mx: { xs: 6, sm: 0 } }} >
+            <Button variant="contained" onClick={handleClickOpenAlertDialog}  >
               Book now
             </Button>
             <Dialog

@@ -66,7 +66,7 @@ const DriverProfile = ({ driverId }) => {
   }
 
   return (
-    <Container maxWidth="md" sx={{ p: 0 }}>
+    <Container maxWidth="md" sx={{ px: 2 }}>
 
       <Divider />
 
@@ -74,11 +74,11 @@ const DriverProfile = ({ driverId }) => {
         display: 'flex',
         justifyContent: 'space-between',
         flexDirection: { xs: 'column-reverse', md: 'row' },
-        p: 1,
+        py: 1,
         mb: 1
       }}>
 
-        <Box sx={{ m: 1 }}>
+        <Box sx={{ m: 0 }}>
           <Typography variant="h3" sx={{ my: 1 }}>
             Hi, I'm {userObj?.user?.firstName || userObj?.user?.email.split('@')[0]}
           </Typography>
@@ -106,13 +106,13 @@ const DriverProfile = ({ driverId }) => {
         <Divider />
       }
 
-      <Box sx={{ p: 1 }}>
+      <Box sx={{ py: 1 }}>
         {allChecked &&
-          <Typography sx={{ m: 1 }} variant="h5">
+          <Typography sx={{ my: 1 }} variant="h5">
             {userObj?.user?.firstName}'s profile is fully verified
           </Typography>}
         {someChecked &&
-          <Typography sx={{ m: 1 }} variant="h5">
+          <Typography sx={{ my: 1 }} variant="h5">
             {userObj?.user?.firstName}'s profile is partially verified
           </Typography>}
         {noneChecked &&
@@ -120,7 +120,7 @@ const DriverProfile = ({ driverId }) => {
 
         {userObj?.user?.email_verified
           ?
-          <Typography sx={{ m: 1 }}>
+          <Typography sx={{ my: 1 }}>
             <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Email verified
           </Typography>
           :
@@ -128,7 +128,7 @@ const DriverProfile = ({ driverId }) => {
 
         {userObj?.user?.verified?.driverLicense
           ?
-          <Typography sx={{ m: 1 }}>
+          <Typography sx={{ my: 1 }}>
             <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> License confirmed
           </Typography>
           :
@@ -136,7 +136,7 @@ const DriverProfile = ({ driverId }) => {
 
         {userObj?.user?.verified?.phoneVerified
           ?
-          <Typography sx={{ m: 1 }}>
+          <Typography sx={{ my: 1 }}>
             <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Phone number confirmed
           </Typography>
           :
@@ -146,23 +146,23 @@ const DriverProfile = ({ driverId }) => {
 
       <Divider />
 
-      <Box sx={{ p: 1 }}>
-        <Typography sx={{ m: 1 }} variant="h5">
+      <Box sx={{ py: 1 }}>
+        <Typography sx={{ my: 1 }} variant="h5">
           About {userObj?.user?.firstName}
         </Typography>
-        <Typography sx={{ m: 1 }}>"{userObj?.user?.aboutMe}"</Typography>
-        <Typography sx={{ m: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
+        <Typography sx={{ my: 1 }}>"{userObj?.user?.aboutMe}"</Typography>
+        <Typography sx={{ my: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
       </Box>
 
       <Divider />
 
-      <Box sx={{ p: 1 }}>
-        <Typography sx={{ m: 1 }} variant="h5">
+      <Box sx={{ py: 1 }}>
+        <Typography sx={{ my: 1 }} variant="h5">
           {userObj?.user?.firstName}'s GiddyUp Activity
         </Typography>
-        <Typography sx={{ m: 1 }}>Rides offered: {userObj?.user?.latestActivity?.ridesOffered} </Typography>
-        <Typography sx={{ m: 1 }}>Rides taken: {userObj?.user?.latestActivity?.ridesTaken}</Typography>
-        <Typography sx={{ m: 1 }}>Last ride: {new Date(userObj?.user?.latestActivity?.lastRide).toLocaleDateString()}</Typography>
+        <Typography sx={{ my: 1 }}>Rides offered: {userObj?.user?.latestActivity?.ridesOffered} </Typography>
+        <Typography sx={{ my: 1 }}>Rides taken: {userObj?.user?.latestActivity?.ridesTaken}</Typography>
+        <Typography sx={{ my: 1 }}>Last ride: {new Date(userObj?.user?.latestActivity?.lastRide).toLocaleDateString()}</Typography>
       </Box>
 
     </Container >
