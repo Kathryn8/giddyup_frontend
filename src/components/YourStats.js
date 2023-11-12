@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Typography, Box, Button, CardActions } from '@mui/material';
-import ActionAreaCard from './ActionAreaCard';
+import StatsCard from './StatsCard';
 import img1 from '../assets/images/distance.png';
 import img2 from '../assets/images/emissions.png';
 import img3 from '../assets/images/savings.png';
@@ -47,7 +47,7 @@ const YourStats = ({ userId }) => {
         xs: 80,
         md: 310,
       },
-      title: `You have travelled ${userObj?.user?.userStats?.totalDistanceTravelled}km`,
+      title: `Travelled: ${userObj?.user?.userStats?.totalDistanceTravelled}km`,
       text: "This figure is based on extremely precise measurements that we have definitely calculated between drop-off and pick-up points",
     },
     {
@@ -57,26 +57,26 @@ const YourStats = ({ userId }) => {
         xs: 80,
         md: 310,
       },
-      title: `You have saved ${userObj?.user?.userStats?.emissionsSaved}kg of CO2`,
+      title: `Reduced: ${userObj?.user?.userStats?.emissionsSaved}kg of CO2`,
       text: "This figure is based upon the number of trips you've taken while sharing with  colleague compared to the cost of driving by yourself. We have used the average emission level of the average car on Melbourne roads.",
     },
     {
       id: 3,
       image: img3,
-      imgDimension: 
+      imgDimension:
       {
         xs: 80,
         md: 310,
       },
-      title: `You have saved $${userObj?.user?.userStats?.dollarsSaved}`,
+      title: `Saved: $${userObj?.user?.userStats?.dollarsSaved}`,
       text: "This figure is based upon the number of trips you've taken while sharing with  colleague compared to the cost of driving by yourself",
     },
   ];
 
   return (
     <Container sx={{ my: 10 }}>
-      <Typography variant='h4' align='center'> Your statistics</Typography>
-      <Typography sx = {{color: 'grey' }}variant='h6' align='center'> Since joining GiddyUP</Typography>
+      {/* <Typography variant='h2' align='center'>Your statistics</Typography> */}
+      <Typography sx={{ color: 'grey' }} variant='h4' align='center'> Since joining GiddyUP you have:</Typography>
 
       <Box sx={{
         pt: 4,
@@ -87,7 +87,7 @@ const YourStats = ({ userId }) => {
       }}>
         {statsList.map((item) => {
           return (
-            <ActionAreaCard {...item} key={item.id} />
+            <StatsCard {...item} key={item.id} />
           )
         })}
       </Box>
