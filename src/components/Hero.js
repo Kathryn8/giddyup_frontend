@@ -22,8 +22,7 @@ const Hero = () => {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${MyImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: '60vh',
-
+          height: { xs: '60vh', xl: '80vh' },
         }}
       >
         <Typography variant="h1"
