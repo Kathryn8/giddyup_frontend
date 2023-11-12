@@ -11,7 +11,6 @@ const Hero = () => {
   const {
     isAuthenticated,
     loginWithRedirect,
-    logout,
   } = useAuth0();
   const isUser = isAuthenticated;
 
@@ -23,13 +22,14 @@ const Hero = () => {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${MyImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: { xs: '400px', sm: '600px', md: '800px' }, // Adjusted height for mobile
+          height: '60vh',
+
         }}
       >
         <Typography variant="h1"
           sx={{
             position: 'absolute',
-            top: { xs: '42%',  md:'10%'}, // Adjust the top position to create space for the button below
+            top: { xs: '42%', md: '10%' }, // Adjust the top position to create space for the button below
             left: '10%',
             // transform: 'translate(-50%, -50%)',
             zIndex: 2,
