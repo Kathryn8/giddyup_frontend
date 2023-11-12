@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 
 const muiTheme = createTheme({
-    typography: {
+  typography: {
     fontSize: 16,
 
     h1: {
