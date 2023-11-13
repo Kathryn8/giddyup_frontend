@@ -76,45 +76,50 @@ const BookedTripCard = ({ trip }) => {
   return (
     <Card style={cardStyle} sx={{ marginBottom: 2 }}>
       <CardContent>
-        <Box >
-          <Typography variant='h3' style={{ paddingTop: '10px', paddingBottom: '20px' }}>
-            {day} {formattedDate}
-          </Typography>
-
-        </Box>
         <Box sx={{ display: 'flex' }}>
-          <Box >
-            <Typography variant='h6' style={{ padding: '3px' }}>
-              {formattedTime}
-            </Typography>
+
+          <Box id='dateTimePlace' sx={{ display: 'flex', flex: '1 1 auto' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Box>
+                <Typography variant='h3' style={{ paddingTop: '10px', paddingBottom: '20px' }}>
+                  {day} {formattedDate}
+                </Typography>
+              </Box>
+              <Box sx={{ display: 'flex' }}>
+                <Box >
+                  <Typography variant='h6' style={{ padding: '3px' }}>
+                    {formattedTime}
+                  </Typography>
+                </Box>
+                <Box sx={{ display: 'flex' }}>
+                  <Box
+                    component="img"
+                    sx={{
+                      py: 0.5,
+                      px: 0.3,
+                      height: 87,
+                      width: 50,
+                    }}
+                    alt="Travel symbol"
+                    src={metro}
+                  />
+                </Box>
+                <Box sx={{ display: 'flex', flex: '1 1 auto', flexDirection: 'column', }}>
+                  <Typography variant='h6'>
+                    {origin}
+                  </Typography>
+                  <br></br>
+                  <Typography variant='h6'>
+                    {destination}
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
           </Box>
-          <Box sx={{ display: 'flex' }}>
-            <Box
-              component="img"
-              sx={{
-                py: 0.5,
-                px: 0.3,
-                height: 87,
-                width: 50,
-                // maxHeight: { xs: 233, md: 167 },
-                // maxWidth: { xs: 350, md: 250 },
-              }}
-              alt="Travel symbol"
-              src={metro}
-            />
-          </Box>
-          <Box sx={{ display: 'flex', flex: '1 1 auto', flexDirection: 'column', }}>
-            <Typography variant='h6'>
-              {origin}
-            </Typography>
-            <br></br>
-            <Typography variant='h6'>
-              {destination}
-            </Typography>
-          </Box>
+
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Box>
-              <Avatar alt={driver.firstName} src={process.env.REACT_APP_BASE_URL_IMAGES + driver.profileImage} sx={{ width: 70, height: 70 }} />
+              <Avatar alt={driver.firstName} src={process.env.REACT_APP_BASE_URL_IMAGES + driver.profileImage} sx={{ width: 70, height: 70, m: '0 auto' }} />
             </Box>
             <Typography sx={{ textAlign: 'right', pt: 1 }}>
               {driver.firstName}
@@ -126,19 +131,37 @@ const BookedTripCard = ({ trip }) => {
               <PhoneIcon sx={{ verticalAlign: 'top' }} />
               {driver.phoneNumber}
             </Typography>
-
           </Box>
-
         </Box>
-
-
 
       </CardContent>
 
       <CardActions sx={{ padding: 2 }}>
-        <Grid container spacing={1}>
-
-          <Grid item xs={6} sm={8}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', flex: '0 1 600px' }}>
+          <Box>
+            {/* Booking button and directly under is the dialog pop-up box code: */}
+            <Button color="warning" variant="contained" onClick={handleClickOpen}>
+              Cancel trip
+            </Button>
+            <Dialog
+              open={openAlertDialog}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Are you sure you want to cancel this trip?"}
+              </DialogTitle>
+              <DialogContent>
+                <TripCardSimplified trip={trip} />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="info" variant="contained">No, keep this trip</Button>
+                <CancelButton tripId={tripId} handleClose={handleCloseRefresh} />
+              </DialogActions>
+            </Dialog>
+          </Box>
+          <Box>
             {/* Driver info button and directly under is the dialog pop-up box code: */}
             <Button sx={{ ml: -1 }} variant="contained" color="secondary" onClick={handleClickOpenBasicDialog}>
               Driver Info
@@ -165,33 +188,8 @@ const BookedTripCard = ({ trip }) => {
               </IconButton>
               <DriverProfile driverId={trip.driver._id} />
             </Dialog>
-          </Grid>
-
-          <Grid item xs={6} sm={4}>
-            {/* Booking button and directly under is the dialog pop-up box code: */}
-            <Button color="warning" variant="contained" onClick={handleClickOpen}>
-              Cancel trip
-            </Button>
-            <Dialog
-              open={openAlertDialog}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                {"Are you sure you want to cancel this trip?"}
-              </DialogTitle>
-              <DialogContent>
-                <TripCardSimplified trip={trip} />
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="info" variant="contained">No, keep this trip</Button>
-                <CancelButton tripId={tripId} handleClose={handleCloseRefresh} />
-              </DialogActions>
-            </Dialog>
-
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </CardActions>
     </Card>
   );
