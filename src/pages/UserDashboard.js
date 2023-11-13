@@ -15,6 +15,7 @@ const UserDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [userObject, setUserObject] = useState(null);
 
   const url = '/users/search-email'
 
@@ -27,6 +28,7 @@ const UserDashboard = () => {
           },
         });
         setUserId(resp.data.data.user._id)
+        setUserObject(resp.data.data.user)
       } catch (error) {
         console.log(error);
         setIsError(true);
@@ -57,11 +59,15 @@ const UserDashboard = () => {
   return (
     <Container >
       <Box sx={{ py: 3 }}>
-        {isUser && user.name && (
+        {userObject.firstName ?
           <Typography sx={{ textAlign: 'center', color: '#616161' }}>
-            Welcome to your dashboard <strong>{user.name.toUpperCase()}</strong>
+            Welcome to your dashboard <strong>{userObject.firstName.toUpperCase()}</strong>
           </Typography>
-        )}
+          :
+          <Typography sx={{ textAlign: 'center', color: '#616161' }}>
+            Welcome to your dashboard <strong>{user.name.toUpperCase().split("@")[0]}</strong>
+          </Typography>
+        }
       </Box>
       <Divider />
       <UpcomingTrips userId={userId} />

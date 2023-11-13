@@ -74,6 +74,8 @@ const TripCard = ({ trip, userId }) => {
 
       <CardContent sx={{ p: 1 }}>
 
+
+
         <Box sx={{ display: 'flex' }}>
           <Box >
             <Typography variant='h6' style={{ padding: '3px' }}>

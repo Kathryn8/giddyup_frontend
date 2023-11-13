@@ -51,16 +51,16 @@ export default function NavBar() {
 
   // console.log({ isAuthenticated, user, isLoading })
   // console.log({ user })
-    const [isMobileView, setIsMobileView] = React.useState(window.innerWidth <= 600);
+  const [isMobileView, setIsMobileView] = React.useState(window.innerWidth <= 600);
 
   React.useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 600);
     };
 
-  window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize);
 
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -95,12 +95,12 @@ export default function NavBar() {
                     maxHeight: 60,
                     maxWidth: 350,
                   }}
-              />
-            </Link>
-          </Typography>
+                />
+              </Link>
+            </Typography>
           )}
           {isUser ? (
-            <div>
+            <Box >
               <IconButton onClick={handleMenu} sx={{ p: 1 }}>
                 {isUser && user.picture && user.name ?
                   <Avatar src={user.picture} alt={user.name} /> :
@@ -121,7 +121,7 @@ export default function NavBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose} > <Avatar src={user.picture} alt={user.name} sx={{ m: 1 }} /> Welcome, FirstName</MenuItem>
+                <MenuItem onClick={handleClose} sx={{ px: 5 }}> <Avatar src={user.picture} alt={user.name} sx={{ m: 1 }} /> Welcome</MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}><Link key='dashboardLink890' to='./Dashboard'>Dashboard</Link></MenuItem>
                 <MenuItem onClick={handleClose}><Link to='./UserProfile'>Profile</Link></MenuItem>
@@ -129,9 +129,9 @@ export default function NavBar() {
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
 
               </Menu>
-            </div>
+            </Box>
           ) : (
-            <Button onClick={loginWithRedirect} variant="contained" sx ={{maxWidth: 175}} >login/sign up</Button>
+            <Button onClick={loginWithRedirect} variant="contained" sx={{ maxWidth: 175 }} >login/sign up</Button>
           )}
 
         </Toolbar>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Box, Typography, Avatar, Divider, Badge } from '@mui/material';
+import { Container, Box, Typography, Avatar, Divider, Badge, Skeleton } from '@mui/material';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import authFetch from '../axios/interceptors';
 import platinum from '../assets/images/giddyUpStatusBadgePlatinum.png';
@@ -66,106 +66,170 @@ const DriverProfile = ({ driverId }) => {
   }
 
   return (
-    <Container maxWidth="md" sx={{ px: 2 }}>
+    userObj ?
 
-      <Divider />
+      <Container maxWidth="md" sx={{ px: 2 }}>
 
-      <Box sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: { xs: 'column-reverse', md: 'row' },
-        py: 1,
-        mb: 1
-      }}>
+        <Divider />
 
-        <Box sx={{ m: 0 }}>
-          <Typography variant="h3" sx={{ my: 1 }}>
-            Hi, I'm {userObj?.user?.firstName || userObj?.user?.email.split('@')[0]}
-          </Typography>
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          flexDirection: { xs: 'column-reverse', md: 'row' },
+          py: 1,
+          mb: 1
+        }}>
 
-          <Box sx={{ py: 0 }}>
-
-            <Typography sx={{ lineHeight: 2.5 }}>{userObj.user.statusLevel.toUpperCase()}</Typography>
-
-            <Typography>
-              Ratings: {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
+          <Box sx={{ m: 0 }}>
+            <Typography variant="h3" sx={{ my: 1 }}>
+              Hi, I'm {userObj?.user?.firstName || userObj?.user?.email.split('@')[0]}
             </Typography>
+
+            <Box sx={{ py: 0 }}>
+
+              <Typography sx={{ lineHeight: 2.5 }}>{userObj.user.statusLevel.toUpperCase()}</Typography>
+
+              <Typography>
+                Ratings: {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
+              </Typography>
+            </Box>
           </Box>
+
+          <Badge overlap="circular" sx={{ m: { xs: '0 auto', md: 'auto 0' } }} anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }} badgeContent={<Box component="img" sx={{ maxHeight: '70px', maxWidth: '70px' }} src={badges[userObj?.user?.statusLevel]} />}>
+            <Avatar alt={userObj?.user?.firstName} src={process.env.REACT_APP_BASE_URL_IMAGES + userObj?.user?.profileImage} sx={{ my: 3, width: 120, height: 120 }} />
+          </Badge>
         </Box>
 
-        <Badge overlap="circular" sx={{ m: { xs: '0 auto', md: 'auto 0' } }} anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }} badgeContent={<Box component="img" sx={{ maxHeight: '70px', maxWidth: '70px' }} src={badges[userObj?.user?.statusLevel]} />}>
-          <Avatar alt={userObj?.user?.firstName} src={process.env.REACT_APP_BASE_URL_IMAGES + userObj?.user?.profileImage} sx={{ my: 3, width: 120, height: 120 }} />
-        </Badge>
-      </Box>
+        {
+          !noneChecked &&
+          <Divider />
+        }
 
-      {
-        !noneChecked &&
+        <Box sx={{ py: 1 }}>
+          {allChecked &&
+            <Typography sx={{ my: 1 }} variant="h5">
+              {userObj?.user?.firstName}'s profile is fully verified
+            </Typography>}
+          {someChecked &&
+            <Typography sx={{ my: 1 }} variant="h5">
+              {userObj?.user?.firstName}'s profile is partially verified
+            </Typography>}
+          {noneChecked &&
+            <></>}
+
+          {userObj?.user?.email_verified
+            ?
+            <Typography sx={{ my: 1 }}>
+              <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Email verified
+            </Typography>
+            :
+            <></>}
+
+          {userObj?.user?.verified?.driverLicense
+            ?
+            <Typography sx={{ my: 1 }}>
+              <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> License confirmed
+            </Typography>
+            :
+            <></>}
+
+          {userObj?.user?.verified?.phoneVerified
+            ?
+            <Typography sx={{ my: 1 }}>
+              <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Phone number confirmed
+            </Typography>
+            :
+            <></>}
+
+        </Box>
+
         <Divider />
-      }
 
-      <Box sx={{ py: 1 }}>
-        {allChecked &&
+        <Box sx={{ py: 1 }}>
           <Typography sx={{ my: 1 }} variant="h5">
-            {userObj?.user?.firstName}'s profile is fully verified
-          </Typography>}
-        {someChecked &&
+            About {userObj?.user?.firstName}
+          </Typography>
+          <Typography sx={{ my: 1 }}>"{userObj?.user?.aboutMe}"</Typography>
+          <Typography sx={{ my: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
+        </Box>
+
+        <Divider />
+
+        <Box sx={{ py: 1 }}>
           <Typography sx={{ my: 1 }} variant="h5">
-            {userObj?.user?.firstName}'s profile is partially verified
-          </Typography>}
-        {noneChecked &&
-          <></>}
-
-        {userObj?.user?.email_verified
-          ?
-          <Typography sx={{ my: 1 }}>
-            <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Email verified
+            {userObj?.user?.firstName}'s GiddyUp Activity
           </Typography>
-          :
-          <></>}
+          <Typography sx={{ my: 1 }}>Rides offered: {userObj?.user?.latestActivity?.ridesOffered} </Typography>
+          <Typography sx={{ my: 1 }}>Rides taken: {userObj?.user?.latestActivity?.ridesTaken}</Typography>
+          <Typography sx={{ my: 1 }}>Last ride: {new Date(userObj?.user?.latestActivity?.lastRide).toLocaleDateString()}</Typography>
+        </Box>
 
-        {userObj?.user?.verified?.driverLicense
-          ?
-          <Typography sx={{ my: 1 }}>
-            <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> License confirmed
+      </Container >
+
+      :
+
+      <Container maxWidth="md" sx={{ px: 2 }}>
+
+        <Divider />
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          flexDirection: { xs: 'column-reverse', md: 'row' },
+          py: 1,
+          mb: 1
+        }}>
+          <Box sx={{ m: 0 }}>
+            <Typography variant="h3" sx={{ my: 1 }}>
+              <Skeleton variant="rounded" width={260} height={60} />
+            </Typography>
+            <Box sx={{ py: 0 }}>
+              <Typography ><Skeleton variant="text" /></Typography>
+              <Typography>
+                <Skeleton variant="text" />
+              </Typography>
+            </Box>
+          </Box>
+          <Skeleton variant="circular" width={100} height={100} sx={{ mt: { xs: 0, sm: 3 }, ml: { xs: 10, sm: 3 } }}>
+            <Avatar sx={{ my: 3, width: 120, height: 120 }} />
+          </Skeleton>
+        </Box>
+        <Divider />
+        <Box sx={{ py: 1 }}>
+          <Typography sx={{ my: 1 }} variant="h5">
+            <Skeleton variant="text" sx={{ fontSize: '3rem' }} />
           </Typography>
-          :
-          <></>}
-
-        {userObj?.user?.verified?.phoneVerified
-          ?
           <Typography sx={{ my: 1 }}>
-            <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Phone number confirmed
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
           </Typography>
-          :
-          <></>}
-
-      </Box>
-
-      <Divider />
-
-      <Box sx={{ py: 1 }}>
+        </Box>
+        <Divider />
         <Typography sx={{ my: 1 }} variant="h5">
-          About {userObj?.user?.firstName}
+          <Skeleton variant="text" sx={{ fontSize: '3rem' }} />
         </Typography>
-        <Typography sx={{ my: 1 }}>"{userObj?.user?.aboutMe}"</Typography>
-        <Typography sx={{ my: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
-      </Box>
-
-      <Divider />
-
-      <Box sx={{ py: 1 }}>
-        <Typography sx={{ my: 1 }} variant="h5">
-          {userObj?.user?.firstName}'s GiddyUp Activity
+        <Typography sx={{ my: 1 }}>
+          <Skeleton variant="text" />
+          <Skeleton variant="text" />
         </Typography>
-        <Typography sx={{ my: 1 }}>Rides offered: {userObj?.user?.latestActivity?.ridesOffered} </Typography>
-        <Typography sx={{ my: 1 }}>Rides taken: {userObj?.user?.latestActivity?.ridesTaken}</Typography>
-        <Typography sx={{ my: 1 }}>Last ride: {new Date(userObj?.user?.latestActivity?.lastRide).toLocaleDateString()}</Typography>
-      </Box>
 
-    </Container >
+        <Divider />
+
+        <Box sx={{ py: 1 }}>
+          <Typography sx={{ my: 1 }} variant="h5">
+            <Skeleton variant="text" sx={{ fontSize: '3rem' }} />
+          </Typography>
+          <Typography sx={{ my: 1 }}>
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+          </Typography>
+        </Box>
+      </Container >
+
   );
 };
 
