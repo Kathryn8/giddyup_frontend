@@ -20,10 +20,14 @@ const SearchBar = ({ userId }) => {
   };
 
   const handleDateChange = (date) => {
-    const dateObject = new Date(date);
-    dateObject.setHours(dateObject.getHours() + 11);
-    const iso8601Date = dateObject.toISOString();
-    setTrips({ ...trips, deptDate: iso8601Date });
+    try {
+      const dateObject = new Date(date);
+      dateObject.setHours(dateObject.getHours() + 11);
+      const iso8601Date = dateObject.toISOString();
+      setTrips({ ...trips, deptDate: iso8601Date });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const apiUrl = '/trips/search';
@@ -45,7 +49,7 @@ const SearchBar = ({ userId }) => {
     <>
       <Box sx={{ py: 3 }}>
 
-        <Typography variant='h3' sx={{ textAlign: 'center', m: 3}}>Search for a trip</Typography>
+        <Typography variant='h3' sx={{ textAlign: 'center', m: 3 }}>Search for a trip</Typography>
 
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'center', bgcolor: 'white', p: 1.5 }}>
           {['origin', 'destination'].map((field) => (
@@ -76,7 +80,7 @@ const SearchBar = ({ userId }) => {
       </Box>
 
       <Divider />
-      {(searchedTrips.status === 'success') && (searchedTrips.results > 0) && <Typography variant='h3' sx={{ my: 3}}>Search results</Typography>}
+      {(searchedTrips.status === 'success') && (searchedTrips.results > 0) && <Typography variant='h3' sx={{ my: 3 }}>Search results</Typography>}
       {(searchedTrips.status === 'success') && (searchedTrips.results === 0) && <Typography variant="h5" sx={{ my: 3 }}>Splash! There are no rides {(trips.origin && trips.destination) ? `between ${trips.origin} and ${trips.destination}` : ''} on that date</Typography>}
       {searchedTrips && searchedTrips.data.trips.map((trip, index) => (
         <TripCard key={index} trip={trip} userId={userId} />
