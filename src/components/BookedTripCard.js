@@ -72,7 +72,7 @@ const BookedTripCard = ({ trip }) => {
   } else {
     formattedTime = `${hours % 12}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)} ${ampm}`;
   }
-  console.log(driver);
+
   return (
     <Card style={cardStyle} sx={{ marginBottom: 2 }}>
       <CardContent>
