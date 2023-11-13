@@ -1,11 +1,12 @@
 import React from 'react'
-import { Container, Typography, Box, Button, CardActions } from '@mui/material';
+import { Container, Typography, Box, Button, CardActions, CircularProgress } from '@mui/material';
 import StatsCard from './StatsCard';
 import img1 from '../assets/images/distance.png';
 import img2 from '../assets/images/emissions.png';
 import img3 from '../assets/images/savings.png';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import ServerError from '../pages/ServerError';
+import authFetch from '../axios/interceptors';
 
 const YourStats = ({ userId }) => {
   const [userObj, setUserObj] = useState({});
@@ -13,25 +14,16 @@ const YourStats = ({ userId }) => {
   const [isError, setIsError] = useState(false);
 
 
-  const url = process.env.REACT_APP_BASE_URL + '/users/' + userId;
+  const url = '/users/' + userId;
 
   useEffect(() => {
-    const getSingleUserProfile = async (userId) => {
+    const getSingleUserProfile = async () => {
       try {
-        const resp = await axios.get(url, {
-          headers: {
-            Accept: 'application/json',
-          },
-        });
-        console.log("checkpoint");
-        const x = await setUserObj(resp.data.data);
-        console.log("checkpoint");
-
-        console.log(userObj);
+        const resp = await authFetch.get(url);
+        setUserObj(resp.data.data);
       } catch (error) {
         setIsError(true);
-        console.log(`error-2: ${error}`);
-
+        console.log(`error`);
       } finally {
         setIsLoading(false);
       }
@@ -73,9 +65,25 @@ const YourStats = ({ userId }) => {
     },
   ];
 
+  if (isLoading) {
+    return (
+      <>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '55vh' }}>
+          <Typography variant="h2">Loading...</Typography>
+          <CircularProgress color="secondary" />
+        </Box>
+      </>
+    )
+  }
+
+  if (isError) {
+    return (
+      <ServerError />
+    )
+  }
+
   return (
     <Container sx={{ my: 10 }}>
-      {/* <Typography variant='h2' align='center'>Your statistics</Typography> */}
       <Typography sx={{ color: 'grey' }} variant='h4' align='center'> Since joining GiddyUP you have:</Typography>
 
       <Box sx={{

@@ -9,11 +9,9 @@ const authFetch = axios.create({
 
 authFetch.interceptors.request.use(
   (request) => {
-    // old version
-    // request.headers.common['Accept'] = 'application/json';
     request.headers['Accept'] = 'application/json';
-    console.log(`Request Method and params: ${request.method}: ${request.param}`); //output: `/api: true`
-    console.log('INTERCEPTOR: request sent');
+    console.log(`${(request.method).toUpperCase()} request sent to baseUrl + ${request.url} with parameters: ${JSON.stringify(request.params)}`);
+
     return request;
   },
   (error) => {
@@ -23,7 +21,8 @@ authFetch.interceptors.request.use(
 
 authFetch.interceptors.response.use(
   (response) => {
-    console.log('INTERCEPTOR: got response');
+    console.log(`${(response.data.status).toUpperCase()}: ${response.status} response from baseUrl + ${response.config.url} with parameters: ${JSON.stringify(response.config.params)}`);
+
     return response;
   },
   (error) => {

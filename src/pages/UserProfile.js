@@ -8,6 +8,7 @@ import silver from '../assets/images/giddyUpStatusBadgeSilver.png';
 import bronze from '../assets/images/giddyUpStatusBadgeBronze.png';
 import GppMaybeIcon from '@mui/icons-material/GppMaybe';
 import authFetch from '../axios/interceptors';
+import ServerError from './ServerError';
 
 const UserProfile = () => {
   const { user } = useAuth0();
@@ -75,19 +76,14 @@ const UserProfile = () => {
           <Typography variant="h2">Loading...</Typography>
           <CircularProgress color="secondary" />
         </Box>
-
       </>
     )
   }
 
   if (isError) {
     return (
-      <Container sx={{ p: 4, minHeight: '50vh' }}>
-        <Typography variant="h2">There was an error...</Typography>
-        <Typography variant="h3">Try refreshing the page?</Typography>
-        <Typography variant="h3">Check if your server is running.</Typography>
-      </Container>
-    );
+      <ServerError />
+    )
   }
 
   return (

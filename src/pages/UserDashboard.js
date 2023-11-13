@@ -39,9 +39,12 @@ const UserDashboard = () => {
 
   if (isLoading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '55vh' }}>
-        <CircularProgress color="secondary" />
-      </Box>
+      <>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '55vh' }}>
+          <Typography variant="h2">Loading...</Typography>
+          <CircularProgress color="secondary" />
+        </Box>
+      </>
     )
   }
 
