@@ -7,9 +7,9 @@ import { Container, Typography, Box, Button, CardActions } from '@mui/material';
 // import CardMedia from '@mui/material/CardMedia';
 // import { CardActionArea } from '@mui/material';
 import ActionAreaCard from './ActionAreaCard';
-import step1 from '../assets/images/step1.png';
-import step2 from '../assets/images/step2.png';
-import step3 from '../assets/images/step3.png';
+import signup from '../assets/images/signup.png';
+import find from '../assets/images/find.png';
+import book from '../assets/images/book.png';
 import { useAuth0 } from '@auth0/auth0-react';
 
 
@@ -18,22 +18,22 @@ import { useAuth0 } from '@auth0/auth0-react';
 const howToList = [
   {
     id: 1,
-    image: step1,
-    imgDimension: 200,
+    image: signup,
+    imgDimension: 350,
     title: 'Sign up with your email and a password',
     text: "Follow the sign-up link. Get started with just your email and password",
   },
   {
     id: 2,
-    image: step2,
-    imgDimension: 200,
+    image: find,
+    imgDimension: 350,
     title: 'Choose your trip and preferences',
     text: "Find the commute thats right for you, pick a route and driver. You will get a get idea of your trip-mate before you book",
   },
   {
     id: 3,
-    image: step3,
-    imgDimension: 200,
+    image: book,
+    imgDimension: 350,
     title: 'Book your ride with a trusted driver. GiddyUP!',
     text: "Getting to work has never been easier! Book a trip with a trusted workmate",
   },

@@ -37,14 +37,14 @@ const benefitList = [
     image: benefit2,
     imgDimension: 200,
     title: 'Connect',
-    text: "Did you know 87% of Giddy-uppers have had enlightening conversations during their rides? ",
+    text: "Did you know 87% of GiddyUP-ers have had enlightening conversations during their rides? ",
   },
   {
     id: 4,
     image: benefit3,
     imgDimension: 200,
     title: 'Stronger together',
-    text: "50% of Giddy-uppers find their travel peers more diverse than their usual social circles. Say yes to meeting new coworkers and expand your network.",
+    text: "50% of GiddyUP-ers find their travel peers more diverse than their usual social circles. Say yes to meeting new coworkers and expand your network.",
   },
 
 ];
@@ -53,7 +53,7 @@ const BenefitSection = () => {
   return (
     <Container sx={{ my: 10 }}>
       <Typography variant='h3' align='center'> Your benefits</Typography>
-      <Typography variant= 'subtitle1' align='center' sx={{ py: 1 }}> Riding together creates numerous benefits for employees, the communitiy and your company.</Typography>
+      <Typography variant='subtitle1' align='center' sx={{ py: 1 }}> Riding together creates numerous benefits for employees, the communitiy and your company.</Typography>
       <Box sx={{
         pt: 4,
         display: 'flex',
