@@ -14,7 +14,7 @@ const LandingSection = () => {
               Safety
             </Typography>
             <Typography variant="subtitle1">
-              22% of Giddyup drivers reduce their speed when carpooling. 35% of drivers check their tire pressure more often. Both these actions also reduce emissions. Fewer cars on the road means a lower likelihood of accidents.
+              22% of GiddyUP drivers reduce their speed when carpooling. 35% of drivers check their tire pressure more often. Both these actions also reduce emissions. Fewer cars on the road means a lower likelihood of accidents.
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>

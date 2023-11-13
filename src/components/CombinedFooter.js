@@ -38,10 +38,10 @@ const iconStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'warning.main',
+  backgroundColor: 'white',
   mr: 1,
   '&:hover': {
-    bgcolor: 'warning.dark',
+    bgcolor: '#dff3e3',
   },
 };
 
@@ -129,10 +129,10 @@ function AppFooter() {
               </Grid> */}
 
               <Grid item sx={{ display: 'flex' }}>
-                <Box component="a" href="https://mui.com/" sx={iconStyle}>
+                <Box component="a" href="https://facebook.com/" sx={iconStyle}>
                   <FacebookIcon />
                 </Box>
-                <Box component="a" href="https://twitter.com/MUI_hq" sx={iconStyle}>
+                <Box component="a" href="https://twitter.com/" sx={iconStyle}>
                   <TwitterIcon />
                 </Box>
               </Grid>
@@ -147,10 +147,10 @@ function AppFooter() {
             </Typography>
             <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/terms/"><Typography variant='subtitle2'>Phone: +61 44GIDDYUP</Typography></Link>
+                <Typography variant='subtitle2'>Phone: +61 44GIDDYUP</Typography>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/privacy/"> <Typography variant='subtitle2'>Email: yee.ha@giddyup.com</Typography></Link>
+                <Typography variant='subtitle2'>Email: betty@giddyup.com</Typography>
               </Box>
             </Box>
           </Grid>
@@ -160,10 +160,10 @@ function AppFooter() {
             </Typography>
             <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/terms/"><Typography variant='subtitle2'>Terms</Typography></Link>
+                <Typography variant='subtitle2'>Terms</Typography>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/privacy/"><Typography variant='subtitle2'>Privacy</Typography></Link>
+                <Typography variant='subtitle2'>Privacy</Typography>
               </Box>
             </Box>
           </Grid>
@@ -213,10 +213,10 @@ function OriginalFooter() {
 
   return (
     <>
-      <AppBar position="static" sx={{ display: { sm: 'none' }, bgcolor: '#dff3e3'}}>
+      <AppBar position="static" sx={{ display: { sm: 'none' }, bgcolor: '#dff3e3' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography sx={{ display: { sm: 'none' }}}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
+            <Typography sx={{ display: { sm: 'none' } }}><span >Made with <span role="img" aria-label="loveHeart" style={{ color: 'red' }}>♥️</span> in Melbourne Australia 2023 by</span></Typography>
 
           </Toolbar>
         </Container>
