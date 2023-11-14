@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, FormControl, InputLabel, MenuItem, Select, Button, Typography, Divider } from '@mui/material';
+import { Box, FormControl, InputLabel, MenuItem, Select, Button, Typography, Divider, CircularProgress } from '@mui/material';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -14,6 +14,9 @@ const SearchBar = ({ userId }) => {
     destination: '',
     deptDate: ''
   });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSelectChange = (field, value) => {
     setTrips({ ...trips, [field]: value });
@@ -35,12 +38,15 @@ const SearchBar = ({ userId }) => {
 
   const searchRequest = async () => {
     try {
+      setLoading(true);
       const { data } = await authFetch(apiUrl, {
         params: trips,
       });
       setSearchedTrips(data);
+      setLoading(false);
     } catch (error) {
-      console.log(error.response);
+      setLoading(false);
+      setError(error.response);
     }
   };
   const suburbOptions = ['Ballarat', 'Belgrave', 'Melbourne', 'Seddon', 'Yarraville'];
@@ -75,7 +81,14 @@ const SearchBar = ({ userId }) => {
               <DatePicker label="" onChange={handleDateChange} />
             </DemoContainer>
           </LocalizationProvider>
-          <Button onClick={searchRequest} variant="contained" sx={{ margin: '3px', padding: 2, minWidth: { xs: '230px', md: '120px', lg: '230px' }, height: '55px' }} > GiddyUP!</Button>
+        <Button
+          onClick={searchRequest}
+          variant="contained"
+          sx={{ margin: '3px', padding: 2, minWidth: { xs: '230px', md: '120px', lg: '230px' }, height: '55px' }}
+          disabled={loading}
+        >
+          {loading ? <CircularProgress size={24} color="secondary" /> : 'GiddyUP!'}
+        </Button>
         </Box>
       </Box>
 
