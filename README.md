@@ -1,5 +1,9 @@
 # GiddyUp Frontend
 
+## Introduction
+
+GiddyUp is the end-of-course project for Holberton School, inspired by the observation of traffic congestion in Melbourne, where most cars have only a single occupant. The aim of this project is to address this issue with a technological solution, facilitating carpooling and potentially reducing traffic and environmental impact.
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Technology Stack](#technology-stack)
@@ -15,13 +19,9 @@
 - [License](#license)
 - [Contact/Support](#contactsupport)
 
-## Introduction
-
-Welcome to GiddyUp! This repository hosts the frontend codebase for GiddyUp, an advanced project management tool designed to streamline team collaboration and project organization.
-
 ## Technology Stack
 
-GiddyUp Frontend leverages a sophisticated technology stack, including:
+GiddyUp Frontend technology stack, includes:
 
 ### Material-UI (MUI) Integration
 
