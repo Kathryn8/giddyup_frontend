@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material";
 
 const muiTheme = createTheme({
+
   typography: {
     fontSize: 16,
 
@@ -43,6 +44,9 @@ const muiTheme = createTheme({
       fontWeight: 400,
       color: '#616161'
     },
+      body1: {
+    color: '#616161'
+  },
   },
   palette: {
     primary: {
