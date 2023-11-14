@@ -6,6 +6,9 @@ import platinum from '../assets/images/giddyUpStatusBadgePlatinum.png';
 import gold from '../assets/images/giddyUpStatusBadgeGold.png';
 import silver from '../assets/images/giddyUpStatusBadgeSilver.png';
 import bronze from '../assets/images/giddyUpStatusBadgeBronze.png';
+import GradeIcon from '@mui/icons-material/Grade';
+import DriveEtaIcon from '@mui/icons-material/DriveEta';
+
 
 const DriverProfile = ({ driverId }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -90,7 +93,9 @@ const DriverProfile = ({ driverId }) => {
               <Typography sx={{ lineHeight: 2.5 }}>{userObj.user.statusLevel.toUpperCase()}</Typography>
 
               <Typography>
-                Ratings: {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
+                <GradeIcon sx={{ verticalAlign: 'top' }} />
+
+                {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
               </Typography>
             </Box>
           </Box>
@@ -123,7 +128,7 @@ const DriverProfile = ({ driverId }) => {
           {userObj?.user?.email_verified
             ?
             <Typography sx={{ my: 1 }}>
-              <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Email verified
+              <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Email
             </Typography>
             :
             <></>}
@@ -131,7 +136,7 @@ const DriverProfile = ({ driverId }) => {
           {userObj?.user?.verified?.driverLicense
             ?
             <Typography sx={{ my: 1 }}>
-              <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> License confirmed
+              <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> License
             </Typography>
             :
             <></>}
@@ -139,7 +144,7 @@ const DriverProfile = ({ driverId }) => {
           {userObj?.user?.verified?.phoneVerified
             ?
             <Typography sx={{ my: 1 }}>
-              <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Phone number confirmed
+              <VerifiedUserIcon color="success" sx={{ verticalAlign: 'middle' }} /> Phone number
             </Typography>
             :
             <></>}
@@ -153,17 +158,17 @@ const DriverProfile = ({ driverId }) => {
             About {userObj?.user?.firstName}
           </Typography>
           <Typography sx={{ my: 1 }}>"{userObj?.user?.aboutMe}"</Typography>
-          <Typography sx={{ my: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
+          <Typography sx={{ my: 1 }}>I like: {userObj?.user?.preferences}</Typography>
         </Box>
 
         <Divider />
 
         <Box sx={{ py: 1 }}>
           <Typography sx={{ my: 1 }} variant="h5">
-            {userObj?.user?.firstName}'s GiddyUp Activity
+            Activity
           </Typography>
-          <Typography sx={{ my: 1 }}>Rides offered: {userObj?.user?.latestActivity?.ridesOffered} </Typography>
-          <Typography sx={{ my: 1 }}>Rides taken: {userObj?.user?.latestActivity?.ridesTaken}</Typography>
+          <Typography sx={{ my: 1 }}><DriveEtaIcon sx={{ verticalAlign: 'middle' }} /> offered: {userObj?.user?.latestActivity?.ridesOffered} </Typography>
+          <Typography sx={{ my: 1 }}><DriveEtaIcon sx={{ verticalAlign: 'middle' }} /> taken: {userObj?.user?.latestActivity?.ridesTaken}</Typography>
           <Typography sx={{ my: 1 }}>Last ride: {new Date(userObj?.user?.latestActivity?.lastRide).toLocaleDateString()}</Typography>
         </Box>
 
