@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import SvgIconChildren from './SvgIconChildren';
 import { Link } from 'react-router-dom';
 import brandBannerMobile from '../assets/images/brandBannerMobile.png'
-import brandBannerDesktop from '../assets/images/brandBannerDesktop.png'
+import brandBannerDesktop2 from '../assets/images/brandBannerDesktop2.png'
 import { useAuth0 } from '@auth0/auth0-react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AccountCircle } from '@mui/icons-material';
@@ -89,7 +89,7 @@ export default function NavBar() {
             <Typography component="div" sx={{ flexGrow: 1 }}>
               <Link to='./'>
                 <img
-                  src={brandBannerDesktop}
+                  src={brandBannerDesktop2}
                   alt="Desktop Logo"
                   style={{
                     maxHeight: 60,

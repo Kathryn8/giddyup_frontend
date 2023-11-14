@@ -17,7 +17,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
-import LogoAboveBrand from '../assets/images/logoAboveBrand.png';
+import LogoAboveBrand2 from '../assets/images/logoAboveBrand2.png';
 
 // ... (other constants and components like Copyright and LANGUAGES)
 function Copyright() {
@@ -112,7 +112,7 @@ function AppFooter() {
         <Grid container spacing={5}>
           <Grid item xs={6} sm={6} md={2}>
             <Grid item sx={{ display: 'flex' }}>
-              <img src={LogoAboveBrand} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
+              <img src={LogoAboveBrand2} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
             </Grid>
           </Grid>
 
