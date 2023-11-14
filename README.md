@@ -62,7 +62,13 @@ To run this application locally:
 
 ## Application Structure
 
-GiddyUp Frontend is structured with modularity and scalability in mind, employing various components to manage distinct functionalities. This architecture ensures easy maintenance and extensibility of the application.
+`/src`: The core of the application.
+`/components`: Contains reusable UI components such as buttons, cards, forms, etc.
+`/pages`: Houses specific pages or views, each representing a different section or feature of the application.
+`/axois`: API integration.
+`/muiTheme`: Stores global styles, themes for MUI.
+`App.js`: The main entry point of the application, containing the routing and high-level structure.
+index.js
 
 ## Error Handling
 
@@ -70,20 +76,25 @@ GiddyUp Frontend includes robust error handling mechanisms that provide clear an
 
 ## Contributing
 
-We highly appreciate contributions that enhance GiddyUp! Here's the process to contribute:
-
-1. Fork the repository.
-2. Create a new branch for your feature: `git checkout -b feature/YourFeature`.
-3. Commit your changes: `git commit -m 'Add YourFeature'`.
-4. Push to the branch: `git push origin feature/YourFeature`.
-5. Open a Pull Request.
+Thank you for your interest in contributing to GiddyUp. However, this project is the end-of-course project for Holberton School and is not currently open for public contributions. Additionally, the project will not be actively monitored or updated post-completion. We appreciate your understanding.
 
 ## License
 
-This project is licensed under the MIT License. For detailed information, refer to the [LICENSE](LICENSE) file.
+GiddyUp is made available under the MIT License. This means that you are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, provided that the following conditions are met:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement.
+In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort or otherwise, arising from, out of, or in connection with the software or the use or other dealings in the software.
+Full details of the license can be found in the LICENSE file located in the root directory of this project.
 
 ## Contact/Support
 
-For inquiries, feedback, or support, reach out to us at [email@example.com](mailto:email@example.com). We value your interest and involvement in GiddyUp!
+If you have any questions, feedback, or need support regarding the GiddyUp project, please feel free to reach out to the authors:
+
+Bryan Field
+Eva Micich
+Kathryn Kelly
+Bryce Knight
+For direct inquiries or support, please contact [author's email or professional profile link]. We appreciate your interest in GiddyUp and will do our best to assist you.
 
 ---
