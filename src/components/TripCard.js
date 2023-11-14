@@ -159,9 +159,9 @@ const TripCard = ({ trip, userId }) => {
               open={openBasicDialog}
               aria-labelledby="learn-more-about-your-driver"
               aria-describedby="a-pop-up-with-driver-profile-information">
-              {/* <DialogTitle id="alert-dialog-title">
-                {"Meet your driver"}
-              </DialogTitle> */}
+              <DialogTitle id="alert-dialog-title">
+                {/* {"Meet your driver"} */}
+              </DialogTitle>
               <IconButton
                 aria-label="close"
                 onClick={handleCloseBasicDialog}
