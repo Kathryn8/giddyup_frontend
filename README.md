@@ -62,13 +62,13 @@ To run this application locally:
 
 ## Application Structure
 
-`/src`: The core of the application.
-`/components`: Contains reusable UI components such as buttons, cards, forms, etc.
-`/pages`: Houses specific pages or views, each representing a different section or feature of the application.
-`/axois`: API integration.
-`/muiTheme`: Stores global styles, themes for MUI.
-`App.js`: The main entry point of the application, containing the routing and high-level structure.
-index.js
+-`/src`: The core of the application.
+-`/components`: Contains reusable UI components such as buttons, cards, forms, etc.
+-`/pages`: Houses specific pages or views, each representing a different section or feature of the application.
+-`/axois`: API integration.
+-`/muiTheme`: Stores global styles, themes for MUI.
+-`App.js`: The main entry point of the application, containing the routing and high-level structure.
+-`index.js`: The file responsible for rendering the app to the DOM 
 
 ## Error Handling
 
