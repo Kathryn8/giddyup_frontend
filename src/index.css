@@ -76,7 +76,7 @@ h2,
 h3,
 h4 {
   letter-spacing: var(--spacing);
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   line-height: 1.25;
   margin-bottom: 0.75rem;
 }
@@ -151,7 +151,7 @@ p {
   margin-bottom: 4rem;
 }
 .section-title h2 {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 .section-title span {
   color: var(--clr-primary-5);
@@ -190,7 +190,7 @@ Hero
   padding: 0 3rem;
 }
 .hero-banner h1 {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 .hero-banner p {
   max-width: 35rem;
@@ -352,7 +352,7 @@ Featured Tours
   bottom: 0;
   background: var(--clr-primary-8);
   color: var(--clr-primary-1);
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   padding: 0.25rem 0.5rem;
   margin-bottom: 0;
 }
@@ -383,7 +383,7 @@ Featured Tours
 .tour-footer p {
   line-height: 0;
   margin-bottom: 0;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   color: var(--clr-primary-5);
 }
 .tour-footer p span {
