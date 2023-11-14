@@ -39,8 +39,8 @@ const YourStats = ({ userId }) => {
         xs: 80,
         md: 310,
       },
-      title: `Travelled: ${userObj?.user?.userStats?.totalDistanceTravelled}km`,
-      text: "This figure is based on extremely precise measurements that we have definitely calculated between drop-off and pick-up points",
+      title: `Travelled ${userObj?.user?.userStats?.totalDistanceTravelled}km`,
+      text: "This is the total number of kilometers you have travelled using GiddyUP",
     },
     {
       id: 2,
@@ -49,8 +49,8 @@ const YourStats = ({ userId }) => {
         xs: 80,
         md: 310,
       },
-      title: `Reduced: ${userObj?.user?.userStats?.emissionsSaved}kg of CO2`,
-      text: "This figure is based upon the number of trips you've taken while sharing with  colleague compared to the cost of driving by yourself. We have used the average emission level of the average car on Melbourne roads.",
+      title: `Reduced ${userObj?.user?.userStats?.emissionsSaved}kg of CO2`,
+      text: "This is the total amount of CO2 you prevented from entering the atmosphere because you chose to ride with a colleague.",
     },
     {
       id: 3,
@@ -60,8 +60,8 @@ const YourStats = ({ userId }) => {
         xs: 80,
         md: 310,
       },
-      title: `Saved: $${userObj?.user?.userStats?.dollarsSaved}`,
-      text: "This figure is based upon the number of trips you've taken while sharing with  colleague compared to the cost of driving by yourself",
+      title: `Saved $${userObj?.user?.userStats?.dollarsSaved}`,
+      text: "This figure is based upon the number of trips you've taken while sharing with colleague compared to the cost of driving by yourself",
     },
   ];
 
@@ -84,7 +84,7 @@ const YourStats = ({ userId }) => {
 
   return (
     <Container sx={{ my: 10 }}>
-      <Typography sx={{ color: 'grey' }} variant='h4' align='center'> Since joining GiddyUP you have:</Typography>
+      <Typography sx={{ color: 'grey' }} variant='h4' align='center'> Since joining GiddyUP you have</Typography>
 
       <Box sx={{
         pt: 4,
