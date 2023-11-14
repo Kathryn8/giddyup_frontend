@@ -49,8 +49,15 @@ const YourStats = ({ userId }) => {
         xs: 80,
         md: 310,
       },
-      title: `Reduced ${userObj?.user?.userStats?.emissionsSaved}kg of CO2`,
-      text: "This is the total amount of CO2 you prevented from entering the atmosphere because you chose to ride with a colleague.",
+      title: (
+        <>
+          Reduced {userObj?.user?.userStats?.emissionsSaved}kg of CO
+          <Typography component="span" sx={{ verticalAlign: 'sub', fontSize: '0.75em', color: 'inherit', fontFamily: 'inherit' }}>
+            2
+          </Typography>
+        </>
+      ),
+      text: "This is the total amount of carbon dioxide you prevented from entering the atmosphere because you chose to ride with a colleague.",
     },
     {
       id: 3,
@@ -61,7 +68,7 @@ const YourStats = ({ userId }) => {
         md: 310,
       },
       title: `Saved $${userObj?.user?.userStats?.dollarsSaved}`,
-      text: "This figure is based upon the number of trips you've taken while sharing with colleague compared to the cost of driving by yourself",
+      text: "This figure is based upon the distance you have travelled while sharing a ride with colleague compared to the cost of driving by yourself",
     },
   ];
 
