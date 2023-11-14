@@ -96,12 +96,14 @@ const DriverProfile = ({ driverId }) => {
 
               <Typography>
                 <GradeIcon sx={{ verticalAlign: 'top' }} />
-
                 {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
               </Typography>
-              <Box component="a" href={userObj?.user?.socials?.linkedin} sx={{ pt: '2' }}>
+              
+              {userObj?.user?.socials?.linkedin && (
+              <Box component="a" href={userObj.user.socials.linkedin} target="_blank" rel="noopener noreferrer" sx={{ pt: '2' }}>
                 <LinkedInIcon />
               </Box>
+        )}
 
             </Box>
           </Box>
