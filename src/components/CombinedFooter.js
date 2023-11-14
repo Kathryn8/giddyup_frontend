@@ -18,6 +18,8 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import LogoAboveBrand2 from '../assets/images/logoAboveBrand2.png';
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
 
 // ... (other constants and components like Copyright and LANGUAGES)
 function Copyright() {
@@ -110,13 +112,13 @@ function AppFooter() {
     >
       <Container sx={{ my: 8, display: 'flex' }}>
         <Grid container spacing={5}>
-          <Grid item xs={6} sm={6} md={2}>
+          <Grid item xs={3} sm={2} md={2}>
             <Grid item sx={{ display: 'flex' }}>
               <img src={LogoAboveBrand2} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
             </Grid>
           </Grid>
 
-          <Grid item xs={6} sm={6} md={2}>
+          <Grid item xs={6} sm={4} md={3}>
             <Grid
               container
               direction="column"
@@ -141,20 +143,20 @@ function AppFooter() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6} sm={6} md={3}>
+          <Grid item xs={6} sm={3} md={3}>
             <Typography variant="h6" marked="left" gutterBottom>
               Contact
             </Typography>
             <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Typography variant='subtitle2'>Phone: +61 44GIDDYUP</Typography>
+                <Typography variant='subtitle2'><PhoneIcon sx={{ verticalAlign: 'middle' }} /> +61 44GIDDYUP</Typography>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Typography variant='subtitle2'>Email: betty@giddyup.com</Typography>
+                <Typography variant='subtitle2'><EmailIcon sx={{ verticalAlign: 'middle' }} /> betty@giddyup.com</Typography>
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={6} sm={6} md={2}>
+          <Grid item xs={6} sm={3} md={3}>
             <Typography variant="h6" marked="left" gutterBottom>
               Legal
             </Typography>
@@ -166,26 +168,6 @@ function AppFooter() {
                 <Typography variant='subtitle2'>Privacy</Typography>
               </Box>
             </Box>
-          </Grid>
-          <Grid item xs={6} sm={6} md={3}>
-            <Typography variant="h6" marked="left" gutterBottom>
-              Language
-            </Typography>
-            <TextField
-              select
-              size="medium"
-              variant="standard"
-              SelectProps={{
-                native: true,
-              }}
-              sx={{ mt: 1, width: 150 }}
-            >
-              {LANGUAGES.map((language) => (
-                <option value={language.code} key={language.code}>
-                  {language.name}
-                </option>
-              ))}
-            </TextField>
           </Grid>
         </Grid>
       </Container>

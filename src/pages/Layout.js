@@ -11,7 +11,7 @@ const Layout = () => {
   return (
     <>
       {/* <ThemeProvider theme={muiTheme}> */}
-      <NavBar />
+      <NavBar position="fixed" />
       <Outlet />
       <CombinedFooter />
       {/* </ThemeProvider> */}

@@ -69,7 +69,7 @@ export default function NavBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
 
-      <AppBar position="static" sx={{ bgcolor: 'white' }}>
+      <AppBar position="fixed" sx={{ bgcolor: 'white' }}>
         <Toolbar>
 
           {isMobileView ? (
@@ -136,6 +136,9 @@ export default function NavBar() {
 
         </Toolbar>
       </AppBar>
+      <Toolbar /> {/* This helps to offset the AppBar */}
+      <Box sx={{ pt: 6 }}> {/* Add padding top here */}
+      </Box>
     </Box>
   );
 }
