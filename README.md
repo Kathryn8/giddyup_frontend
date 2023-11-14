@@ -91,10 +91,9 @@ Full details of the license can be found in the LICENSE file located in the root
 
 If you have any questions, feedback, or need support regarding the GiddyUp project, please feel free to reach out to the authors:
 
-Bryan Field
-Eva Micich
-Kathryn Kelly
-Bryce Knight
-For direct inquiries or support, please contact [author's email or professional profile link]. We appreciate your interest in GiddyUp and will do our best to assist you.
+- **Bryan Field**
+- **Eva Micich**
+- **Kathryn Kelly**
+- **Bryce Knight**
 
----
+For direct inquiries or support, please contact [author's email or professional profile link]. We appreciate your interest in GiddyUp and will do our best to assist you.
