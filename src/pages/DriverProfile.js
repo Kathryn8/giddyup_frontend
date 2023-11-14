@@ -8,6 +8,8 @@ import silver from '../assets/images/giddyUpStatusBadgeSilver.png';
 import bronze from '../assets/images/giddyUpStatusBadgeBronze.png';
 import GradeIcon from '@mui/icons-material/Grade';
 import DriveEtaIcon from '@mui/icons-material/DriveEta';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
 
 
 const DriverProfile = ({ driverId }) => {
@@ -97,6 +99,10 @@ const DriverProfile = ({ driverId }) => {
 
                 {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
               </Typography>
+              <Box component="a" href={userObj?.user?.socials?.linkedin} sx={{ pt: '2' }}>
+                <LinkedInIcon />
+              </Box>
+
             </Box>
           </Box>
 
