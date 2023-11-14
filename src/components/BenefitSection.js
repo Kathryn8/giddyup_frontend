@@ -19,7 +19,7 @@ const benefitList = [
     id: 1,
     image: benefit0,
     imgDimension: 200,
-    title: 'Doing your bit',
+    title: 'Do your bit',
     text: <>
       Increase car occupancy rates, ease congestion and track your CO
       <sub>2</sub> footprint. You can make a difference!
@@ -37,7 +37,7 @@ const benefitList = [
     image: benefit2,
     imgDimension: 200,
     title: 'Connect',
-    text: "Did you know 87% of GiddyUP-ers have had enlightening conversations during their rides? ",
+    text: "87% of GiddyUP-ers have had enlightening conversations during their rides.",
   },
   {
     id: 4,
