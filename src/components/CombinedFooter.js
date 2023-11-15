@@ -17,7 +17,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
-import LogoAboveBrand2 from '../assets/images/logoAboveBrand2.png';
+import LogoAboveBrand from '../assets/images/logoAboveBrand.png';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 
@@ -114,7 +114,7 @@ function AppFooter() {
         <Grid container spacing={5}>
           <Grid item xs={3} sm={2} md={2}>
             <Grid item sx={{ display: 'flex' }}>
-              <img src={LogoAboveBrand2} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
+              <img src={LogoAboveBrand} alt="Step 1" style={{ width: '100%', height: 'auto' }} />
             </Grid>
           </Grid>
 
