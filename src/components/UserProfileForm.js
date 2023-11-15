@@ -56,7 +56,7 @@ const UserProfileForm = ({ user }) => {
         {/* title, firstName, last Name */}
         <Box >
 
-          {/* <Controller
+          <Controller
             name="title"
             control={control}
             // defaultValue=""
@@ -81,7 +81,7 @@ const UserProfileForm = ({ user }) => {
                 </Select>
               </>
             )}
-          /> */}
+          />
           <Box sx={{ display: 'inline' }}>
             <Controller
               name="firstName"
@@ -133,16 +133,44 @@ const UserProfileForm = ({ user }) => {
               )}
             />
           </Box>
+
+
           <Box sx={{ display: 'inline' }}>
             <Controller
               name="phoneNumber"
               control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField {...field} variant={variant} label="Mobile Number" sx={{ m: 1, minWidth: 150 }} />
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField
+                  // helperText={error ? errors.message : "Phone number must be exactly 10 digits"}
+                  // size="small"
+                  error={!!error} // if you make this plural then red text appears on element
+                  helperText={errors.phoneNumber?.message}
+                  onChange={onChange}
+                  value={value}
+                  // fullWidth
+                  variant={variant}
+                  label="Mobile Number"
+                  // variant="outlined"
+                  sx={{ m: 1, minWidth: 150 }}
+                />
               )}
             />
+            {/* <Controller
+              name="phoneNumber"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextField 
+                {...field} 
+                variant={variant} 
+                label="Mobile Number" 
+                sx={{ m: 1, minWidth: 150 }} 
+                />
+              )}
+            /> */}
           </Box>
+
+
           <Box>
             <Controller
               name="socials.linkedin"
