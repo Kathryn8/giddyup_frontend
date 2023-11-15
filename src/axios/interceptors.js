@@ -26,20 +26,13 @@ authFetch.interceptors.response.use(
     return response;
   },
   (error) => {
-    // console.log("line 30")
-    // console.log(`here is the error resp: ${error.response}`);
-    // console.log("you're here");
     if (error.response && error.response.status === 404) {
-      // Handle the 404 error
       console.log('INTERCEPTOR: NOT FOUND');
     } else if (error.response && error.response.status === 400) {
-      // Handle the 404 error
-      // console.log('congrats - you found the 400 erro!');
       console.log(`INTERCEPTOR: Error message: ${error.response.data.message}`)
     }
     else {
-      // Handle other errors or provide a default action
-      console.log('INTERCEPTOR: Other snazy error');
+        console.log('INTERCEPTOR: Other snazy error');
     }
     return Promise.reject(error);
   }
