@@ -9,6 +9,7 @@ import bronze from '../assets/images/giddyUpStatusBadgeBronze.png';
 import GppMaybeIcon from '@mui/icons-material/GppMaybe';
 import authFetch from '../axios/interceptors';
 import ServerError from './ServerError';
+import UserProfileForm from '../components/UserProfileForm';
 
 const UserProfile = () => {
   const { user } = useAuth0();
@@ -50,6 +51,8 @@ const UserProfile = () => {
       setIsLoading(true);
     }
   };
+
+  console.log(userObj);
 
   function checkDiff(a) {
     return new Set(a).size !== 1;
@@ -163,20 +166,23 @@ const UserProfile = () => {
       <Divider />
       <Box sx={{ p: 1 }}>
         <Typography sx={{ m: 1 }} variant="h5">
-          About me
-        </Typography>
-        <Typography sx={{ m: 1 }}>"{userObj?.user?.aboutMe}"</Typography>
-        <Typography sx={{ m: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
-      </Box>
-      <Divider />
-      <Box sx={{ p: 1 }}>
-        <Typography sx={{ m: 1 }} variant="h5">
           Your GiddyUp Activity
         </Typography>
         <Typography sx={{ m: 1 }}>Rides offered: {userObj?.user?.latestActivity?.ridesOffered} </Typography>
         <Typography sx={{ m: 1 }}>Rides taken: {userObj?.user?.latestActivity?.ridesTaken}</Typography>
         <Typography sx={{ m: 1 }}>Last ride: {new Date(userObj?.user?.latestActivity?.lastRide).toLocaleDateString()}</Typography>
       </Box>
+      <Divider />
+      <Box sx={{ p: 1 }}>
+        <Typography sx={{ m: 1 }} variant="h5">
+          About me
+        </Typography>
+        <Typography sx={{ m: 1 }}>"{userObj?.user?.aboutMe}"</Typography>
+        <Typography sx={{ m: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
+      </Box>
+      <Divider />
+      <UserProfileForm user={userObj?.user} />
+
     </Container>
   );
 };
