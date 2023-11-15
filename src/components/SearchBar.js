@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
-import { Box, FormControl, InputLabel, MenuItem, Select, Button, Typography, Divider, CircularProgress } from '@mui/material';
+import React from 'react';
+import { Box, FormControl, InputLabel, MenuItem, Select, Button, Typography, Divider, CircularProgress} from '@mui/material';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import TripCard from './TripCard'
+import TripCard from './TripCard';
 import authFetch from '../axios/interceptors';
 
-
 const SearchBar = ({ userId }) => {
-  const [trips, setTrips] = useState({
+  const [trips, setTrips] = React.useState({
     origin: '',
     destination: '',
     deptDate: ''
   });
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = React.useState(false);
 
   const handleSelectChange = (field, value) => {
     setTrips({ ...trips, [field]: value });
@@ -32,32 +30,52 @@ const SearchBar = ({ userId }) => {
       console.log(error);
     }
   };
-
+  
   const apiUrl = '/trips/search';
-  const [searchedTrips, setSearchedTrips] = useState('');
+  const [searchedTrips, setSearchedTrips] = React.useState(null);
 
-  const searchRequest = async () => {
-    try {
-      setLoading(true);
-      const { data } = await authFetch(apiUrl, {
-        params: trips,
+const searchRequest = async () => {
+  try {
+    setLoading(true);
+    const { data } = await authFetch(apiUrl, {
+      params: trips,
+    });
+    setSearchedTrips(data);
+    setLoading(false);
+  } catch (error) {
+    setLoading(false);
+    if (error.isAxiosError && !error.response) {
+      setSearchedTrips({
+        status: 'error',
+        message: 'You are currently offline. Please check your internet connection and try again.',
       });
-      setSearchedTrips(data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      setError(error.response);
+    } else if (error.response) {
+      setSearchedTrips({
+        status: 'fail',
+        message: `Splash! There are no rides ${
+          trips.origin && trips.destination
+            ? `between ${trips.origin} and ${trips.destination}`
+            : ''
+        } on ${trips.deptDate ? new Date(trips.deptDate).toLocaleDateString() : ''}`,
+      });
     }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
+
+  React.useEffect(() => {
+  }, [searchRequest]);
+
   const suburbOptions = ['Ballarat', 'Belgrave', 'Melbourne', 'Seddon', 'Yarraville'];
 
   return (
     <>
       <Box sx={{ py: 3 }}>
 
-        <Typography variant='h3' sx={{ textAlign: 'center', m: 3 }}>Search for a trip</Typography>
+        <Typography variant="h3" sx={{ textAlign: 'center', m: 3 }}>Search for a trip</Typography>
 
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'center', bgcolor: 'white', p: 1.5 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'center', bgcolor: 'white', p: 1.5}}>
           {['origin', 'destination'].map((field) => (
             <Box key={field} sx={{ minWidth: 230, bgcolor: 'white', padding: '3px' }}>
               <FormControl fullWidth>
@@ -81,23 +99,33 @@ const SearchBar = ({ userId }) => {
               <DatePicker label="" onChange={handleDateChange} />
             </DemoContainer>
           </LocalizationProvider>
-        <Button
-          onClick={searchRequest}
-          variant="contained"
-          sx={{ margin: '3px', padding: 2, minWidth: { xs: '230px', md: '120px', lg: '230px' }, height: '55px' }}
-          disabled={loading}
-        >
-          {loading ? <CircularProgress size={24} color="secondary" /> : 'GiddyUP!'}
-        </Button>
+          <Button
+            onClick={searchRequest}
+            variant="contained"
+            sx={{ margin: '3px', padding: 2, minWidth: { xs: '230px', md: '120px', lg: '230px' }, height: '55px' }}
+            disabled={loading}
+          >
+            {loading ? <CircularProgress size={24} color="secondary" /> : 'GiddyUP!'}
+          </Button>
         </Box>
       </Box>
 
       <Divider />
-      {(searchedTrips.status === 'success') && (searchedTrips.results > 0) && <Typography variant='h3' sx={{ my: 3 }}>Search results</Typography>}
-      {(searchedTrips.status === 'success') && (searchedTrips.results === 0) && <Typography variant="h5" sx={{ my: 3 }}>Splash! There are no rides {(trips.origin && trips.destination) ? `between ${trips.origin} and ${trips.destination}` : ''} on that date</Typography>}
-      {searchedTrips && searchedTrips.data.trips.map((trip, index) => (
-        <TripCard key={index} trip={trip} userId={userId} />
-      ))}
+      {searchedTrips && (
+        <>
+          <Typography variant="h4" sx={{ my: 3 }}>{searchedTrips.message}</Typography>
+          {searchedTrips.status === 'success' && searchedTrips.results > 0 && (
+            <>
+              <Typography variant="h3" sx={{ my: 3 }}>
+                Search {searchedTrips.results !== 1 ? 'results' : 'result'} {searchedTrips.results} {searchedTrips.results !== 1 ? 'trips' : 'trip'} found
+              </Typography>
+              {searchedTrips.data.trips.map((trip, index) => (
+                <TripCard key={index} trip={trip} userId={userId} />
+              ))}
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };
