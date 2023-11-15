@@ -51,7 +51,7 @@ const Hero = () => {
             variant="contained"
             sx={{
               position: 'absolute',
-              top: { xs: '80%', sm: '35%', md: '30%' },  // Position it below the typography
+              top: { xs: '80%', sm: '60%', md: '30%' },  // Position it below the typography
               left: '10%',
               // transform: 'translate(-50%, -50%)',
               zIndex: 2,
