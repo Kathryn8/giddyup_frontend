@@ -56,6 +56,6 @@ const muiTheme = createTheme({
       main: '#ACCE42',
     },
   },
-})
+});
 
 export default muiTheme;
