@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Box, Typography, Avatar, Divider, CircularProgress } from '@mui/material';
+import { Container, Box, Typography, Avatar, Divider, CircularProgress, Button } from '@mui/material';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { useAuth0 } from '@auth0/auth0-react';
 import platinum from '../assets/images/giddyUpStatusBadgePlatinum.png';
@@ -19,6 +19,10 @@ const UserProfile = () => {
 
   const url1 = '/users/search-email';
   const url2 = '/users/';
+
+  // hook for the EDIT button:
+  const [editMode, setEditMode] = useState(false);
+
 
   useEffect(() => {
     const getUserIdFromEmailRequest = async () => {
@@ -94,7 +98,7 @@ const UserProfile = () => {
       <Typography variant="h4" sx={{ m: 1, p: 1 }}>
         Hello, {userObj?.user?.firstName || userObj?.user?.email.split('@')[0]}
       </Typography>
-      <Divider />
+      <Divider sx={{ m: 1 }} />
       <Box sx={{ display: 'flex', justifyContent: 'space-between', p: 1 }}>
         <Box sx={{ m: 1 }}>
 
@@ -111,7 +115,7 @@ const UserProfile = () => {
         <Avatar alt={userObj?.user?.firstName} src={process.env.REACT_APP_BASE_URL_IMAGES + userObj?.user?.profileImage} sx={{ my: 1, width: 100, height: 100 }} />
       </Box>
 
-      <Divider />
+      <Divider sx={{ m: 1 }} />
       <Box sx={{ p: 1 }}>
 
         {allChecked &&
@@ -163,7 +167,7 @@ const UserProfile = () => {
           </Typography>}
 
       </Box>
-      <Divider />
+      <Divider sx={{ m: 1 }} />
       <Box sx={{ p: 1 }}>
         <Typography sx={{ m: 1 }} variant="h5">
           Your GiddyUp Activity
@@ -172,16 +176,21 @@ const UserProfile = () => {
         <Typography sx={{ m: 1 }}>Rides taken: {userObj?.user?.latestActivity?.ridesTaken}</Typography>
         <Typography sx={{ m: 1 }}>Last ride: {new Date(userObj?.user?.latestActivity?.lastRide).toLocaleDateString()}</Typography>
       </Box>
-      <Divider />
+      {/* <Divider />
       <Box sx={{ p: 1 }}>
         <Typography sx={{ m: 1 }} variant="h5">
           About me
         </Typography>
         <Typography sx={{ m: 1 }}>"{userObj?.user?.aboutMe}"</Typography>
         <Typography sx={{ m: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
-      </Box>
-      <Divider />
-      <UserProfileForm user={userObj?.user} />
+      </Box> */}
+      <Divider sx={{ m: 1 }} />
+      <UserProfileForm user={userObj?.user} editMode={editMode} />
+      {editMode ?
+        <Button onClick={() => setEditMode(false)} variant="contained" color="warning" sx={{ m: 2, p: 1 }}>Cancel</Button>
+        :
+        <Button onClick={() => setEditMode(true)} variant="contained" sx={{ m: 2, p: 1 }}>Edit my profile</Button>
+      }
 
     </Container>
   );

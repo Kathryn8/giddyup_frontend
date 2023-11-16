@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Box, Button, Divider, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import React from 'react'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { useEffect, useState } from 'react';
@@ -6,10 +6,11 @@ import authFetch from '../axios/interceptors';
 
 const url = '/users/';
 
-const variant = "filled"; //you can change this between [filled, standard, """]
+const variant = "outlined"; //you can change this between [filled, standard, outlined]
 
+const UserProfileForm = ({ user, editMode }) => {
+  const disabled = !editMode;
 
-const UserProfileForm = ({ user }) => {
   // set the states for the PATCH api call:
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -28,119 +29,90 @@ const UserProfileForm = ({ user }) => {
         setUserObj(resp.data.data.user);
       } catch (error) {
         console.log(error.response.data.status);
-        // setBook(error.response.data.status);
       }
     }
     handleUserPatch();
   }
+
   // console.log(errors);
   // console.log(user);
-
-
   // const handleButtonClick = () => {
   // handleUserPatch();
   // handleClose();
 
-
-
-
-
-
   const ageRange = Array.from({ length: 50 }, (_, index) => 18 + index); // Generate age range from 18 to 67
 
-
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ px: 1 }}>
       <form onSubmit={handleSubmit(onSubmit)}>
-
-        {/* title, firstName, last Name */}
-        <Box >
-
-          <Controller
-            name="title"
-            control={control}
-            // defaultValue=""
-            render={({ field }) => (
-              <>
-                <InputLabel>Title</InputLabel>
-                <Select
-                  {...field}
-                  // label="Age"
-                  // labelId="age-range"
-                  // id="age-range"
-                  defaultValue=''
-                >
-                  <MenuItem value=''>none</MenuItem>
-                  <MenuItem value="Mr">Mr</MenuItem>
-                  <MenuItem value="Mrs">Mrs</MenuItem>
-                  <MenuItem value="Ms">Ms</MenuItem>
-                  <MenuItem value="Miss">Miss</MenuItem>
-                  <MenuItem value="Dr">Dr</MenuItem>
-                  <MenuItem value="Other">Other</MenuItem>
-                  <MenuItem value="X">X</MenuItem>
-                </Select>
-              </>
-            )}
-          />
-          <Box sx={{ display: 'inline' }}>
+        {/* 
+===================================================
+Tell us about you: aboutMe, preferences
+===================================================
+ */}
+        <Box sx={{ py: 1 }}>
+          <Box sx={{ m: 1, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between' }}>
+            <Typography variant="h5" >
+              Tell us about you*, {user.firstName}:
+            </Typography>
+            <Typography variant="caption" >
+              * other users can see this information
+            </Typography>
+          </Box>
+          <Box sx={{ py: 1 }}>
             <Controller
-              name="firstName"
+              name="aboutMe"
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <TextField {...field} variant={variant} label="First Name" sx={{ m: 1, minWidth: 280 }} />
+                <TextField {...field} disabled={disabled} label="About Me" fullWidth multiline maxRows={4} variant={variant} sx={{ m: 1, pr: 2 }} />
               )}
             />
           </Box>
-          <Box sx={{ display: 'inline' }}>
+          <Box sx={{ py: 1 }}>
             <Controller
-
-              name="lastName"
+              name="preferences"
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <TextField {...field} variant={variant} label="Last Name" sx={{ m: 1, minWidth: 280 }} />
+                <TextField {...field} disabled={disabled} label="Preferences" fullWidth variant={variant} sx={{ m: 1, pr: 2 }} />
+              )}
+            />
+          </Box>
+          <Box sx={{ py: 1 }}>
+            <Controller
+              name="socials.linkedin"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextField {...field} disabled={disabled} label="LinkedIn Profile URL" variant={variant} sx={{ m: 1, pr: 2 }} fullWidth />
               )}
             />
           </Box>
         </Box>
+        <Divider sx={{ m: 1 }} />
 
-        {/* age, phoneNumber, Linkedin */}
-        <Box >
-          <Box sx={{ display: 'inline' }}>
-            <Controller
-              name="age"
-              control={control}
-              // defaultValue=""
-              render={({ field }) => (
-                <FormControl variant={variant} sx={{ m: 1, minWidth: 100 }}>
-                  <InputLabel id="age-range">Age</InputLabel>
-                  <Select
-                    {...field}
-                    // label="Age"
-                    // labelId="age-range"
-                    // id="age-range"
-                    // value=""
-                    defaultValue=''
-                  >
-                    {ageRange.map((value) => (
-                      <MenuItem key={value} value={value}>
-                        {value}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              )}
-            />
+        {/* 
+===================================================
+Phone number
+===================================================
+ */}
+        <Box sx={{ py: 1 }}>
+          <Box sx={{ m: 1, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between' }}>
+            <Typography variant="h5" >
+              Your mobile number*:
+            </Typography>
+            <Typography variant="caption" >
+              * only shared with drivers whom you've booked or passangers who booked with you
+            </Typography>
           </Box>
-
-
-          <Box sx={{ display: 'inline' }}>
+          <Box sx={{ py: 1 }}>
             <Controller
               name="phoneNumber"
               control={control}
               render={({ field: { onChange, value }, fieldState: { error } }) => (
                 <TextField
+                  disabled={disabled}
                   // helperText={error ? errors.message : "Phone number must be exactly 10 digits"}
                   // size="small"
                   error={!!error} // if you make this plural then red text appears on element
@@ -155,46 +127,114 @@ const UserProfileForm = ({ user }) => {
                 />
               )}
             />
-            {/* <Controller
-              name="phoneNumber"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField 
-                {...field} 
-                variant={variant} 
-                label="Mobile Number" 
-                sx={{ m: 1, minWidth: 150 }} 
-                />
-              )}
-            /> */}
+          </Box>
+        </Box>
+        <Divider sx={{ m: 1 }} />
+
+        {/* 
+===================================================
+Personal Info: title, firstName, last Name, age
+===================================================
+ */}
+
+        <Box sx={{ py: 1 }}>
+          <Box sx={{ m: 1, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between' }}>
+            <Typography variant="h5" >
+              Your Personal Info*:
+            </Typography>
+            <Typography variant="caption" >
+              * only first name is shared with other users
+            </Typography>
           </Box>
 
-
-          <Box>
+          <Box sx={{ py: 1, display: 'inline' }}>
             <Controller
-              name="socials.linkedin"
+              name="title"
+              control={control}
+              // defaultValue=""
+              render={({ field }) => (
+                <FormControl variant={variant} disabled={disabled} sx={{ my: 2, mx: 1, minWidth: 100 }}>
+                  <InputLabel>Title</InputLabel>
+                  <Select
+                    {...field}
+                    defaultValue=''
+                  >
+                    <MenuItem value=''>none</MenuItem>
+                    <MenuItem value="Mr">Mr</MenuItem>
+                    <MenuItem value="Mrs">Mrs</MenuItem>
+                    <MenuItem value="Ms">Ms</MenuItem>
+                    <MenuItem value="Miss">Miss</MenuItem>
+                    <MenuItem value="Dr">Dr</MenuItem>
+                    <MenuItem value="Other">Other</MenuItem>
+                    <MenuItem value="X">X</MenuItem>
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </Box>
+          <Box sx={{ display: 'inline' }} >
+            <Controller
+              name="firstName"
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <TextField {...field} label="LinkedIn Profile URL" variant={variant} sx={{ m: 1, minWidth: { xs: 280, sm: 500 } }} />
+                <TextField {...field} disabled={disabled} variant={variant} label="First Name" sx={{ my: 2, mx: 1, minWidth: { xs: 300, sm: 280 } }} />
+              )}
+            />
+          </Box>
+          <Box sx={{ display: 'inline' }}>
+            <Controller
+
+              name="lastName"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextField {...field} disabled={disabled} variant={variant} label="Last Name" sx={{ my: 2, mx: 1, minWidth: { xs: 300, sm: 280 } }} />
               )}
             />
           </Box>
         </Box>
 
-
-        {/* streetAddress, suburb, postcode */}
-
         <Box >
-          <Box sx={{ display: 'inline' }}>
+          <Box sx={{ py: 1 }}>
+            <Controller
+              name="age"
+              control={control}
+              // defaultValue=""
+              render={({ field }) => (
+                <FormControl variant={variant} disabled={disabled} sx={{ mt: 0, mb: 1, mx: 1, minWidth: 100 }}>
+                  <InputLabel id="age-range">Age</InputLabel>
+                  <Select
+                    {...field}
+                    defaultValue=''
+                  >
+                    {ageRange.map((value) => (
+                      <MenuItem key={value} value={value}>
+                        {value}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </Box>
+        </Box>
+
+        {/* 
+===================================================
+Personal Info: streetAddress, suburb, postcode
+===================================================
+ */}
+
+        <Box sx={{ position: 'relative' }}>
+          <Box >
 
             <Controller
               name="address.streetAddress"
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <TextField {...field} label="Street Address" variant={variant} sx={{ m: 1, minWidth: { xs: 300, sm: 350 } }} />
+                <TextField {...field} disabled={disabled} label="Street Address" variant={variant} sx={{ mx: 1, my: 2, minWidth: { xs: 300, sm: 516 } }} />
               )}
             />
           </Box>
@@ -205,7 +245,7 @@ const UserProfileForm = ({ user }) => {
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <TextField {...field} label="Suburb" variant={variant} sx={{ m: 1, minWidth: 280 }} />
+                <TextField {...field} disabled={disabled} label="Suburb" variant={variant} sx={{ mx: 1, my: 2, minWidth: { xs: 300, sm: 280 } }} />
               )}
             />
           </Box>
@@ -216,60 +256,17 @@ const UserProfileForm = ({ user }) => {
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <TextField {...field} label="Post Code" variant={variant} sx={{ m: 1, minWidth: 100 }} />
+                <TextField {...field} disabled={disabled} label="Post Code" variant={variant} sx={{ mx: 1, my: 2, minWidth: 100 }} />
               )}
             />
           </Box>
         </Box>
 
-        {/* aboutMe, preferences */}
-        <Box >
-          <Box sx={{ display: 'inline' }}>
-
-            <Controller
-              name="aboutMe"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField {...field} label="About Me" fullWidth multiline maxRows={4} variant={variant} sx={{ m: 1 }} />
-              )}
-            />
-          </Box>
-          <Box sx={{ display: 'inline' }}>
-
-            <Controller
-              name="preferences"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField {...field} label="Preferences" variant={variant} sx={{ m: 1 }} />
-              )}
-            />
-          </Box>
-
-        </Box>
-
-
-        {/* // <TextField id="filled-basic" label="Filled" variant="filled" /> */}
-
-        {/* <input type="text" placeholder="First name" {...register("First name", { required: true, maxLength: 80 })} />
-      <input type="text" placeholder="Last name" {...register("Last name", { required: true, maxLength: 100 })} />
-      <input type="datetime" placeholder="Age" {...register} />
-      <input type="tel" placeholder="Mobile number" {...register("Mobile number", { required: true, minLength: 6, maxLength: 12 })} />
-      <input type="text" placeholder="Suburb" {...register} />
-      <textarea {...register("Street address", {})} />
-      <input type="text" placeholder="Postcode" {...register("Postcode", {})} />
-      <input type="text" placeholder="About me" {...register("About me", {})} />
-      <select {...register("Preferences")}>
-        <option value="music">music</option>
-        <option value=" pets"> pets</option>
-        <option value=" talking"> talking</option>
-        <option value=" dancing"> dancing</option>
-        <option value=" seahorses"> seahorses</option>
-      </select>
-      <input type="text" placeholder="LinkedIn profile URL" {...register("LinkedIn profile URL", {})} /> */}
-        <Button variant="contained" color="primary" type="submit">Submit</Button>
-        {/* <input type="submit" /> */}
+        {disabled ?
+          <></>
+          :
+          <Button variant="contained" color="primary" type="submit" sx={{ p: 1, mx: 1, my: 2, position: 'absolute', right: { xs: '56px', sm: '40px', md: '200px', lg: '350px', xl: '550px' } }}>Submit</Button>
+        }
       </form >
     </Box >
   )
