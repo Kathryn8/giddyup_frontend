@@ -123,9 +123,9 @@ export default function NavBar() {
               >
                 <MenuItem onClick={handleClose} sx={{ px: 5 }}> <Avatar src={user.picture} alt={user.name} sx={{ m: 1 }} /> Welcome</MenuItem>
                 <Divider />
-                <MenuItem onClick={handleClose}><Link key='dashboardLink890' to='./Dashboard'>Dashboard</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link to='./UserProfile'>Profile</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link to='./'>Home</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link key='dashboardLink890' to='./Dashboard' style={{ textDecoration: 'none', color: '#616161' }}>Dashboard</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to='./UserProfile' style={{ textDecoration: 'none', color: '#616161' }}>Profile</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to='./' style={{ textDecoration: 'none', color: '#616161' }}>Home</Link></MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
 
               </Menu>
