@@ -18,6 +18,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AccountCircle } from '@mui/icons-material';
 import { Divider } from '@mui/material';
+import betty from '../assets/images/betty.png'
 
 const settings = [<Link key='userProfileLink890' to='./UserProfile'>Your Profile</Link>,
   'Account',
@@ -103,7 +104,7 @@ export default function NavBar() {
             <Box >
               <IconButton onClick={handleMenu} sx={{ p: 1 }}>
                 {isUser && user.picture && user.name ?
-                  <Avatar src={user.picture} alt={user.name} /> :
+                  <Avatar src={betty} alt={user.name} /> :
                   <Avatar alt="XNot logged in avatar" src={AccountCircleIcon} />}
               </IconButton>
               <Menu
@@ -121,7 +122,7 @@ export default function NavBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose} sx={{ px: 5 }}> <Avatar src={user.picture} alt={user.name} sx={{ m: 1 }} /> Welcome</MenuItem>
+                <MenuItem onClick={handleClose} sx={{ px: 5 }}> <Avatar src={betty} alt={user.name} sx={{ m: 1 }} /> Welcome</MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}><Link key='dashboardLink890' to='./Dashboard' style={{ textDecoration: 'none', color: '#616161' }}>Dashboard</Link></MenuItem>
                 <MenuItem onClick={handleClose}><Link to='./UserProfile' style={{ textDecoration: 'none', color: '#616161' }}>Profile</Link></MenuItem>

@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Divider, FormControl, InputLabel, MenuItem, Select, Snackbar, TextField, Typography } from '@mui/material';
+import { Box, Button, Divider, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import React from 'react'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { useEffect, useState } from 'react';
@@ -10,25 +10,6 @@ const variant = "outlined"; //you can change this between [filled, standard, out
 
 const UserProfileForm = ({ user, editMode }) => {
   const disabled = !editMode;
-
-  // snackbar hook:
-  const [openSuccess, setOpenSuccess] = useState(false);
-  const [openFail, setOpenFail] = useState(false);
-
-  const handleClose1 = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenSuccess(false);
-    setOpenFail(false);
-  };
-
-  const handleClose2 = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenFail(false);
-  };
 
   // set the states for the PATCH api call:
   const [isLoading, setIsLoading] = useState(true);
@@ -46,10 +27,8 @@ const UserProfileForm = ({ user, editMode }) => {
         }, { param: true })
         console.log(resp.data.data.user)
         setUserObj(resp.data.data.user);
-        setOpenSuccess(true);
       } catch (error) {
         console.log(error.response.data.status);
-        setOpenFail(true);
       }
     }
     handleUserPatch();
@@ -74,33 +53,13 @@ Tell us about you: aboutMe, preferences
         <Box sx={{ py: 1 }}>
           <Box sx={{ m: 1, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between' }}>
             <Typography variant="h5" >
-              Tell us about you*, {user.firstName}
+              Tell us about you*, {user.firstName}:
             </Typography>
             <Typography variant="caption" >
               * other users can see this information
             </Typography>
           </Box>
-
           <Box sx={{ py: 1 }}>
-
-            {/* <TextField
-              {...register("aboutMe", {
-                // maxLength: 5,
-                // required: "HOHOHO"
-              })}
-              // error={!!errors.aboutMe}
-              // helperText={errors.email?.message}
-              disabled={disabled}
-              label="About Me"
-              type="aboutMe"
-              fullWidth
-              multiline
-              maxRows={4}
-              variant={variant}
-              sx={{ m: 1, pr: 2 }}
-            /> */}
-
-
             <Controller
               name="aboutMe"
               control={control}
@@ -109,7 +68,6 @@ Tell us about you: aboutMe, preferences
                 <TextField {...field} disabled={disabled} label="About Me" fullWidth multiline maxRows={4} variant={variant} sx={{ m: 1, pr: 2 }} />
               )}
             />
-
           </Box>
           <Box sx={{ py: 1 }}>
             <Controller
@@ -142,7 +100,7 @@ Phone number
         <Box sx={{ py: 1 }}>
           <Box sx={{ m: 1, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between' }}>
             <Typography variant="h5" >
-              Your mobile number*
+              Your mobile number*:
             </Typography>
             <Typography variant="caption" >
               * only shared with drivers whom you've booked or passangers who booked with you
@@ -182,7 +140,7 @@ Personal Info: title, firstName, last Name, age
         <Box sx={{ py: 1 }}>
           <Box sx={{ m: 1, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between' }}>
             <Typography variant="h5" >
-              Your Personal Info*
+              Your Personal Info*:
             </Typography>
             <Typography variant="caption" >
               * only first name is shared with other users
@@ -250,7 +208,6 @@ Personal Info: title, firstName, last Name, age
                     {...field}
                     defaultValue=''
                   >
-                    <MenuItem value=''>none</MenuItem>
                     {ageRange.map((value) => (
                       <MenuItem key={value} value={value}>
                         {value}
@@ -310,14 +267,6 @@ Personal Info: streetAddress, suburb, postcode
           :
           <Button variant="contained" color="primary" type="submit" sx={{ p: 1, mx: 1, my: 2, position: 'absolute', right: { xs: '56px', sm: '40px', md: '200px', lg: '350px', xl: '550px' } }}>Submit</Button>
         }
-        <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose1}>
-          <Alert onClose={handleClose1} severity="success" sx={{ width: '100%' }}>
-            Your profile was updated successfully
-          </Alert>
-        </Snackbar>
-        <Snackbar open={openFail} autoHideDuration={3000} onClose={handleClose2}>
-          <Alert onClose={handleClose2} severity="error" sx={{ width: '100%' }}>Something went wrong and we couldn't update your profile</Alert>
-        </Snackbar>
       </form >
     </Box >
   )

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Box, Typography, Avatar, Divider, Badge, Skeleton } from '@mui/material';
+import { Container, Box, Typography, Avatar, Divider, Badge, Skeleton, CircularProgress } from '@mui/material';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import authFetch from '../axios/interceptors';
 import platinum from '../assets/images/giddyUpStatusBadgePlatinum.png';
@@ -9,6 +9,7 @@ import bronze from '../assets/images/giddyUpStatusBadgeBronze.png';
 import GradeIcon from '@mui/icons-material/Grade';
 import DriveEtaIcon from '@mui/icons-material/DriveEta';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import ServerError from './ServerError';
 
 
 
@@ -57,17 +58,20 @@ const DriverProfile = ({ driverId }) => {
   }
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return (
+      <>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '55vh' }}>
+          <Typography variant="h2">Loading...</Typography>
+          <CircularProgress color="secondary" />
+        </Box>
+      </>
+    )
   }
 
   if (isError) {
     return (
-      <Container sx={{ p: 4, minHeight: '50vh' }}>
-        <Typography variant="h2">There was an error...</Typography>
-        <Typography variant="h3">Try refreshing the page?</Typography>
-        <Typography variant="h3">Check if your server is running.</Typography>
-      </Container>
-    );
+      <ServerError />
+    )
   }
 
   return (
@@ -98,12 +102,12 @@ const DriverProfile = ({ driverId }) => {
                 <GradeIcon sx={{ verticalAlign: 'top' }} />
                 {userObj.user.ratingsAverage} from {userObj.user.ratingsCount} ratings
               </Typography>
-              
+
               {userObj?.user?.socials?.linkedin && (
-              <Box component="a" href={userObj.user.socials.linkedin} target="_blank" rel="noopener noreferrer" sx={{ pt: '2' }}>
-                <LinkedInIcon />
-              </Box>
-        )}
+                <Box component="a" href={userObj.user.socials.linkedin} target="_blank" rel="noopener noreferrer" sx={{ pt: '2' }}>
+                  <LinkedInIcon />
+                </Box>
+              )}
 
             </Box>
           </Box>
