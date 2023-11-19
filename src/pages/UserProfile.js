@@ -10,6 +10,8 @@ import GppMaybeIcon from '@mui/icons-material/GppMaybe';
 import authFetch from '../axios/interceptors';
 import ServerError from './ServerError';
 import UserProfileForm from '../components/UserProfileForm';
+import betty from '../assets/images/bettyseahorse.png'
+
 
 const UserProfile = () => {
   const { user } = useAuth0();
@@ -112,7 +114,7 @@ const UserProfile = () => {
             </Typography>
           </Box>
         </Box>
-        <Avatar alt={userObj?.user?.firstName} src={process.env.REACT_APP_BASE_URL_IMAGES + userObj?.user?.profileImage} sx={{ my: 1, width: 100, height: 100 }} />
+        <Avatar alt={userObj?.user?.firstName} src={betty} sx={{ my: 1, width: 100, height: 100 }} />
       </Box>
 
       <Divider sx={{ m: 1 }} />

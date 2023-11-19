@@ -8,6 +8,7 @@ import YourStats from '../components/YourStats';
 import authFetch from '../axios/interceptors';
 import ServerError from './ServerError';
 
+
 const UserDashboard = () => {
   const { isAuthenticated, user } = useAuth0();
   const isUser = isAuthenticated && user;

@@ -18,7 +18,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AccountCircle } from '@mui/icons-material';
 import { Divider } from '@mui/material';
-import betty from '../assets/images/betty.png'
+import betty from '../assets/images/bettyseahorse.png'
 
 const settings = [<Link key='userProfileLink890' to='./UserProfile'>Your Profile</Link>,
   'Account',
