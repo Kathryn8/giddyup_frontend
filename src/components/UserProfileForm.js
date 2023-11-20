@@ -8,7 +8,7 @@ const url = '/users/';
 
 const variant = "outlined"; //you can change this between [filled, standard, outlined]
 
-const UserProfileForm = ({ user, editMode }) => {
+const UserProfileForm = ({ user, editMode, setEditMode }) => {
   const disabled = !editMode;
 
   // snackbar hook:
@@ -20,7 +20,7 @@ const UserProfileForm = ({ user, editMode }) => {
       return;
     }
     setOpenSuccess(false);
-    setOpenFail(false);
+    // setOpenFail(false);
   };
 
   const handleClose2 = (event, reason) => {
@@ -47,6 +47,7 @@ const UserProfileForm = ({ user, editMode }) => {
         console.log(resp.data.data.user)
         setUserObj(resp.data.data.user);
         setOpenSuccess(true);
+        setEditMode(false);
       } catch (error) {
         console.log(error.response.data.status);
         setOpenFail(true);
@@ -311,12 +312,12 @@ Personal Info: streetAddress, suburb, postcode
           <Button variant="contained" color="primary" type="submit" sx={{ p: 1, mx: 1, my: 2, position: 'absolute', right: { xs: '56px', sm: '40px', md: '200px', lg: '350px', xl: '550px' } }}>Submit</Button>
         }
         <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose1}>
-          <Alert onClose={handleClose1} severity="success" sx={{ width: '100%' }}>
+          <Alert onClose={handleClose1} color="success" sx={{ width: '100%' }}>
             Your profile was updated successfully
           </Alert>
         </Snackbar>
         <Snackbar open={openFail} autoHideDuration={3000} onClose={handleClose2}>
-          <Alert onClose={handleClose2} severity="error" sx={{ width: '100%' }}>Something went wrong and we couldn't update your profile</Alert>
+          <Alert onClose={handleClose2} color="error" sx={{ width: '100%' }}>Something went wrong and we couldn't update your profile</Alert>
         </Snackbar>
       </form >
     </Box >

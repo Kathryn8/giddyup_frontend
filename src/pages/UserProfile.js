@@ -187,7 +187,7 @@ const UserProfile = () => {
         <Typography sx={{ m: 1 }}>Preferences: {userObj?.user?.preferences}</Typography>
       </Box> */}
       <Divider sx={{ m: 1 }} />
-      <UserProfileForm user={userObj?.user} editMode={editMode} />
+      <UserProfileForm user={userObj?.user} editMode={editMode} setEditMode={setEditMode} />
       {editMode ?
         <Button onClick={() => setEditMode(false)} variant="contained" color="warning" sx={{ m: 2, p: 1 }}>Cancel</Button>
         :
