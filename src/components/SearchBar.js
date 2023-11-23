@@ -1,11 +1,13 @@
 import React from 'react';
-import { Box, FormControl, InputLabel, MenuItem, Select, Button, Typography, Divider, CircularProgress} from '@mui/material';
+import { Box, FormControl, InputLabel, MenuItem, Select, Button, Typography, Divider, CircularProgress } from '@mui/material';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TripCard from './TripCard';
 import authFetch from '../axios/interceptors';
+
+const suburbOptions = ['Abbotsford', 'Aberfeldie', 'Airport West', 'Albanvale', 'Albert Park', 'Albion', 'Alphington', 'Altona', 'Altona Meadows', 'Altona North', 'Ardeer', 'Armadale', 'Ascot Vale', 'Ashburton', 'Ashwood', 'Aspendale', 'Aspendale Gardens', 'Attwood', 'Avondale Heights', 'Balaclava', 'Balwyn', 'Balwyn North', 'Bangholme', 'Beaconsfield', 'Beaumaris', 'Belgrave', 'Belgrave Heights', 'Belgrave South', 'Bellfield', 'Bend of Islands', 'Bentleigh', 'Bentleigh East', 'Berwick', 'Bittern', 'Black Rock', 'Blackburn', 'Blackburn North', 'Blackburn South', 'Blairgowrie', 'Bonbeach', 'Boronia', 'Box Hill', 'Box Hill North', 'Box Hill South', 'Braeside', 'Braybrook', 'Briar Hill', 'Brighton', 'Brighton East', 'Broadmeadows', 'Brookfield', 'Brooklyn', 'Brunswick', 'Brunswick East', 'Brunswick West', 'Bulla', 'Bulleen', 'Bundoora', 'Burnley', 'Burnside', 'Burnside Heights', 'Burwood', 'Burwood East', 'Cairnlea', 'Calder Park', 'Camberwell', 'Campbellfield', 'Canterbury', 'Carlton', 'Carlton North', 'Carnegie', 'Caroline Springs', 'Carrum', 'Carrum Downs', 'Caulfield', 'Caulfield East', 'Caulfield North', 'Caulfield South', 'Chadstone', 'Chelsea', 'Chelsea Heights', 'Cheltenham', 'Chirnside Park', 'Christmas Hills', 'Cheltenham', 'Clarinda', 'Clayton', 'Clayton South', 'Clifton Hill', 'Coburg', 'Coburg North', 'Cocoroc', 'Coldstream', 'Collingwood', 'Coolaroo', 'Coonans Hill', 'Craigieburn', 'Cranbourne', 'Cremorne', 'Croydon', 'Croydon Hills', 'Croydon North', 'Croydon South', 'Dallas', 'Dandenong', 'Dandenong North', 'Dandenong South', 'Deepdene', 'Deer Park', 'Delahey', 'Derrimut', 'Devon Meadows', 'Diamond Creek', 'Diggers Rest', 'Dingley Village', 'Docklands', 'Doncaster', 'Doncaster East', 'Donvale', 'Doveton', 'Eaglemont', 'East Melbourne', 'Edithvale', 'Elsternwick', 'Eltham', 'Eltham North', 'Elwood', 'Emerald', 'Endeavour Hills', 'Epping', 'Essendon', 'Essendon Fields', 'Essendon North', 'Essendon West', 'Fairfield', 'Fawkner', 'Ferntree Gully', 'Ferny Creek', 'Fitzroy', 'Fitzroy North', 'Flemington', 'Footscray', 'Forest Hill', 'Frankston', 'Frankston North', 'Frankston South', 'Gardenvale', 'Gladstone Park', 'Glen Huntly', 'Glen Iris', 'Glen Waverley', 'Glenroy', 'Gowanbrae', 'Greensborough', 'Greenvale', 'Hadfield', 'Hallam', 'Hampton', 'Hampton East', 'Hampton Park', 'Harkaway', 'Hawthorn', 'Hawthorn East', 'Heatherton', 'Heathmont', 'Heidelberg', 'Heidelberg Heights', 'Heidelberg West', 'Highett', 'Hillside', 'Hoppers Crossing', 'Houston', 'Hughesdale', 'Huntingdale', 'Hurstbridge', 'Ivanhoe', 'Ivanhoe East', 'Jacana', 'Junction Village', 'Kallista', 'Kalorama', 'Kealba', 'Keilor', 'Keilor Downs', 'Keilor East', 'Keilor Lodge', 'Keilor North', 'Keilor Park', 'Kensington', 'Kerrimuir', 'Kew', 'Kew East', 'Keysborough', 'Kilsyth', 'Kilsyth South', 'Kings Park', 'Kingsbury', 'Kingsville', 'Knoxfield', 'Kooyong', 'Kurunjang', 'Laburnum', 'Lalor', 'Langwarrin', 'Langwarrin South', 'Laverton', 'Laverton North', 'Lilydale', 'Lower Plenty', 'Lynbrook', 'Lyndhurst', 'Lysterfield', 'Lysterfield South', 'Macclesfield', 'Maidstone', 'Malvern', 'Malvern East', 'Maribyrnong', 'McKinnon', 'Meadow Heights', 'Melbourne', 'Mentone', 'Mernda', 'Mickleham', 'Middle Park', 'Mill Park', 'Mitcham', 'Monbulk', 'Mont Albert', 'Mont Albert North', 'Montmorency', 'Montrose', 'Moonee Ponds', 'Moorabbin', 'Moorabbin Airport', 'Mooroolbark', 'Mordialloc', 'Mount Dandenong', 'Mount Evelyn', 'Mount Waverley', 'Mulgrave', 'Murrumbeena', 'Nangana', 'Narre Warren', 'Narre Warren East', 'Narre Warren North', 'Narre Warren South', 'Newport', 'Niddrie', 'Noble Park', 'Noble Park North', 'North Melbourne', 'North Warrandyte', 'Northcote', 'Notting Hill', 'Nunawading', 'Oak Park', 'Oaklands Junction', 'Oakleigh', 'Oakleigh East', 'Oakleigh South', 'Officer', 'Olinda', 'Ormond', 'Pakenham', 'Panton Hill', 'Park Orchards', 'Parkdale', 'Parkville', 'Pascoe Vale', 'Pascoe Vale South', 'Patterson Lakes', 'Plenty', 'Plumpton', 'Point Cook', 'Point Leo', 'Port Melbourne', 'Prahran', 'Preston', 'Princes Hill', 'Ravenhall', 'Red Hill', 'Research', 'Reservoir', 'Richmond', 'Ringwood', 'Ringwood East', 'Ringwood North', 'Ripponlea', 'Rockbank', 'Rosanna', 'Rosebud', 'Rosebud West', 'Rowville', 'Roxburgh Park', 'Sandhurst', 'Sandringham', 'Sassafras', 'Scoresby', 'Seabrook', 'Seaford', 'Seaholme', 'Seddon', 'Selby', 'Seville', 'Sherbrooke', 'Shoreham', 'Silvan', 'Skye', 'Smiths Gully', 'Somerton', 'Sorrento', 'South Kingsville', 'South Melbourne', 'South Morang', 'South Wharf', 'South Yarra', 'Southbank', 'Spotswood', 'Springvale', 'Springvale South', 'St Albans', 'St Andrews', 'St Helena', 'St Kilda', 'St Kilda East', 'St Kilda West', 'Strathmore', 'Strathmore Heights', 'Sunbury', 'Sunshine', 'Sunshine North', 'Sunshine West', 'Surrey Hills', 'Sydenham', 'Tally Ho', 'Tarneit', 'Taylors Hill', 'Taylors Lakes', 'Tecoma', 'Templestowe', 'Templestowe Lower', 'The Basin', 'Thomastown', 'Thornbury', 'Tooradin', 'Toorak', 'Tottenham', 'Travancore', 'Tremont', 'Truganina', 'Tullamarine', 'Tyabb', 'Tynong', 'Upper Ferntree Gully', 'Upwey', 'Vermont', 'Vermont South', 'Viewbank', 'Wandin East', 'Wandin North', 'Wantirna', 'Wantirna South', 'Warneet', 'Warrandyte', 'Warrandyte South', 'Warranwood', 'Waterways', 'Watsonia', 'Watsonia North', 'Wattle Glen', 'Werribee', 'Werribee South', 'West Melbourne', 'Westmeadows', 'Wheelers Hill', 'Wildwood', 'Williams Landing', 'Williamstown', 'Williamstown North', 'Windsor', 'Wonga Park', 'Wyndham Vale', 'Yallambie', 'Yarrambat', 'Yarraville', 'Yuroke'];
 
 const SearchBar = ({ userId }) => {
   const [trips, setTrips] = React.useState({
@@ -30,44 +32,43 @@ const SearchBar = ({ userId }) => {
       console.log(error);
     }
   };
-  
+
   const apiUrl = '/trips/search';
   const [searchedTrips, setSearchedTrips] = React.useState(null);
 
-const searchRequest = async () => {
-  try {
-    setLoading(true);
-    const { data } = await authFetch(apiUrl, {
-      params: trips,
-    });
-    setSearchedTrips(data);
-    setLoading(false);
-  } catch (error) {
-    setLoading(false);
-    if (error.isAxiosError && !error.response) {
-      setSearchedTrips({
-        status: 'error',
-        message: 'You are currently offline. Please check your internet connection and try again.',
+  const searchRequest = async () => {
+    try {
+      setLoading(true);
+      const { data } = await authFetch(apiUrl, {
+        params: trips,
       });
-    } else if (error.response) {
-      setSearchedTrips({
-        status: 'fail',
-        message: `Splash! There are no rides ${
-          trips.origin && trips.destination
+      setSearchedTrips(data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      if (error.isAxiosError && !error.response) {
+        setSearchedTrips({
+          status: 'error',
+          message: 'You are currently offline. Please check your internet connection and try again.',
+        });
+      } else if (error.response) {
+        setSearchedTrips({
+          status: 'fail',
+          message: `Splash! There are no rides ${trips.origin && trips.destination
             ? `between ${trips.origin} and ${trips.destination}`
             : ''
-        } on ${trips.deptDate ? new Date(trips.deptDate).toLocaleDateString() : ''}`,
-      });
+            } on ${trips.deptDate ? new Date(trips.deptDate).toLocaleDateString() : ''}`,
+        });
+      }
+    } finally {
+      setLoading(false);
     }
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   React.useEffect(() => {
   }, [searchRequest]);
 
-  const suburbOptions = ['Ballarat', 'Belgrave', 'Melbourne', 'Seddon', 'Yarraville'];
+
 
   return (
     <>
@@ -75,7 +76,7 @@ const searchRequest = async () => {
 
         <Typography variant="h3" sx={{ textAlign: 'center', m: 3 }}>Search for a trip</Typography>
 
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'center', bgcolor: 'white', p: 1.5}}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'center', bgcolor: 'white', p: 1.5 }}>
           {['origin', 'destination'].map((field) => (
             <Box key={field} sx={{ minWidth: 230, bgcolor: 'white', padding: '3px' }}>
               <FormControl fullWidth>

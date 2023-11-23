@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout, LandingPage, Error, UserDashboard, UserProfile, DriverProfile, PrivateRoute, AuthWrapper } from './pages';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+
 const App = () => {
   return (
     <AuthWrapper>

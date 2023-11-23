@@ -29,7 +29,7 @@ const UpcomingTrips = ({ userId }) => {
   }, [userId]);
 
   return (
-    <Box sx={{ my: 3 }}>
+    <Box sx={{ m: 3 }}>
       {!(isLoading) && <Typography variant='h2' sx={{ mb: 3 }}>Upcoming trips</Typography>}
       {
         isLoading ? (

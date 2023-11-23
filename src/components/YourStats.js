@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Typography, Box, Button, CardActions, CircularProgress } from '@mui/material';
+import { Container, Typography, Box, Button, CardActions, CircularProgress, Grid } from '@mui/material';
 import StatsCard from './StatsCard';
 import img1 from '../assets/images/distance.png';
 import img2 from '../assets/images/emissions.png';
@@ -7,6 +7,8 @@ import img3 from '../assets/images/savings.png';
 import { useEffect, useState } from 'react';
 import ServerError from '../pages/ServerError';
 import authFetch from '../axios/interceptors';
+import SolariDisplay from './SolariDisplay';
+
 
 const YourStats = ({ userId }) => {
   const [userObj, setUserObj] = useState({});
@@ -31,6 +33,11 @@ const YourStats = ({ userId }) => {
     getSingleUserProfile()
   }, [userId]);
 
+  // cast my database variables into strings so they can safely pass to the Solari component:
+  const distance = String(userObj?.user?.userStats?.totalDistanceTravelled);
+  const co2 = String(userObj?.user?.userStats?.emissionsSaved);
+  const dollars = String(userObj?.user?.userStats?.dollarsSaved);
+
   const statsList = [
     {
       id: 1,
@@ -39,8 +46,22 @@ const YourStats = ({ userId }) => {
         xs: 80,
         md: 310,
       },
-      title: `Travelled ${userObj?.user?.userStats?.totalDistanceTravelled}km`,
-      text: "This is the total number of kilometers you have travelled using GiddyUP",
+      title: (
+        <React.Fragment>
+          travelled<Typography component="span" sx={{ verticalAlign: 'sub', fontSize: '0.75em', color: 'white', fontFamily: 'inherit' }} note='This typography component is here as a short cut to not have to format the text height of this card. The reason there is a descrepency in the height of my userStat cards is that for the carbon emmissions card we do some funky styling to display the 2 in the CO2 and so that is why here we need to display (in white) a full stop with the same styling so that everything aligns'>
+            .
+          </Typography>
+          <Grid container spacing={1} alignItems="center" sx={{ py: 3 }}>
+            <Grid item xs={8} md={12} lg={8}>
+              <SolariDisplay text={distance} length={6} />
+            </Grid>
+            <Grid item xs={4} md={12} lg={4}>
+              <SolariDisplay text={'kms'} length={3} />
+            </Grid>
+          </Grid>
+        </React.Fragment>
+      ),
+      text: `This is the total number of kilometers you have travelled using GiddyUP`,
     },
     {
       id: 2,
@@ -50,12 +71,19 @@ const YourStats = ({ userId }) => {
         md: 310,
       },
       title: (
-        <>
-          Reduced {userObj?.user?.userStats?.emissionsSaved}kg of CO
-          <Typography component="span" sx={{ verticalAlign: 'sub', fontSize: '0.75em', color: 'inherit', fontFamily: 'inherit' }}>
+        <React.Fragment>
+          reduced CO<Typography component="span" sx={{ verticalAlign: 'sub', fontSize: '0.75em', color: 'inherit', fontFamily: 'inherit' }} >
             2
-          </Typography>
-        </>
+          </Typography> by
+          <Grid container spacing={1} alignItems="center" sx={{ py: 3 }}>
+            <Grid item xs={8} md={12} lg={8}>
+              <SolariDisplay text={co2} length={6} />
+            </Grid>
+            <Grid item xs={4} md={12} lg={4}>
+              <SolariDisplay text={'kgs'} length={3} />
+            </Grid>
+          </Grid>
+        </React.Fragment>
       ),
       text: "This is the total amount of carbon dioxide you prevented from entering the atmosphere because you chose to ride with a colleague.",
     },
@@ -67,7 +95,22 @@ const YourStats = ({ userId }) => {
         xs: 80,
         md: 310,
       },
-      title: `Saved $${userObj?.user?.userStats?.dollarsSaved}`,
+      title: (
+        <React.Fragment>
+          saved<Typography component="span" sx={{ verticalAlign: 'sub', fontSize: '0.75em', color: 'white', fontFamily: 'inherit' }} note='This typography component is here as a short cut to not have to format the text height of this card. The reason there is a descrepency in the height of my userStat cards is that for the carbon emmissions card we do some funky styling to display the 2 in the CO2 and so that is why here we need to display (in white) a full stop with the same styling so that everything aligns'>
+            .
+          </Typography>
+          <Grid container spacing={1} alignItems="center" sx={{ py: 3 }}>
+            <Grid item xs={2} md={12} lg={2}>
+              <SolariDisplay text={'$'} length={1} />
+            </Grid>
+            <Grid item xs={10} md={12} lg={10}>
+              <SolariDisplay text={dollars} length={8} />
+            </Grid>
+          </Grid>
+        </React.Fragment>
+      )
+      ,
       text: "This figure is based upon the distance you have travelled while sharing a ride with colleague compared to the cost of driving by yourself",
     },
   ];
@@ -90,8 +133,8 @@ const YourStats = ({ userId }) => {
   }
 
   return (
-    <Container sx={{ my: 10 }}>
-      <Typography sx={{ color: 'grey' }} variant='h4' align='center'> Since joining GiddyUP you have</Typography>
+    <Container sx={{ my: 5 }}>
+      <Typography variant='h3'> Since joining GiddyUP you have</Typography>
 
       <Box sx={{
         pt: 4,
